@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/profile">
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.tasmeme.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/notifications"
+        android:name="com.example.tasmeme.ui.fragments.Notifications"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_notifications2_to_departure"
+            app:destination="@id/departure" />
+    </fragment>
+    <fragment
+        android:id="@+id/departure"
+        android:name="com.example.tasmeme.ui.fragments.Departure"
+        android:label="fragment_departure"
+        tools:layout="@layout/fragment_departure" />
+</navigation>

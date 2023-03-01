@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_nav_graph"
+    app:startDestination="@id/profile">
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.tasmeme.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/information"
+        android:name="com.example.tasmeme.ui.fragments.ParentsInfoFragment"
+        android:label="ParentsInfoFragment" />
+    <fragment
+        android:id="@+id/orders"
+        android:name="com.example.tasmeme.ui.fragments.ParentsOptionsFragment"
+        android:label="ParentsOptionsFragment" />
+</navigation>

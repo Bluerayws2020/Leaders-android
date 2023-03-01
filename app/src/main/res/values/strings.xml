@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">tasmeme</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="countLeaeve">Count Of Lea (%s)</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
+    <string name="stuName">اسم الطالب </string>
+    <string name="theCondition">الحالة</string>
+</resources>

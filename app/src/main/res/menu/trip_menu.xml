@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/profile"
+        android:title="معلوماتي"
+        android:icon="@drawable/profile_icon"
+        />
+    <item
+        android:id="@+id/morning_trip"
+        android:title="الجولة الصباحية"
+        android:icon="@drawable/notifications_icon"/>
+    <item
+        android:id="@+id/evening_trip"
+        android:title="الجولة المسائية"
+        android:icon="@drawable/notifications_icon"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="تسجيل خروج"
+        android:icon="@drawable/exit_icon"/>
+</menu>

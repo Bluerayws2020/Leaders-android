@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trip_nav_graph"
+    app:startDestination="@id/profile">
+
+    <fragment
+        android:id="@+id/morning_trip"
+        android:name="com.example.tasmeme.ui.fragments.TripFragment"
+        android:label="fragment_trip"
+        tools:layout="@layout/fragment_trip" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.example.tasmeme.ui.fragments.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/evening_trip"
+        android:name="com.example.tasmeme.ui.fragments.EveningTripFragment"
+        android:label="fragment_evening_trip"
+        tools:layout="@layout/fragment_evening_trip" />
+</navigation>
