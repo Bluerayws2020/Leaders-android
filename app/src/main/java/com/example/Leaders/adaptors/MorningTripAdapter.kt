@@ -6,10 +6,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.nerd_android.helpers.ViewUtils.hide
+import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
-import com.example.tasmeme.helpers.ViewUtils.hide
-import com.example.tasmeme.helpers.ViewUtils.show
-import com.example.tasmeme.model.TripModel
 
 class MorningTripAdapter(private val listener: OnItemClickListener):RecyclerView.Adapter<MorningTripAdapter.MyViewHolder>() {
 
@@ -54,7 +53,7 @@ class MorningTripAdapter(private val listener: OnItemClickListener):RecyclerView
 
 
         override fun onClick(v: View?) {
-            listener.onItemClick(adapterPosition)
+
         }
 
     }

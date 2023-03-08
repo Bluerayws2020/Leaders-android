@@ -27,12 +27,12 @@ class EveningTripFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter= EveningTripAdapter(object :OnItemClickListener{
+       /* adapter= EveningTripAdapter(object :OnItemClickListener{
             override fun onItemClick(position: Int) {
                 TODO("Not yet implemented")
             }
 
-        })
+        })*/
         binding.apply {
 
             eveningRec.adapter=adapter

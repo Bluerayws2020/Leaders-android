@@ -2,33 +2,35 @@ package com.example.tasmeme.adaptors
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.Leaders.model.Departure
 import com.example.tasmeme.R
+import com.example.tasmeme.databinding.FragmentProfileBinding
+import com.example.tasmeme.databinding.ReceptionRecItemsBinding
 import com.example.tasmeme.model.ReceptionModel
 
-class ReceptionAdapter(): RecyclerView.Adapter<ReceptionAdapter.MyViewHolder>(){
-    val list= arrayListOf<ReceptionModel>(
-        ReceptionModel("1","الطالب أحمد محمد"," / الصف الرابع","غادر الصف الساعة 12:00","بموافقة من المشرفة ديمة"),
-        ReceptionModel("2","الطالب ايهم حماد"," / الصف الرابع","غادر الصف الساعة 12:00","بموافقة من المشرفة ديمة"),
-        ReceptionModel("3","الطالب احمد ابو شنب"," / الصف الرابع","غادر الصف الساعة 12:00","بموافقة من المشرفة ديمة"),
-    )
+class ReceptionAdapter(List: List<Departure>,val listener: OnItemClickListener): RecyclerView.Adapter<ReceptionAdapter.MyViewHolder>(){
+    private lateinit var list:List<Departure>
+    init {
+    list=List
+    }
+    inner class MyViewHolder(val binding:ReceptionRecItemsBinding,private val listener: OnItemClickListener ):ViewHolder(binding.root),OnClickListener{
 
-    inner class MyViewHolder(view:View):ViewHolder(view){
-        val name=view.findViewById<TextView>(R.id.rec_item_stu_name)
-        val grade=view.findViewById<TextView>(R.id.rec_item_stu_grade)
-        val timeToLeave=view.findViewById<TextView>(R.id.rec_item_stu_time_to_leave)
-        val adminName=view.findViewById<TextView>(R.id.rec_item_admin_name)
-        val checkBox=view.findViewById<CheckBox>(R.id.rec_item_checkBox)
+
+        override fun onClick(v: View?) {
+            listener.onItemClick(adapterPosition,list[adapterPosition].nid)
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val layoutInflater=LayoutInflater.from(parent.context)
-        val item= layoutInflater.inflate(R.layout.reception_rec_items,parent,false)
-        return MyViewHolder(item)
+        val binding=ReceptionRecItemsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        return MyViewHolder(binding, listener)
     }
 
     override fun getItemCount(): Int {
@@ -36,11 +38,18 @@ class ReceptionAdapter(): RecyclerView.Adapter<ReceptionAdapter.MyViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.apply {
-            name.text=list[position].name
-            grade.text=list[position].grade
-            timeToLeave.text=list[position].time
-            adminName.text=list[position].admin_name
-        }
+         holder.binding.apply {
+             recItemStuName.text="الطالب"+list[position].student
+             if(list[position].status=="7"){
+                 recItemCheckBox.isChecked=true
+             }else{
+                 recItemCheckBox.isChecked==false
+             }
+         }
+
+        holder.binding.recItemCheckBox.setOnClickListener {
+            listener.onItemClick(position,list[position].nid)
+            }
+
     }
 }

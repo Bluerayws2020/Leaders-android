@@ -9,10 +9,24 @@
         android:id="@+id/profile"
         android:name="com.example.tasmeme.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_orders"
+            app:destination="@id/orders" />
+        <action
+            android:id="@+id/action_profile_self"
+            app:destination="@id/profile" />
+    </fragment>
     <fragment
         android:id="@+id/orders"
         android:name="com.example.tasmeme.ui.fragments.Reception"
         android:label="fragment_reception"
-        tools:layout="@layout/fragment_reception" />
+        tools:layout="@layout/fragment_reception" >
+        <action
+            android:id="@+id/action_orders_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_orders_self"
+            app:destination="@id/orders" />
+    </fragment>
 </navigation>

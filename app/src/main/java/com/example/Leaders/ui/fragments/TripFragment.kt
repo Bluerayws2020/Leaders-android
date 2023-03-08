@@ -26,12 +26,12 @@ class TripFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter= MorningTripAdapter(object:OnItemClickListener{
+       /* adapter= MorningTripAdapter(object:OnItemClickListener{
             override fun onItemClick(position: Int) {
                 TODO("Not yet implemented")
             }
 
-        })
+        })*/
 
         binding.apply {
             morningRec.adapter=adapter

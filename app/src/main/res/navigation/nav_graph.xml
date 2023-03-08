@@ -9,7 +9,11 @@
         android:id="@+id/profile"
         android:name="com.example.tasmeme.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
     <fragment
         android:id="@+id/notifications"
         android:name="com.example.tasmeme.ui.fragments.Notifications"
@@ -18,10 +22,20 @@
         <action
             android:id="@+id/action_notifications2_to_departure"
             app:destination="@id/departure" />
+        <action
+            android:id="@+id/action_notifications_to_profile"
+            app:destination="@id/profile" />
     </fragment>
     <fragment
         android:id="@+id/departure"
         android:name="com.example.tasmeme.ui.fragments.Departure"
         android:label="fragment_departure"
-        tools:layout="@layout/fragment_departure" />
+        tools:layout="@layout/fragment_departure" >
+        <action
+            android:id="@+id/action_departure_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_departure_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
 </navigation>

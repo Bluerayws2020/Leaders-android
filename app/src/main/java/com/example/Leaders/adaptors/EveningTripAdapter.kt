@@ -7,9 +7,10 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.nerd_android.helpers.ViewUtils.hide
+import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
-import com.example.tasmeme.helpers.ViewUtils.hide
-import com.example.tasmeme.helpers.ViewUtils.show
+
 import java.util.zip.Inflater
 
 class EveningTripAdapter(private val listener: OnItemClickListener):RecyclerView.Adapter<EveningTripAdapter.MyViewHolder>() {
@@ -45,7 +46,7 @@ class EveningTripAdapter(private val listener: OnItemClickListener):RecyclerView
         }
 
         override fun onClick(v: View?) {
-            listener.onItemClick(adapterPosition)
+
         }
 
     }

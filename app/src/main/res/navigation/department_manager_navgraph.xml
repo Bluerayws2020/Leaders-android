@@ -6,13 +6,21 @@
     app:startDestination="@id/profile">
 
     <fragment
-        android:id="@+id/profile"
+        android:id="@+id/managerProfile"
         android:name="com.example.tasmeme.ui.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_managerProfile_to_notifications"
+            app:destination="@id/notifications" />
+    </fragment>
     <fragment
         android:id="@+id/notifications"
         android:name="com.example.tasmeme.ui.fragments.TeamLeaderFragment"
         android:label="fragment_team_leader"
-        tools:layout="@layout/fragment_team_leader" />
+        tools:layout="@layout/fragment_team_leader" >
+        <action
+            android:id="@+id/action_notifications_to_managerProfile"
+            app:destination="@id/managerProfile" />
+    </fragment>
 </navigation>
