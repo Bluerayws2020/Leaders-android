@@ -25,7 +25,7 @@ class AppViewModel(application:Application):AndroidViewModel(application) {
     private val viewAllDeparturesLiveData=MutableLiveData<NetworkResults<ViewAllDeparturesModel>>()
     private val updateDepartureLiveData=MutableLiveData<NetworkResults<UpdateDepartureModel>>()
     private val currentDepartureInfoLiveData=MutableLiveData<NetworkResults<GetCurrentDepartureInfoModel>>()
-    private val retrieveParentRegistration=MutableLiveData<NetworkResults<GetCurrentDepartureInfoModel>>()
+    private val retrieveParentRegistration=MutableLiveData<NetworkResults<LoginResponseModel>>()
 
 
 

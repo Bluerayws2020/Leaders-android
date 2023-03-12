@@ -2,7 +2,6 @@ package com.example.Leaders.repo
 
 import com.example.Leaders.api.ApiClient
 import com.example.Leaders.model.*
-import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -146,7 +145,7 @@ object NetworkRepository {
         phoneNumber: String,
         students:List<ChildData>,
         fullName:String
-    ): NetworkResults<GetCurrentDepartureInfoModel>
+    ): NetworkResults<LoginResponseModel>
     {
         return withContext(Dispatchers.IO) {
 //            val lang ="ar"

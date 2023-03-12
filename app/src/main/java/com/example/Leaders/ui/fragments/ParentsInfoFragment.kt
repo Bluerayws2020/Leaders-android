@@ -1,6 +1,7 @@
 package com.example.tasmeme.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.Log.d
@@ -10,12 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.Leaders.adaptors.ChildTapAdapter
 import com.example.Leaders.model.ChildData
+import com.example.Leaders.model.LoginResponseModel
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.HelperUtils
 import com.example.nerd_android.helpers.HelperUtils.ISIN_PER
 import com.example.nerd_android.helpers.HelperUtils.getFullName
 import com.example.nerd_android.helpers.ViewUtils.hide
@@ -23,6 +27,7 @@ import com.example.nerd_android.helpers.ViewUtils.isInputEmpty
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.adaptors.ViewPagerAdapter
 import com.example.tasmeme.databinding.FragmentParentsInfoBinding
+import com.example.tasmeme.ui.ParentActivity
 import com.example.tasmeme.ui.fragments.ChildTabFragment.Companion.recyclerView
 
 
@@ -46,11 +51,19 @@ class ParentsInfoFragment : Fragment() {
                 is NetworkResults.Success->{
                     if (it.data.status==200){
                         showMessage("Success")
+                        saveData(it)
+                        binding.paginationProgressBar.hide()
+                        startActivity(Intent(activity,ParentActivity::class.java))
+                        activity?.finish()
                     }else{
+                        binding.paginationProgressBar.hide()
+                        showMessage(it.data.message.toString())
                         e("ayham",it.data.message.toString())
                     }
                 }
                 is NetworkResults.Error->{
+                    binding.paginationProgressBar.hide()
+                    showMessage(it.exception.toString())
                     e("ayham",it.exception.toString())
                 }
             }
@@ -60,6 +73,7 @@ class ParentsInfoFragment : Fragment() {
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.paginationProgressBar.hide()
 
         //language of device
         //val language:String=Locale.getDefault().language
@@ -122,6 +136,7 @@ class ParentsInfoFragment : Fragment() {
 
 
         binding.sendBtn.setOnClickListener {
+
 //            val nationalNumber=ParentInfoTabFragment.binding.nationalNumberTv.text.toString()
 //            val email=ParentInfoTabFragment.binding.emailTv.text.toString()
 //            val phoneNumber=ParentInfoTabFragment.binding.phoneNumberTv.text.toString()
@@ -145,10 +160,12 @@ class ParentsInfoFragment : Fragment() {
                 } else if (ParentInfoTabFragment.password.isEmpty()) {
                     showMessage("Please Enter Parent Password")
                 } else {
-                    var nationalNumber=ParentInfoTabFragment.nationalId
-                    var password=ParentInfoTabFragment.password
-                    var phoneNumber=ParentInfoTabFragment.phone
-                    var email=ParentInfoTabFragment.email
+                    binding.paginationProgressBar.show()
+                    val nationalNumber=ParentInfoTabFragment.nationalId
+                    val password=ParentInfoTabFragment.password
+                    val phoneNumber=ParentInfoTabFragment.phone
+                    val email=ParentInfoTabFragment.email
+                    val fullname = ParentInfoTabFragment.fullName
 
                     for (i in 0 until (recyclerView.adapter?.itemCount ?: 0)) {
                         val childView = recyclerView.findViewHolderForAdapterPosition(i)
@@ -173,7 +190,8 @@ class ParentsInfoFragment : Fragment() {
 
 
                     //val sharedPreferences =activity?.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
-                    val fullname = getFullName(requireContext())
+                    //val fullname = getFullName(requireContext())
+
                     viewModel.retrieveParentRegistration(
                         nationalNumber,
                         password,
@@ -197,6 +215,21 @@ class ParentsInfoFragment : Fragment() {
     }
     private fun addAnotherChild() {
         ChildTabFragment.adapter.addItem("item ${ChildTabFragment.items.size+1}")
+    }
+    private fun saveData(result: NetworkResults.Success<LoginResponseModel>){
+
+        Log.d("ayhamm",result.data.data.uid)
+        val sharedPreferences = activity?.getSharedPreferences(
+            HelperUtils.SHARED_PREF,
+            AppCompatActivity.MODE_PRIVATE
+        )
+        val editor= sharedPreferences?.edit()
+        editor?.putString(HelperUtils.UID,result.data.data.uid)
+        editor?.putString(HelperUtils.TOKEN,result.data.data.token)
+        editor?.putString(HelperUtils.ROLE,result.data.data.role)
+        editor?.putString(HelperUtils.FULL_NAME,result.data.data.full_name)
+        editor?.apply()
+
     }
 
 }

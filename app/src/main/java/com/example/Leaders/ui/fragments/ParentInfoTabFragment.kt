@@ -21,6 +21,7 @@ class ParentInfoTabFragment : Fragment() {
         lateinit var email: String
         lateinit var phone: String
         lateinit var password: String
+        lateinit var fullName: String
 
         fun saveParentData() {
             nationalId = binding.nationalNumberTv.text.toString()
@@ -28,6 +29,7 @@ class ParentInfoTabFragment : Fragment() {
             email = binding.emailTv.text.toString()
             phone = binding.phoneNumberTv.text.toString()
             password = binding.passwordTv.text.toString()
+            fullName = binding.fullName.text.toString()
         }
 
         fun setBinding(fragmentBinding: FragmentParentInfoTabBinding) {

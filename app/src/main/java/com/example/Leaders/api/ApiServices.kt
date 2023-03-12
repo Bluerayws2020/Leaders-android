@@ -57,5 +57,5 @@ interface ApiServices {
     @Headers("Content-Type: application/json")
     suspend fun retrieveParentRegistration(
         @Body parent: RegisterParent
-    ): GetCurrentDepartureInfoModel
+    ): LoginResponseModel
 }
