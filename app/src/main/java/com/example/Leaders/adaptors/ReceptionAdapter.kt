@@ -14,7 +14,7 @@ import com.example.tasmeme.databinding.FragmentProfileBinding
 import com.example.tasmeme.databinding.ReceptionRecItemsBinding
 import com.example.tasmeme.model.ReceptionModel
 
-class ReceptionAdapter(List: List<Departure>,val listener: OnItemClickListener): RecyclerView.Adapter<ReceptionAdapter.MyViewHolder>(){
+class ReceptionAdapter(List: List<Departure>, val listener: OnItemClickListener): RecyclerView.Adapter<ReceptionAdapter.MyViewHolder>(){
     private lateinit var list:List<Departure>
     init {
     list=List

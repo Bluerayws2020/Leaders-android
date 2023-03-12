@@ -1,5 +1,6 @@
 package com.example.tasmeme.ui
 
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,10 +15,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.example.Leaders.model.NetworkResults
+import com.example.Leaders.ui.SplashActivity
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.HelperUtils
 import com.example.nerd_android.helpers.HelperUtils.ISIN
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.UID
+import com.example.nerd_android.helpers.HelperUtils.logout
+import com.example.nerd_android.helpers.HelperUtils.setRole
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityManagerBinding
 import de.hdodenhof.circleimageview.CircleImageView
@@ -33,6 +38,7 @@ class ManagerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_manager)
+        HelperUtils.setDefaultLanguage(this,"en")
 
         binding.apply {
 
@@ -74,6 +80,12 @@ class ManagerActivity : AppCompatActivity() {
 
                             // Close the navigation drawer
                             drawerLayout.closeDrawer(GravityCompat.END)
+                        }
+                        R.id.logout_manager ->{
+                            logout(this@ManagerActivity)
+                            startActivity(Intent(this@ManagerActivity,Sign_In_Activity::class.java))
+                            finish()
+                            ISIN=false
                         }
 
 

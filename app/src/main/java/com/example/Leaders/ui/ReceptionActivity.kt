@@ -1,5 +1,6 @@
 package com.example.tasmeme.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,8 +13,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.HelperUtils
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.UID
+import com.example.nerd_android.helpers.HelperUtils.logout
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityReceptionBinding
 import de.hdodenhof.circleimageview.CircleImageView
@@ -27,7 +30,7 @@ class ReceptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_reception)
-
+        HelperUtils.setDefaultLanguage(this,"en")
         binding.apply {
             viewModel.getUserProfileLiveData().observe(this@ReceptionActivity){
                     result->
@@ -86,6 +89,11 @@ class ReceptionActivity : AppCompatActivity() {
 
                             // Close the navigation drawer
                             binding.drawerLayout.closeDrawer(GravityCompat.END)
+                        }
+                        R.id.logout_re->{
+                            logout(this@ReceptionActivity)
+                            startActivity(Intent(this@ReceptionActivity,Sign_In_Activity::class.java))
+                            finish()
                         }
                     }
                     true

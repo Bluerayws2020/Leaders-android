@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profile_per"
         android:title="معلوماتي"
         android:icon="@drawable/profile_icon"
         />
     <item
-        android:id="@+id/orders"
+        android:id="@+id/orders_per"
         android:title="الطلبات"
-        android:icon="@drawable/notifications_icon"/>
-    <item
-        android:id="@+id/information"
-        android:title="المعلومات"
         android:icon="@drawable/notifications_icon"/>
 
     <item
-        android:id="@+id/logout"
+        android:id="@+id/logout_per"
         android:title="تسجيل خروج"
         android:icon="@drawable/exit_icon"/>
 </menu>

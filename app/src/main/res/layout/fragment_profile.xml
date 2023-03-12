@@ -19,7 +19,7 @@
             android:layout_height="200dp"
             android:elevation="10dp"
             android:layout_marginTop="70dp"
-            android:src="@drawable/baseline_file_upload_24"
+            android:src="@drawable/leaders"
             />
         <TextView
             android:id="@+id/nameTv"

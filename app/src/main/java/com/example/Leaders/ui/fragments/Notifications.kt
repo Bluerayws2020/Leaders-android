@@ -49,10 +49,14 @@ class Notifications : Fragment() {
         binding.pb.show()
         val sharedPreferences=activity?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         val uid = sharedPreferences?.getString(UID,"")
-        viewModel.getCurrentDepartureInfo(uid!!)
+
         adapter= NotificationsAdapter()
         binding.recyclerView.adapter=adapter
+
         getData()
+
+        viewModel.getCurrentDepartureInfo(uid!!)
+
         binding.recyclerView.layoutManager=LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         return binding.root
     }
@@ -70,8 +74,9 @@ class Notifications : Fragment() {
                             bundle.putString(DEPARTURE_TYPE,it.id)
                             findNavController().navigate(R.id.action_notifications2_to_departure,bundle)
                         }
-                    }else{
-                        showMessage("Unknown Error Occurred")
+                    }else if(it.data.status  == 400){
+                        binding.pb.hide()
+                        showMessage(it.data.message.toString())
                     }
                 }
                 is NetworkResults.Error->{

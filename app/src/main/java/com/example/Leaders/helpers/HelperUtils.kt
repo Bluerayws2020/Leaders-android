@@ -4,13 +4,14 @@ package com.example.nerd_android.helpers
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-
+import java.util.*
 
 
 object HelperUtils {
@@ -28,14 +29,44 @@ object HelperUtils {
     const val CONTACT_US_URL = "front_end/contact_us"
     const val ABOUT_US_URL = "front_end/aboutUs"
     const val GALLERY_REQUEST_CODE = 100
+    const val FULL_NAME="FULL_NAME"
     var ISIN=false
+    var ISIN_PER=false
+    var ISIN_PER_PRO=false
+    var CHILD_LIST= mutableListOf(0)
+    var IS_IN_CHILD=false
 
 
 
 
+    fun setDefaultLanguage(context: Context, lang: String?) {
+        val locale = Locale(lang)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        context.resources.updateConfiguration(
+            config,
+            context.resources.displayMetrics
+        )
+    }
+    fun logout(mContext: Context?){
+        setUID(mContext,"0")
+        setRole(mContext,"0")
+    }
 
 
-
+    fun setUID(mContext: Context?,uid:String){
+        val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        val editor= sharedPreferences?.edit()
+        editor?.putString(UID,uid)
+        editor?.apply()
+    }
+    fun setRole(mContext: Context?,role:String){
+        val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        val editor= sharedPreferences?.edit()
+        editor?.putString(ROLE,role)
+        editor?.apply()
+    }
     fun getLang(mContext: Context?): String {
         val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         return sharedPreferences?.getString("lang", "en")!!
@@ -43,9 +74,18 @@ object HelperUtils {
 
     fun getUID(mContext: Context?): String {
         val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
-        return sharedPreferences?.getString("uid", "0")!!
+        return sharedPreferences?.getString(UID, "0")!!
+    }
+    fun getFullName(mContext: Context?): String {
+        val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        return sharedPreferences?.getString(FULL_NAME, "0")!!
     }
 
+
+    fun getRole(mContext: Context?): String {
+        val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
+        return sharedPreferences?.getString(ROLE, "0")!!
+    }
     fun isBranchSelected(mContext: Context?): Boolean {
         val sharedPreferences = mContext?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         return sharedPreferences?.getInt("branch_id", 0) != 0

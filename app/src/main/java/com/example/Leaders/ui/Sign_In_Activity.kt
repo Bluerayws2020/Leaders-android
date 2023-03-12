@@ -9,7 +9,9 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.example.Leaders.model.LoginResponseModel
 import com.example.Leaders.model.NetworkResults
+import com.example.Leaders.ui.ParentRegistration
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.HelperUtils.FULL_NAME
 import com.example.nerd_android.helpers.HelperUtils.ROLE
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.TOKEN
@@ -31,7 +33,10 @@ class Sign_In_Activity : AppCompatActivity() {
         binding.paginationProgressBar.hide()
 
 
-        retriveLogin()
+
+
+
+        retrieveLogin()
 
         binding.register.setOnClickListener {
             binding.paginationProgressBar.show()
@@ -50,7 +55,13 @@ class Sign_In_Activity : AppCompatActivity() {
 
             }
 
+
+    }
+        binding.registerParent.setOnClickListener {
+            startActivity(Intent(this,ParentRegistration::class.java))
         }
+
+
     }
     private fun saveData(result: NetworkResults.Success<LoginResponseModel>){
 
@@ -61,6 +72,7 @@ class Sign_In_Activity : AppCompatActivity() {
         editor.putString(UID,result.data.data.uid)
         editor.putString(TOKEN,result.data.data.token)
         editor.putString(ROLE,result.data.data.role)
+        editor.putString(FULL_NAME,result.data.data.full_name)
         editor.apply()
         binding.paginationProgressBar.hide()
 
@@ -71,27 +83,38 @@ class Sign_In_Activity : AppCompatActivity() {
 
 
 
- fun retriveLogin(){
+ private fun retrieveLogin(){
      viewModel.getLoginLiveData().observe(this){
              result ->
          when(result){
              is NetworkResults.Success->{
-                 if (result.data.status==200){
-                     if(result.data.data.role=="receptionist"){
-                         saveData(result)
-                         startActivity(Intent(this,ReceptionActivity::class.java))
-                         finish()}
-                     else if(result.data.data.role=="department_supervisor"){
-                         saveData(result)
-                         startActivity(Intent(this,ManagerActivity::class.java))
-                         finish()
-                     }
+                 when (result.data.status) {
+                     200 -> {
+                         when (result.data.data.role) {
+                             "receptionist" -> {
+                                 saveData(result)
+                                 startActivity(Intent(this,ReceptionActivity::class.java))
+                                 finish()}
+                             "department_supervisor" -> {
+                                 saveData(result)
+                                 startActivity(Intent(this,ManagerActivity::class.java))
+                                 finish()
+                             }
+                             "parent" -> {
+                                 saveData(result)
+                                 startActivity(Intent(this,ParentActivity::class.java))
+                                 finish()
+                             }
+                         }
 
-                 }else if(result.data.status==500){
-                     binding.paginationProgressBar.hide()
-                 }else{
-                     binding.paginationProgressBar.hide()
-                     showMessage("Un Expected Error")
+                     }
+                     500 -> {
+                         binding.paginationProgressBar.hide()
+                     }
+                     else -> {
+                         binding.paginationProgressBar.hide()
+                         showMessage("Un Expected Error")
+                     }
                  }
 
 

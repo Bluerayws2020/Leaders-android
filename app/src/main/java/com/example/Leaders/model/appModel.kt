@@ -70,6 +70,54 @@ data class GetCurrentDepartureInfoData(
     val name: String
 )
 data class GetCurrentDepartureInfoModel(
-    val `data`: List<GetCurrentDepartureInfoData>,
+    val `data`: List<GetCurrentDepartureInfoData> ? = null,
+    val status: Int,
+    val message: String? = null
+)
+data class ViewParentProfileInfoModel(
+    val `data`: ViewParentProfileInfoModelData,
     val status: Int
+)
+data class ViewParentProfileInfoModelData(
+    val classes: List<Classe>,
+    val full_name: String,
+    val id: String,
+    val mail: String,
+    val phone_number: String,
+    val role: String,
+    val sections: List<Section>,
+    val students: List<Student>,
+    val username: String
+)
+data class Classe(
+    val `2`: String
+)
+data class Section(
+    val `1`: String,
+    val `3`: String
+)
+data class Student(
+    val `class`: String,
+    val full_name: String,
+    val school_bus: String,
+    val section: String
+)
+
+data class RegisterParent(
+    val lang:String,
+    val email:String,
+    val password:String,
+    val full_name:String,
+    val phone:String,
+    val id:String,
+    val students: List<ChildData>,
+    val mobile_type:String,
+    val player_id:String
+
+)
+data class ChildData(
+    val name:String,
+    val department:String,
+    val `class`:String,
+    val section:String
 )

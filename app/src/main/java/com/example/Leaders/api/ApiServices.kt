@@ -3,9 +3,7 @@ package com.example.Leaders.api
 import com.example.Leaders.model.*
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
-import retrofit2.http.Multipart
-import retrofit2.http.POST
-import retrofit2.http.Part
+import retrofit2.http.*
 
 interface ApiServices {
     @Multipart
@@ -22,14 +20,14 @@ interface ApiServices {
     suspend fun viewUserProfile(
         @Part("lang")lang:RequestBody,
         @Part("uid") uid:RequestBody
-    ):ViewUserProfileModel
+    ): ViewUserProfileModel
 
     @Multipart
     @POST("app/viewAllDepartures")
     suspend fun viewAllDepartures(
         @Part("lang") lang:RequestBody,
         @Part("uid") uid:RequestBody
-    ):ViewAllDeparturesModel
+    ): ViewAllDeparturesModel
 
     @Multipart
     @POST("app/updateDeparture")
@@ -39,13 +37,25 @@ interface ApiServices {
         @Part("nid") nid:RequestBody,
         @Part("uid") uid: RequestBody
 
-    ):UpdateDepartureModel
+    ): UpdateDepartureModel
 
     @Multipart
     @POST("app/getCurrentDepartureInfo")
     suspend fun getCurrentDepartureInfo(
         @Part("lang") lang:RequestBody,
         @Part("uid") uid:RequestBody
-    ):GetCurrentDepartureInfoModel
+    ): GetCurrentDepartureInfoModel
 
+    @Multipart
+    @POST("app/viewUserProfile")
+    suspend fun viewParentUserProfile(
+        @Part("lang")lang:RequestBody,
+        @Part("uid") uid:RequestBody
+    ): ViewParentProfileInfoModel
+
+    @POST("app/SignUp")
+    @Headers("Content-Type: application/json")
+    suspend fun retrieveParentRegistration(
+        @Body parent: RegisterParent
+    ): GetCurrentDepartureInfoModel
 }
