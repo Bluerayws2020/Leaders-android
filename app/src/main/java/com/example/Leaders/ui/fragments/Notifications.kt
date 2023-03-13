@@ -2,12 +2,7 @@ package com.example.tasmeme.ui.fragments
 
 
 import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.SpannableStringBuilder
-import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.util.Log.d
 import androidx.fragment.app.Fragment
@@ -15,10 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.Leaders.adaptors.NotificationsAdapter
@@ -50,7 +42,7 @@ class Notifications : Fragment() {
         val sharedPreferences=activity?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         val uid = sharedPreferences?.getString(UID,"")
 
-        adapter= NotificationsAdapter()
+        adapter= NotificationsAdapter(requireContext())
         binding.recyclerView.adapter=adapter
 
         getData()

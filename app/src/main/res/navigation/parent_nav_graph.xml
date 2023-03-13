@@ -24,4 +24,13 @@
             app:destination="@id/profile_per" />
 
     </fragment>
+    <dialog
+        android:id="@+id/pickUpWithSomeonePopUpFragment"
+        android:name="com.example.tasmeme.ui.fragments.PickUpWithSomeonePopUpFragment"
+        android:label="fragment_pick_up_with_someone_pop_up"
+        tools:layout="@layout/fragment_pick_up_with_someone_pop_up" >
+        <action
+            android:id="@+id/action_pickUpWithSomeonePopUpFragment_to_profile_per"
+            app:destination="@id/profile_per" />
+    </dialog>
 </navigation>

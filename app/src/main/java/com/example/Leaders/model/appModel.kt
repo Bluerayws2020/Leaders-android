@@ -128,7 +128,8 @@ data class ChildListData(
     var name: String,
     var department: String,
     var grade :String,
-    var section: Boolean
+    var section: String,
+    var id :Int
 )
 
 data class CreateDepartureModel(

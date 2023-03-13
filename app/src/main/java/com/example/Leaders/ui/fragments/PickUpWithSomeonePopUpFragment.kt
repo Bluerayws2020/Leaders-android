@@ -1,6 +1,7 @@
 package com.example.tasmeme.ui.fragments
 
 import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentPickUpWithSomeonePopUpBinding
+import com.example.tasmeme.ui.ParentActivity
 
 
 class PickUpWithSomeonePopUpFragment : DialogFragment() {
@@ -59,6 +63,7 @@ class PickUpWithSomeonePopUpFragment : DialogFragment() {
                     if (it.data.status==200){
                         showMessage("تم اتمام طلبك بنجاح")
                         dismiss()
+                        ParentActivity.goToProfile()
                     }
                 }
 

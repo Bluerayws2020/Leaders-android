@@ -1,5 +1,6 @@
 package com.example.Leaders.adaptors
 
+import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
@@ -28,7 +29,7 @@ class ChildTapAdapter():RecyclerView.Adapter<ChildTapAdapter.MyViewHolder>() {
         }
 
         override fun areContentsTheSame(oldItem: ChildListData, newItem: ChildListData): Boolean {
-            return oldItem==newItem
+            return oldItem.id==newItem.id
 //                    &&
 //                    (oldItem.section==newItem.section)&&
 //                    (oldItem.grade==newItem.grade)&&(oldItem.department==newItem.department) }
@@ -36,7 +37,90 @@ class ChildTapAdapter():RecyclerView.Adapter<ChildTapAdapter.MyViewHolder>() {
 
 
     val differ= AsyncListDiffer(this,differCallback)
-    inner class MyViewHolder(val binding:ChiledItemBinding):ViewHolder(binding.root)
+    inner class MyViewHolder(val binding:ChiledItemBinding):ViewHolder(binding.root){
+        fun bind(){
+            var job : Job?=null
+            var currentList = differ.currentList
+            try{
+
+                binding.apply {
+
+                    localCheckBox.isChecked=true
+                    localCheckBox.setOnClickListener{
+                        globalCheckBox.isChecked=false
+                        localCheckBox.isChecked=true
+                        CHILD_LIST[adapterPosition].section="1"
+                    }
+                    globalCheckBox.setOnClickListener{
+                        globalCheckBox.isChecked=true
+                        localCheckBox.isChecked=false
+                        CHILD_LIST[adapterPosition].section="2"
+
+                    }
+                }
+                binding.fourSectionsNameEt.setText(currentList[adapterPosition].name)
+                binding.gradeEt.setText(currentList[adapterPosition].grade)
+                binding.departmentEt.setText(currentList[adapterPosition].department)
+
+                if(currentList[adapterPosition].section=="1"){
+                    binding.localCheckBox.isChecked=true
+                }else{
+                    binding.globalCheckBox.isChecked=true
+                }
+
+                if (adapterPosition==0){
+                    binding.close.hide()
+                    binding.close.isClickable=false
+                }else{
+                    binding.close.show()
+                    binding.close.isClickable=true
+                }
+
+                binding.close.setOnClickListener {
+                    CHILD_LIST.removeAt(adapterPosition)
+                    updateChildIds()
+                    differ.submitList(CHILD_LIST)
+                    notifyItemRemoved(adapterPosition)
+                }
+                binding.fourSectionsNameEt.addTextChangedListener {
+                        editable ->
+                    job?.cancel()
+                    MainScope().launch {
+                        delay(500L)
+                        if((adapterPosition!=-1) &&(adapterPosition<CHILD_LIST.size)){
+                        CHILD_LIST[adapterPosition].name=editable.toString()}
+
+                    }
+
+                }
+
+                binding.gradeEt.addTextChangedListener {
+                        editable ->
+                    job?.cancel()
+                    MainScope().launch {
+                        delay(500L)
+                        if((adapterPosition!=-1) &&(adapterPosition<CHILD_LIST.size)){
+                        CHILD_LIST[adapterPosition].grade=editable.toString()}
+                    }}
+
+                binding.departmentEt.addTextChangedListener {
+                        editable ->
+                    job?.cancel()
+                    MainScope().launch {
+                        delay(500L)
+                        if((adapterPosition!=-1) &&(adapterPosition<CHILD_LIST.size)){
+                        CHILD_LIST[adapterPosition].department=editable.toString()}
+                    }} }catch (e:Exception){
+                e("ayham",e.toString())
+            }}
+
+//    fun addItem(item:String){
+//        items.add(item)
+//        notifyItemInserted(items.size-1)
+//        //notifyItemRangeChanged(0,items.count())
+//    }
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val binding=ChiledItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -49,81 +133,12 @@ class ChildTapAdapter():RecyclerView.Adapter<ChildTapAdapter.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-         var job : Job?=null
-         var currentList = differ.currentList
-       holder.binding.apply {
-
-            localCheckBox.isChecked=true
-            localCheckBox.setOnClickListener{
-                globalCheckBox.isChecked=false
-                localCheckBox.isChecked=true
-                CHILD_LIST[position].section=true
-            }
-            globalCheckBox.setOnClickListener{
-                globalCheckBox.isChecked=true
-                localCheckBox.isChecked=false
-                CHILD_LIST[position].section=false
-            }
-       }
-        holder.binding.fourSectionsNameEt.setText(currentList[position].name)
-        holder.binding.gradeEt.setText(currentList[position].grade)
-        holder.binding.departmentEt.setText(currentList[position].department)
-
-        if(currentList[position].section){
-            holder.binding.localCheckBox.isChecked=true
-        }else{
-            holder.binding.globalCheckBox.isChecked=true
+    holder.bind()
+    }
+    private fun updateChildIds() {
+        for (i in 0 until CHILD_LIST.size) {
+            CHILD_LIST[i].id = i
         }
-
-        if (position==0){
-            holder.binding.close.hide()
-            holder.binding.close.isClickable=false
-        }else{
-            holder.binding.close.show()
-            holder.binding.close.isClickable=true
-        }
-
-        holder.binding.close.setOnClickListener {
-            CHILD_LIST.removeAt(position)
-            differ.submitList(CHILD_LIST)
-            notifyItemRemoved(position)
-        }
-        holder.binding.fourSectionsNameEt.addTextChangedListener {
-            editable ->
-            job?.cancel()
-            MainScope().launch {
-                delay(500L)
-                if(editable.toString().isNotEmpty()){
-                    CHILD_LIST[position].name=editable.toString()
-                }
-            }
-
-        }
-
-        holder.binding.gradeEt.addTextChangedListener {
-                editable ->
-            job?.cancel()
-            MainScope().launch {
-                delay(500L)
-                if(editable.toString().isNotEmpty()){
-                    CHILD_LIST[position].grade=editable.toString()
-                }
-            }}
-
-        holder.binding.departmentEt.addTextChangedListener {
-                editable ->
-            job?.cancel()
-            MainScope().launch {
-                delay(500L)
-                if(editable.toString().isNotEmpty()){
-                    CHILD_LIST[position].department=editable.toString()
-                }
-            }} }
-//    fun addItem(item:String){
-//        items.add(item)
-//        notifyItemInserted(items.size-1)
-//        //notifyItemRangeChanged(0,items.count())
-//    }
-
+    }
 
 }

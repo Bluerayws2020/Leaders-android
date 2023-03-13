@@ -34,7 +34,7 @@ object HelperUtils {
     var ISIN=false
     var ISIN_PER=false
     var ISIN_PER_PRO=false
-    var CHILD_LIST= mutableListOf(ChildListData("","","",true))
+    var CHILD_LIST= mutableListOf(ChildListData("","","","1",0))
 
 
 

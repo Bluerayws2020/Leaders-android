@@ -141,6 +141,7 @@ class ParentsInfoFragment : Fragment() {
 //            val email=ParentInfoTabFragment.binding.emailTv.text.toString()
 //            val phoneNumber=ParentInfoTabFragment.binding.phoneNumberTv.text.toString()
 //            val password =ParentInfoTabFragment.binding.passwordTv.text.toString()
+            d("ayham", CHILD_LIST.toString())
 
             val list = mutableListOf<ChildData>()
             if (binding.viewPager.currentItem == 0) {
@@ -166,31 +167,10 @@ class ParentsInfoFragment : Fragment() {
                     val phoneNumber=ParentInfoTabFragment.phone
                     val email=ParentInfoTabFragment.email
                     val fullname = ParentInfoTabFragment.fullName
-
-                    for (i in 0 until (recyclerView.adapter?.itemCount ?: 0)) {
-                        val childView = recyclerView.findViewHolderForAdapterPosition(i)
-
-                        if (childView is ChildTapAdapter.MyViewHolder) {
-                            val name = ChildData(
-                                childView.binding.fourSectionsNameEt.text.toString(),
-                                childView.binding.departmentEt.text.toString(),
-                                childView.binding.gradeEt.text.toString(),
-                                if (childView.binding.localCheckBox.isChecked) {
-                                    "1"
-                                } else {
-                                    "2"
-                                }
-
-                            )
-                            list.add(name)
-
-                        }
-
+                    for(i in CHILD_LIST.indices){
+                        list.add(i, ChildData(CHILD_LIST[i].name, CHILD_LIST[i].department,
+                            CHILD_LIST[i].grade, CHILD_LIST[i].section))
                     }
-
-
-                    //val sharedPreferences =activity?.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
-                    //val fullname = getFullName(requireContext())
 
                     viewModel.retrieveParentRegistration(
                         nationalNumber,
@@ -214,9 +194,9 @@ class ParentsInfoFragment : Fragment() {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
     private fun addAnotherChild() {
-        CHILD_LIST.add(ChildListData("","","",true))
+        CHILD_LIST.add(ChildListData("","","","1", CHILD_LIST.lastIndex+1))
         ChildTabFragment.adapter.differ.submitList(CHILD_LIST)
-        ChildTabFragment.adapter.notifyDataSetChanged()
+        ChildTabFragment.adapter.notifyItemInserted(CHILD_LIST.size-1)
     }
     private fun saveData(result: NetworkResults.Success<LoginResponseModel>){
 

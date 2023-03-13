@@ -1,16 +1,19 @@
 package com.example.Leaders.adaptors
 
+import android.content.Context
 import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.util.Log.d
+import android.util.Log.e
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +23,7 @@ import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.OnItemClickListener
 import com.example.tasmeme.databinding.NotificationItemsBinding
 
-class NotificationsAdapter:RecyclerView.Adapter<NotificationsAdapter.MyViewHolder>() {
+class NotificationsAdapter(val context:Context):RecyclerView.Adapter<NotificationsAdapter.MyViewHolder>() {
 
 
 
@@ -56,6 +59,10 @@ class NotificationsAdapter:RecyclerView.Adapter<NotificationsAdapter.MyViewHolde
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = differ.currentList[position]
 
+        try {
+
+
+
             val departureName = data.name
             val departureCount = "(${data.count.toString()})"
             val spannableName = SpannableString(departureName)
@@ -80,7 +87,11 @@ class NotificationsAdapter:RecyclerView.Adapter<NotificationsAdapter.MyViewHolde
             spannableStringBuilder.append(spannableCount)
 
 
-            holder.binding.btnLeaves.text = data.name +  data.count
+            holder.binding.btnLeaves.text = spannableStringBuilder
+        }catch (e:Exception){
+             e("ayham",e.toString())
+            Toast.makeText(context,"Unknown Error",Toast.LENGTH_SHORT).show()
+            }
             holder.binding.btnLeaves.setOnClickListener {
                 onClickListener?.let {
                     it(data)
