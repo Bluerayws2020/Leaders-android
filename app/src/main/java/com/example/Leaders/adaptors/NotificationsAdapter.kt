@@ -55,38 +55,38 @@ class NotificationsAdapter:RecyclerView.Adapter<NotificationsAdapter.MyViewHolde
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = differ.currentList[position]
-        val departureName = data.name
-        val departureCount = "(${data.count.toString()})"
-        val spannableName = SpannableString(departureName)
-        val spannableCount = SpannableString(departureCount)
-        val spannableStringBuilder = SpannableStringBuilder()
 
-        spannableCount.setSpan(
-            ForegroundColorSpan(Color.BLUE),
-            0,
-            departureCount.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        spannableName.setSpan(
-            ForegroundColorSpan(Color.BLACK),
-            0,
-            departureName.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
+            val departureName = data.name
+            val departureCount = "(${data.count.toString()})"
+            val spannableName = SpannableString(departureName)
+            val spannableCount = SpannableString(departureCount)
+            val spannableStringBuilder = SpannableStringBuilder()
 
-        spannableStringBuilder.append(spannableName)
-        spannableStringBuilder.append(" ")
-        spannableStringBuilder.append(spannableCount)
+            spannableCount.setSpan(
+                ForegroundColorSpan(Color.BLUE),
+                0,
+                departureCount.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            spannableName.setSpan(
+                ForegroundColorSpan(Color.BLACK),
+                0,
+                departureName.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+
+            spannableStringBuilder.append(spannableName)
+            spannableStringBuilder.append(" ")
+            spannableStringBuilder.append(spannableCount)
 
 
-        holder.binding.btnLeaves.text=spannableStringBuilder
-        holder.binding.btnLeaves.
-            setOnClickListener {
-            onClickListener?.let {
-                it(data)
+            holder.binding.btnLeaves.text = data.name +  data.count
+            holder.binding.btnLeaves.setOnClickListener {
+                onClickListener?.let {
+                    it(data)
+                }
             }
         }
-    }
 
     private var onClickListener: ((GetCurrentDepartureInfoData)->Unit)?=null
 

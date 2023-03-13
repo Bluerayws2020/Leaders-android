@@ -25,22 +25,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/send_btn_rec"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/admin_recycle_Red"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:text="إرسال"
-            android:textSize="25sp"
-            app:cornerRadius="40sp"
-            app:layout_constraintTop_toBottomOf="@id/paginationProgressBar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginBottom="50dp"
-            />
         <ProgressBar
             android:id="@+id/paginationProgressBar"
             style="?attr/progressBarStyle"
@@ -48,7 +32,7 @@
             android:layout_height="wrap_content"
             android:visibility="visible"
             android:background="@android:color/transparent"
-            app:layout_constraintTop_toBottomOf="@id/recyclerView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />

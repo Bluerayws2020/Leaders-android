@@ -100,7 +100,8 @@ data class Student(
     val `class`: String,
     val full_name: String,
     val school_bus: String,
-    val section: String
+    val section: String,
+    val sid:String
 )
 
 data class RegisterParent(
@@ -120,4 +121,17 @@ data class ChildData(
     val department:String,
     val `class`:String,
     val section:String
+)
+
+
+data class ChildListData(
+    var name: String,
+    var department: String,
+    var grade :String,
+    var section: Boolean
+)
+
+data class CreateDepartureModel(
+    val status: Int,
+    val message: String
 )

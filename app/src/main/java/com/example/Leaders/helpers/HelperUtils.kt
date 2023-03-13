@@ -11,6 +11,7 @@ import android.os.Build
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.example.Leaders.model.ChildListData
 import java.util.*
 
 
@@ -33,8 +34,7 @@ object HelperUtils {
     var ISIN=false
     var ISIN_PER=false
     var ISIN_PER_PRO=false
-    var CHILD_LIST= mutableListOf(0)
-    var IS_IN_CHILD=false
+    var CHILD_LIST= mutableListOf(ChildListData("","","",true))
 
 
 

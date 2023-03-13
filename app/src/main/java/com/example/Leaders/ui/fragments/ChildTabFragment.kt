@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.Leaders.adaptors.ChildTapAdapter
 import com.example.nerd_android.helpers.HelperUtils.CHILD_LIST
-import com.example.nerd_android.helpers.HelperUtils.IS_IN_CHILD
-import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentChildTabBinding
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
@@ -21,7 +19,6 @@ class ChildTabFragment : Fragment() {
         private lateinit var binding:FragmentChildTabBinding
         @SuppressLint("StaticFieldLeak")
         lateinit var adapter:ChildTapAdapter
-        val items= mutableListOf<String>("Item 1")
         lateinit var recyclerView:RecyclerView
     }
     override fun onCreateView(
@@ -31,7 +28,8 @@ class ChildTabFragment : Fragment() {
 
         binding= FragmentChildTabBinding.inflate(layoutInflater)
 
-        adapter= ChildTapAdapter(items)
+        adapter= ChildTapAdapter()
+        adapter.differ.submitList(CHILD_LIST)
         recyclerView= binding.recycler
         recyclerView.adapter= adapter
         recyclerView.itemAnimator=SlideInUpAnimator()

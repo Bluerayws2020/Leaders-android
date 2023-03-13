@@ -36,23 +36,7 @@
         android:layout_height="wrap_content"
         android:gravity="end"
         >
-        <CheckBox
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            android:id="@+id/leave_checkbox"
-            android:padding="10dp"
-            style="@style/CustomCheckBoxStyle2"
-            />
-        <TextView
-            android:layout_marginRight="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="مغادرة"
-            android:textSize="20dp"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/leave_checkbox"
-            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout

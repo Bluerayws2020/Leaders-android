@@ -69,9 +69,10 @@
         android:textSize="13sp"
         app:layout_constraintTop_toBottomOf="@id/national_number_tv"
         android:textColor="@color/black"
-        android:textAlignment="textEnd"
         android:padding="15sp"
-        android:drawableStart="@drawable/baseline_lock_24"/>
+        android:drawableStart="@drawable/baseline_lock_24"
+        android:inputType="textPassword"
+        />
 
     <EditText
         android:id="@+id/email_tv"

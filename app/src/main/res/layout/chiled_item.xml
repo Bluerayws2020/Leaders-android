@@ -36,13 +36,12 @@
         android:layout_height="40dp"
         android:src="@drawable/close"/>
     <CheckBox
-
-        android:layout_marginRight="30dp"
         android:id="@+id/local_check_box"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        style="@style/CustomCheckBoxStyle2"
         app:layout_constraintTop_toBottomOf="@id/tv"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toRightOf="@id/tv"
         />
     <TextView
         android:id="@+id/tv2"
@@ -63,8 +62,9 @@
         >
         <CheckBox
             android:id="@+id/global_check_box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            style="@style/CustomCheckBoxStyle2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             />

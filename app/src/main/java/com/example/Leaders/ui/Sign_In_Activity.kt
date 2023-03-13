@@ -59,6 +59,7 @@ class Sign_In_Activity : AppCompatActivity() {
     }
         binding.registerParent.setOnClickListener {
             startActivity(Intent(this,ParentRegistration::class.java))
+            finish()
         }
 
 

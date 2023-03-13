@@ -58,4 +58,16 @@ interface ApiServices {
     suspend fun retrieveParentRegistration(
         @Body parent: RegisterParent
     ): LoginResponseModel
+
+    @Multipart
+    @POST("app/createDeparture")
+    suspend fun createDeparture(
+        @Part("lang") lang: RequestBody,
+        @Part("student") student: RequestBody,
+        @Part("departure_type") departure_type: RequestBody,
+        @Part("uid") uid: RequestBody,
+        @Part("other_person") other_person:RequestBody,
+        @Part("phone_number") phone_number:RequestBody,
+        @Part("relative_relation") relative_relation:RequestBody
+    ):CreateDepartureModel
 }

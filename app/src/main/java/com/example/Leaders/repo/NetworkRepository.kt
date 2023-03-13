@@ -1,5 +1,6 @@
 package com.example.Leaders.repo
 
+import android.provider.ContactsContract.CommonDataKinds.Relation
 import com.example.Leaders.api.ApiClient
 import com.example.Leaders.model.*
 import kotlinx.coroutines.Dispatchers
@@ -172,5 +173,36 @@ object NetworkRepository {
                 NetworkResults.Error(e)
             }
         }
+    }
+
+    suspend fun createDeparture(
+
+        student:String,
+        departureType:String,
+        uid:String,
+        otherPerson:String,
+        PhoneNum:String,
+        relativeRelation: String
+
+    ):NetworkResults<CreateDepartureModel>{
+        return withContext(Dispatchers.IO){
+            val lang="ar"
+            val langRequestBody=lang.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val studentRequestBody=student.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val departureTypeRequestBody=departureType.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val uidRequestBody=uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val otherPersonRequestBody=otherPerson.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val phoneNumberRequestBody= PhoneNum.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val relativeRelationRequestBody=relativeRelation.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+            try{
+                val result = ApiClient.retrofitService.createDeparture(langRequestBody,studentRequestBody,departureTypeRequestBody,uidRequestBody,otherPersonRequestBody,phoneNumberRequestBody,relativeRelationRequestBody)
+                NetworkResults.Success(result)
+            }
+            catch (e:Exception){
+            NetworkResults.Error(e)
+        }
+        }
+
     }
 }

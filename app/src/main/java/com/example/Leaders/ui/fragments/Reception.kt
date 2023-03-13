@@ -20,6 +20,7 @@ import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.OnItemClickListener
 import com.example.tasmeme.adaptors.ReceptionAdapter
 import com.example.tasmeme.databinding.FragmentReceptionBinding
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
 class Reception : Fragment() {
@@ -69,6 +70,7 @@ class Reception : Fragment() {
                         binding.apply {
                             recyclerView.adapter=adapter
                             recyclerView.layoutManager=LinearLayoutManager(requireContext())
+                            recyclerView.itemAnimator= SlideInUpAnimator()
                             binding.paginationProgressBar.hide()
                         }
                     }
@@ -90,8 +92,9 @@ class Reception : Fragment() {
                     if(it.data.status==200){
                         viewModel.viewAllDepartures(uid)
                         binding.paginationProgressBar.hide()
+                        showMessage(it.data.message)
                     }else{
-                        showMessage("error")
+                        showMessage(it.data.message)
                         binding.paginationProgressBar.hide()
                     }
                 }

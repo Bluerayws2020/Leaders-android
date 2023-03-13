@@ -16,10 +16,12 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager.widget.ViewPager
 import com.example.Leaders.adaptors.ChildTapAdapter
 import com.example.Leaders.model.ChildData
+import com.example.Leaders.model.ChildListData
 import com.example.Leaders.model.LoginResponseModel
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils
+import com.example.nerd_android.helpers.HelperUtils.CHILD_LIST
 import com.example.nerd_android.helpers.HelperUtils.ISIN_PER
 import com.example.nerd_android.helpers.HelperUtils.getFullName
 import com.example.nerd_android.helpers.ViewUtils.hide
@@ -29,8 +31,6 @@ import com.example.tasmeme.adaptors.ViewPagerAdapter
 import com.example.tasmeme.databinding.FragmentParentsInfoBinding
 import com.example.tasmeme.ui.ParentActivity
 import com.example.tasmeme.ui.fragments.ChildTabFragment.Companion.recyclerView
-
-
 
 class ParentsInfoFragment : Fragment() {
     private lateinit var binding:FragmentParentsInfoBinding
@@ -214,7 +214,9 @@ class ParentsInfoFragment : Fragment() {
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
     private fun addAnotherChild() {
-        ChildTabFragment.adapter.addItem("item ${ChildTabFragment.items.size+1}")
+        CHILD_LIST.add(ChildListData("","","",true))
+        ChildTabFragment.adapter.differ.submitList(CHILD_LIST)
+        ChildTabFragment.adapter.notifyDataSetChanged()
     }
     private fun saveData(result: NetworkResults.Success<LoginResponseModel>){
 

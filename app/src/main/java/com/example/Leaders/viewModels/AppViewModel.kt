@@ -26,6 +26,7 @@ class AppViewModel(application:Application):AndroidViewModel(application) {
     private val updateDepartureLiveData=MutableLiveData<NetworkResults<UpdateDepartureModel>>()
     private val currentDepartureInfoLiveData=MutableLiveData<NetworkResults<GetCurrentDepartureInfoModel>>()
     private val retrieveParentRegistration=MutableLiveData<NetworkResults<LoginResponseModel>>()
+    private val createDepartureLiveData=MutableLiveData<NetworkResults<CreateDepartureModel>>()
 
 
 
@@ -102,4 +103,25 @@ class AppViewModel(application:Application):AndroidViewModel(application) {
         }
     }
     fun getRetrieveParentRegistrationLiveData()=retrieveParentRegistration
+
+    fun createDeparture(
+        student: String,
+        departure: String,
+        uid:String,
+        otherPerson:String,
+        phoneNumber: String,
+        relativeRelation:String
+    ){
+       viewModelScope.launch {
+           createDepartureLiveData.value=repo.createDeparture(
+               student,
+               departure,
+               uid,
+               otherPerson,
+               phoneNumber,
+               relativeRelation
+           )
+       }
+    }
+    fun getCreateDepartureLiveData()=createDepartureLiveData
 }

@@ -15,7 +15,7 @@
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="40dp"
             android:src="@drawable/leaders"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,9 +52,10 @@
             app:layout_constraintTop_toBottomOf="@+id/username"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
-            android:textAlignment="textStart"
+            android:textAlignment="textEnd"
             android:padding="15sp"
             android:drawableEnd="@drawable/passwordicon"
+            android:inputType="textPassword"
             />
         <ProgressBar
             android:layout_marginTop="10dp"
@@ -82,7 +83,7 @@
 
             >
             <com.google.android.material.button.MaterialButton
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rememberMe"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:id="@+id/register"
@@ -100,14 +101,34 @@
                 app:cornerRadius="30dp"
                 app:rippleColor="@color/white"
                 app:strokeWidth="2dp" />
+            <com.google.android.material.button.MaterialButton
+                app:layout_constraintTop_toBottomOf="@id/rememberMe"
+                app:layout_constraintRight_toRightOf="parent"
+                android:id="@+id/registerParent"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="15dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:text="التسجيل ك ولي امر"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/white"
+                app:cornerRadius="30dp"
+                app:rippleColor="@color/white"
+                app:strokeWidth="2dp"
+
+                />
 
 
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/rememberMe"
-                app:layout_constraintTop_toTopOf="@id/register"
-                app:layout_constraintBottom_toBottomOf="@id/register"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -145,24 +166,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.google.android.material.button.MaterialButton
-            app:layout_constraintTop_toBottomOf ="@id/cardLin1"
-            app:layout_constraintLeft_toLeftOf="@id/cardLin1"
-            android:id="@+id/registerParent"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="15dp"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="13sp"
-            android:text="التسجيل ك ولي امر"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/white"
-            app:cornerRadius="30dp"
-            app:rippleColor="@color/white"
-            app:strokeWidth="2dp" />
+
 
 
         <TextView
