@@ -49,10 +49,7 @@ class Sign_In_Activity : AppCompatActivity() {
             } else {
                 viewModel.login(
                     binding.username.text.toString(),
-                    binding.password.text.toString()
-                )
-
-
+                    binding.password.text.toString())
             }
 
 
