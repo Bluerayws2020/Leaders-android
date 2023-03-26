@@ -63,7 +63,7 @@ class ParentActivity : AppCompatActivity() {
                         finish()
                     }
                 }
-                    drawerLayout.closeDrawer(GravityCompat.END)
+                    drawerLayout.closeDrawer(GravityCompat.START)
             }catch(e:Exception){
                 Log.e("ayham",e.toString())
 
@@ -71,7 +71,7 @@ class ParentActivity : AppCompatActivity() {
             }
 
             sideMenuOpener.setOnClickListener{
-                drawerLayout.openDrawer(GravityCompat.END)
+                drawerLayout.openDrawer(GravityCompat.START)
             }
             backButton.setOnClickListener {
                 onBackPressed()

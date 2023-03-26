@@ -6,22 +6,14 @@
     app:startDestination="@id/orders_per">
 
     <fragment
-        android:id="@+id/profile_per"
-        android:name="com.example.tasmeme.ui.fragments.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-
-        <action
-            android:id="@+id/action_profile_per_to_orders_per"
-            app:destination="@id/orders_per" />
-    </fragment>
-    <fragment
         android:id="@+id/orders_per"
         android:name="com.example.tasmeme.ui.fragments.ParentsOptionsFragment"
         android:label="ParentsOptionsFragment" >
         <action
             android:id="@+id/action_orders_per_to_profile_per"
-            app:destination="@id/profile_per" />
+            app:destination="@id/parentProfile"
+            />
+
 
     </fragment>
     <dialog
@@ -31,6 +23,16 @@
         tools:layout="@layout/fragment_pick_up_with_someone_pop_up" >
         <action
             android:id="@+id/action_pickUpWithSomeonePopUpFragment_to_profile_per"
-            app:destination="@id/profile_per" />
+            app:destination="@id/parentProfile" />
+
     </dialog>
+    <fragment
+        android:id="@+id/parentProfile"
+        android:name="com.example.Leaders.ui.fragments.ParentProfile"
+        android:label="fragment_parent_profile"
+        tools:layout="@layout/fragment_parent_profile" >
+        <action
+            android:id="@+id/action_profile_per_to_orders_per"
+            app:destination="@id/orders_per" />
+    </fragment>
 </navigation>

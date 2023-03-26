@@ -50,17 +50,22 @@ class NotificationsAdapter(val context:Context):RecyclerView.Adapter<Notificatio
     }
 
     override fun getItemCount(): Int {
+        var nonNullValues=0
+        for (item in differ.currentList){
+            if((item!=null)&&(item?.name!=null)&&(item?.count!=null)){
+                nonNullValues++
+            }}
 
-        d("ayham",differ.currentList.size.toString())
-        return differ.currentList.size
+            d("ayham",differ.currentList.size.toString())
+        return nonNullValues
     }
 
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val data = differ.currentList[position]
 
-        try {
-
+        data?.name?.let {
+            //try {
 
 
             val departureName = data.name
@@ -88,10 +93,9 @@ class NotificationsAdapter(val context:Context):RecyclerView.Adapter<Notificatio
 
 
             holder.binding.btnLeaves.text = spannableStringBuilder
-        }catch (e:Exception){
-             e("ayham",e.toString())
-            Toast.makeText(context,"Unknown Error",Toast.LENGTH_SHORT).show()
-            }
+        }//catch (e:Exception){
+          //  e("ayham",e.toString())
+        //}
             holder.binding.btnLeaves.setOnClickListener {
                 onClickListener?.let {
                     it(data)
@@ -103,5 +107,4 @@ class NotificationsAdapter(val context:Context):RecyclerView.Adapter<Notificatio
 
     fun onItemClickListener(listener:(GetCurrentDepartureInfoData)->Unit){
         onClickListener=listener
-    }
-}
+    }}

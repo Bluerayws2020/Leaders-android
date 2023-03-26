@@ -66,7 +66,7 @@ class ManagerActivity : AppCompatActivity() {
                                 navController.navigate(R.id.action_departure_to_profile)
                                 ISIN=false
                             }
-                            drawerLayout.closeDrawer(GravityCompat.END)
+                            drawerLayout.closeDrawer(GravityCompat.START)
                         }
                         R.id.notifications -> {
                             textView.text = "الاشعارات"
@@ -79,7 +79,7 @@ class ManagerActivity : AppCompatActivity() {
                             }
 
                             // Close the navigation drawer
-                            drawerLayout.closeDrawer(GravityCompat.END)
+                            drawerLayout.closeDrawer(GravityCompat.START)
                         }
                         R.id.logout_manager ->{
                             logout(this@ManagerActivity)
@@ -92,14 +92,14 @@ class ManagerActivity : AppCompatActivity() {
                     }
                     true
                 }catch (e:java.lang.Exception){
-                    binding.drawerLayout.closeDrawer(GravityCompat.END)
-                    Log.e("ayham", e.toString())
+                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+                    e("ayham", e.toString())
                     true
                 }
             }
 
             sideMenuOpener.setOnClickListener {
-                drawerLayout.openDrawer(GravityCompat.END)
+                drawerLayout.openDrawer(GravityCompat.START)
             }
             backButton.setOnClickListener {
                 onBackPressed()

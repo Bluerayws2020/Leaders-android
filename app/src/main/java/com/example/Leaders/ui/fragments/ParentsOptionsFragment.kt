@@ -26,6 +26,8 @@ class ParentsOptionsFragment : Fragment() {
     private lateinit var binding:FragmentParentsOptionsBinding
     private val viewModel by viewModels<AppViewModel>()
     private var spinnerResults:NetworkResults.Success<ViewParentProfileInfoModel>?=null
+    private var isOneClicked=false
+    private var isTwoClicked=false
 
     companion object{
         var uid:String?=null
@@ -37,6 +39,8 @@ class ParentsOptionsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentParentsOptionsBinding.inflate(layoutInflater)
+
+
 
         getDataForDeparture()
         // Inflate the layout for this fragment
@@ -67,19 +71,42 @@ class ParentsOptionsFragment : Fragment() {
 
         binding.apply {
 
+            //radio button click mechanism
             departureCheckbox.setOnClickListener{
                 departureWihSomeoneCheckBox.isChecked=false
                 departureCheckbox.isChecked=true
+                isTwoClicked=false
+                if(isOneClicked) {
+                    departureCheckbox.isChecked = false
+                    isOneClicked=false
+
+                }else{
+                    departureCheckbox.isChecked = true
+                    isOneClicked=true
+
+                }
+
             }
             departureWihSomeoneCheckBox.setOnClickListener{
                 departureCheckbox.isChecked=false
                 departureWihSomeoneCheckBox.isChecked=true
+                isOneClicked=false
+                if(isTwoClicked) {
+                    departureWihSomeoneCheckBox.isChecked = false
+                    isTwoClicked=false
+                }else{
+                    departureWihSomeoneCheckBox.isChecked = true
+                    isTwoClicked=true
+
+                }
+
             }
+
 
 
         btnSend.setOnClickListener{
             //val showPopUp=  PickUpWithSomeonePopUpFragment()
-        //showPopUp.show((activity as AppCompatActivity).supportFragmentManager,"showPopUp")
+            //showPopUp.show((activity as AppCompatActivity).supportFragmentManager,"showPopUp")
 
             if(departureCheckbox.isChecked==true){
                 binding.pb.show()

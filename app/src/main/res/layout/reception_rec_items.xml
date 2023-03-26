@@ -91,12 +91,12 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="10sp"
-
+            android:layout_marginRight="10dp"
             />
         <CheckBox
+            android:layout_marginTop="5dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            style="@style/CustomCheckBoxStyle2"
             android:id="@+id/rec_item_checkBox"
             android:layout_width="20dp"
             android:layout_height="20dp"/>

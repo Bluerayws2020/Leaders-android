@@ -70,4 +70,17 @@ interface ApiServices {
         @Part("phone_number") phone_number:RequestBody,
         @Part("relative_relation") relative_relation:RequestBody
     ):CreateDepartureModel
+
+    @POST("app/updateUserProfile")
+    @Headers("Content-Type: application/json")
+    suspend fun updateParentInfo(
+        @Body parent: RegisterParent
+    ): LoginResponseModel
+
+    @Multipart
+    @POST("app/getTripFormOption")
+    suspend fun getTripFormOption(
+        @Part("lang") lang:RequestBody,
+        @Part("uid") uid: RequestBody
+    )
 }

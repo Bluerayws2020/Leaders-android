@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
@@ -31,6 +32,7 @@ class ProfileFragment : Fragment() {
         ISIN_PER_PRO=true
         // Inflate the layout for this fragment
         binding= FragmentProfileBinding.inflate(layoutInflater)
+        Toast.makeText(requireContext(),"معلوماتي",Toast.LENGTH_SHORT).show()
         if (getRole(requireContext())=="parent"){
             getParentData()
             viewModel.getParentProfileData(getUID(requireContext()))

@@ -136,3 +136,4 @@ data class CreateDepartureModel(
     val status: Int,
     val message: String
 )
+

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="10dp">
+    android:layout_marginTop="10dp"
+    android:layoutDirection="rtl"
+    >
     <androidx.cardview.widget.CardView
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -22,7 +24,7 @@
                 android:id="@+id/leave_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="الطالب : "
+                android:text="الطالب : "
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -81,39 +83,39 @@
                 app:layout_constraintTop_toBottomOf="@id/tv1"
                 app:layout_constraintRight_toLeftOf="@id/tv2"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv2"
                 android:orientation="horizontal"
                 android:weightSum="100"
-                >
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv2">
+
                 <Button
                     android:id="@+id/leave_btn_Accept_stu"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="50"
                     android:backgroundTint="@color/green"
                     android:text="اوافق"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginRight="10dp"
 
                     />
 
                 <Button
                     android:id="@+id/leave_btn_decline_stu"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="50"
                     android:backgroundTint="@color/red"
                     android:text="رفض"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:layout_marginLeft="10dp"
-                    app:layout_constraintEnd_toStartOf="@+id/btn_Accept"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv2" />
 
 

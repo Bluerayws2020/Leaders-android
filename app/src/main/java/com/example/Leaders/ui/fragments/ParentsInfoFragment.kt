@@ -41,6 +41,7 @@ class ParentsInfoFragment : Fragment() {
     ): View? {
         ISIN_PER=true
         binding= FragmentParentsInfoBinding.inflate(layoutInflater)
+        binding.scroll.isFillViewport=true
         registerParent()
         return binding.root
     }
@@ -50,7 +51,7 @@ class ParentsInfoFragment : Fragment() {
             when(it){
                 is NetworkResults.Success->{
                     if (it.data.status==200){
-                        showMessage("Success")
+                        showMessage("تم التسجيل بنجاح")
                         saveData(it)
                         binding.paginationProgressBar.hide()
                         startActivity(Intent(activity,ParentActivity::class.java))

@@ -74,7 +74,7 @@ class ReceptionActivity : AppCompatActivity() {
                             }
 
                             // Close the navigation drawer
-                            binding.drawerLayout.closeDrawer(GravityCompat.END)
+                            binding.drawerLayout.closeDrawer(GravityCompat.START)
                         }
                         R.id.orders -> {
                             binding.textView.text = "الطلبات"
@@ -88,7 +88,7 @@ class ReceptionActivity : AppCompatActivity() {
                             }
 
                             // Close the navigation drawer
-                            binding.drawerLayout.closeDrawer(GravityCompat.END)
+                            binding.drawerLayout.closeDrawer(GravityCompat.START)
                         }
                         R.id.logout_re->{
                             logout(this@ReceptionActivity)
@@ -98,7 +98,7 @@ class ReceptionActivity : AppCompatActivity() {
                     }
                     true
                 }catch (e:java.lang.Exception){
-                    binding.drawerLayout.closeDrawer(GravityCompat.END)
+                    binding.drawerLayout.closeDrawer(GravityCompat.START)
                     e("ayham",e.toString())
                     true
                 }
@@ -108,7 +108,7 @@ class ReceptionActivity : AppCompatActivity() {
 
 
             sideMenuOpener.setOnClickListener {
-                drawerLayout.openDrawer(GravityCompat.END)
+                drawerLayout.openDrawer(GravityCompat.START)
             }
 
             backButton.setOnClickListener {

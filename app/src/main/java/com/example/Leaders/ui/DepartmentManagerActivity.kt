@@ -30,7 +30,7 @@ class DepartmentManagerActivity : AppCompatActivity() {
             toggle.syncState()
 
             sideMenuOpener.setOnClickListener {
-                drawerLayout.openDrawer(GravityCompat.END)
+                drawerLayout.openDrawer(GravityCompat.START)
             }
             backButton.setOnClickListener {
                 onBackPressed()

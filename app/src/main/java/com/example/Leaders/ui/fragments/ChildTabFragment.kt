@@ -27,7 +27,6 @@ class ChildTabFragment : Fragment() {
     ): View? {
 
         binding= FragmentChildTabBinding.inflate(layoutInflater)
-
         adapter= ChildTapAdapter()
         adapter.differ.submitList(CHILD_LIST)
         recyclerView= binding.recycler

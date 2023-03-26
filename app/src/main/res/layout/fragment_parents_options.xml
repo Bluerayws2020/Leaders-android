@@ -8,10 +8,23 @@
         android:layout_height="match_parent"
         tools:context=".ui.fragments.ParentsOptionsFragment"
         android:gravity="center"
+        android:layoutDirection="rtl"
+    android:orientation="vertical"
+
     >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="120sp"
+        android:layout_height="120sp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/leaders"
+        android:elevation="10dp"
+        />
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    >
+
     <Spinner
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -20,7 +33,18 @@
         android:layout_height="60dp"
         android:background="@drawable/custom_text_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="left|center_vertical"
+        />
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:src="@drawable/down_arrow"
+        />
     <LinearLayout
         android:layout_marginEnd="30dp"
         android:layout_marginStart="30dp"
@@ -56,11 +80,13 @@
                 android:textColor="@color/black"
                 app:layout_constraintRight_toLeftOf="@id/departure_checkbox"
                 />
-            <CheckBox
+            <RadioButton
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/departure_checkbox"
-                style="@style/CustomCheckBoxStyle2"
                 app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,11 +106,13 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/departure_wih_someone_check_box"
                 />
-            <CheckBox
+            <RadioButton
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/departure_wih_someone_check_box"
-                style="@style/CustomCheckBoxStyle2"/>
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
         <com.google.android.material.button.MaterialButton
            android:id="@+id/btn_send"
@@ -113,7 +141,6 @@
         android:layout_height="wrap_content"
         android:visibility="visible"
         android:background="@android:color/transparent"
-        android:indeterminateDrawable="@drawable/custom_progress"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
