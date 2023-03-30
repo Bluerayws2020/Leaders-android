@@ -31,6 +31,9 @@ object HelperUtils {
     const val ABOUT_US_URL = "front_end/aboutUs"
     const val GALLERY_REQUEST_CODE = 100
     const val FULL_NAME="FULL_NAME"
+    const val USER_NAME="USER NAME"
+    const val PASSWORD="PASSWORD"
+
     var ISIN=false
     var ISIN_PER=false
     var ISIN_PER_PRO=false
@@ -52,6 +55,19 @@ object HelperUtils {
     fun logout(mContext: Context?){
         setUID(mContext,"0")
         setRole(mContext,"0")
+    }
+    fun saveUserNameAndPassword(mContext: Context?,username:String,password:String){
+        val sharedPreferences= mContext?.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
+        val editor=sharedPreferences?.edit()
+        editor?.putString(USER_NAME,username)
+        editor?.putString(PASSWORD,password)
+        editor?.apply()
+    }
+    fun getUserNameAndPassword(mContext: Context?,getEmailAndPassword:(email:String?,password:String?)->Unit) {
+        val sharedPreferences= mContext?.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
+        var email=sharedPreferences?.getString(USER_NAME,"")
+        var password=sharedPreferences?.getString(PASSWORD,"")
+        getEmailAndPassword(email,password)
     }
 
 

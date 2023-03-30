@@ -3,7 +3,6 @@ package com.example.Leaders.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.nerd_android.helpers.HelperUtils
-import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityParentRegisterationBinding
 
 class ParentRegistration : AppCompatActivity() {

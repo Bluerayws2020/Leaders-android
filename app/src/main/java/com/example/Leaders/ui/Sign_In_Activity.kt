@@ -3,6 +3,7 @@ package com.example.tasmeme.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -17,6 +18,8 @@ import com.example.nerd_android.helpers.HelperUtils.ROLE
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.TOKEN
 import com.example.nerd_android.helpers.HelperUtils.UID
+import com.example.nerd_android.helpers.HelperUtils.getUserNameAndPassword
+import com.example.nerd_android.helpers.HelperUtils.saveUserNameAndPassword
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.isInputEmpty
 import com.example.nerd_android.helpers.ViewUtils.show
@@ -26,11 +29,44 @@ import com.example.tasmeme.databinding.ActivitySignInBinding
 class Sign_In_Activity : AppCompatActivity() {
     private val viewModel by viewModels<AppViewModel>()
     private lateinit var binding:ActivitySignInBinding
+    private var isChecked=true
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_sign_in)
+
+        binding.checkBox.isChecked=isChecked
+        if (isChecked){
+            getUserNameAndPassword(this){
+                    email, password ->
+                binding.username.text=Editable.Factory.getInstance().newEditable(email)
+                binding.password.text=Editable.Factory.getInstance().newEditable(password)
+            }
+        }
+        binding.checkBox.setOnClickListener {
+            if(isChecked){
+                isChecked=false
+                binding.username.text=Editable.Factory.getInstance().newEditable("")
+                binding.password.text=Editable.Factory.getInstance().newEditable("")
+            }else{
+                getUserNameAndPassword(this){
+                        email, password ->
+                    binding.username.text=Editable.Factory.getInstance().newEditable(email)
+                    binding.password.text=Editable.Factory.getInstance().newEditable(password)
+                    isChecked=true
+
+                }
+            }
+
+        }
+
+        getUserNameAndPassword(this){
+            email, password ->
+            binding.username.text=Editable.Factory.getInstance().newEditable(email)
+            binding.password.text=Editable.Factory.getInstance().newEditable(password)
+        }
+
         binding.paginationProgressBar.hide()
         HelperUtils.setDefaultLanguage(this,"en")
         retrieveLogin()
@@ -70,6 +106,7 @@ class Sign_In_Activity : AppCompatActivity() {
         editor.apply()
         binding.paginationProgressBar.hide()
 
+
     }
     private fun showMessage(message:String){
         Toast.makeText(this,message,Toast.LENGTH_LONG).show()
@@ -82,6 +119,9 @@ class Sign_In_Activity : AppCompatActivity() {
              result ->
          when(result){
              is NetworkResults.Success->{
+                 if(binding.checkBox.isChecked){
+                     saveUserNameAndPassword(this,binding.username.text.toString(),binding.password.text.toString())
+                 }
                  when (result.data.status) {
                      200 -> {
                          when (result.data.data.role) {
