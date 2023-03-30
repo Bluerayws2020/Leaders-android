@@ -7,12 +7,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.Leaders.repo.NetworkRepository
 import kotlinx.coroutines.launch
 import com.example.Leaders.model.*
+import com.example.nerd_android.helpers.HelperUtils.getUID
 
 
-class AppViewModel(application:Application):AndroidViewModel(application) {
+class AppViewModel(  application:Application):AndroidViewModel(application) {
 
    // private val deviceId = HelperUtils.getAndroidID(application.applicationContext)
     private val repo = NetworkRepository
+    private val uid=getUID(application.applicationContext)
     //private val language = "ar"
     //private val uid = HelperUtils.getUID(application.applicationContext)
 
@@ -27,6 +29,8 @@ class AppViewModel(application:Application):AndroidViewModel(application) {
     private val currentDepartureInfoLiveData=MutableLiveData<NetworkResults<GetCurrentDepartureInfoModel>>()
     private val retrieveParentRegistration=MutableLiveData<NetworkResults<LoginResponseModel>>()
     private val createDepartureLiveData=MutableLiveData<NetworkResults<CreateDepartureModel>>()
+    private val getTripUsersLiveData=MutableLiveData<NetworkResults<GetTripUsers>>()
+
 
 
 
@@ -124,4 +128,12 @@ class AppViewModel(application:Application):AndroidViewModel(application) {
        }
     }
     fun getCreateDepartureLiveData()=createDepartureLiveData
+
+    fun retrieveTripUsers(){
+        viewModelScope.launch{
+            getTripUsersLiveData.value=repo.getTripUsers(uid,"1")
+        }
+    }
+
+    fun getTripUsers()=getTripUsersLiveData
 }

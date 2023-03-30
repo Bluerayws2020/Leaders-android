@@ -20,6 +20,7 @@
             android:elevation="10dp"
             />
         <TextView
+            android:fontFamily="@font/arabicregular"
             android:id="@+id/textName"
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -28,19 +29,20 @@
             android:text="Ayham Hammad"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/action_bar_background"
             />
 
         <TextView
+            android:fontFamily="@font/arabicregular"
             android:id="@+id/textNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="0785756979"
             android:textColor="@color/action_bar_background"
-            android:textSize="15dp"
+            android:textSize="13dp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -62,11 +64,12 @@
             app:layout_constraintTop_toBottomOf="@id/textNumber">
 
             <TextView
+                android:fontFamily="@font/arabicregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="معلومات ولي الامر"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 />
         </LinearLayout>
@@ -80,6 +83,7 @@
             android:background="@color/white"
             >
             <TextView
+                android:fontFamily="@font/arabicregular"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="10dp"
@@ -87,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold|normal"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 android:text="الاسم الرباعي "
                 />
             <View
@@ -100,13 +104,14 @@
                 />
 
             <EditText
+                android:fontFamily="@font/arabicregular"
                 android:id="@+id/fullName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:background="@drawable/edit_text_clear_background"
                 android:gravity="right|center_vertical"
-                android:textSize="11sp"
+                android:textSize="9sp"
                 android:textStyle="bold|normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/viewholder1"
@@ -209,6 +214,7 @@
             android:background="@color/white"
             >
             <TextView
+                android:fontFamily="@font/arabicregular"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="10dp"
@@ -216,7 +222,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold|normal"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 android:text="البريد الاكتروني"
                 />
             <View
@@ -236,6 +242,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:textStyle="bold|normal"
+                android:fontFamily="@font/arabicregular"
                 android:textSize="11sp"
                 android:gravity="right|center_vertical"
                 android:text="ayhamhammad@gmail.com"
@@ -260,7 +267,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold|normal"
-                android:textSize="13sp"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="11sp"
                 android:text="رقم الهاتف"
                 />
             <View
@@ -280,7 +288,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:textStyle="bold|normal"
-                android:textSize="11sp"
+                android:textSize="9sp"
+                android:fontFamily="@font/arabicregular"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:gravity="right|center_vertical"
                 android:background="@drawable/edit_text_clear_background"
@@ -290,9 +299,10 @@
         <TextView
             android:layout_marginTop="5dp"
             android:id="@+id/message"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/arabicregular"
             android:text="يمكن التعديل على المعلومات بالضغط على خانة المعلومات المراد تغييرها ومن ثم الضغط على تأكيد التغييرات في اسفل الصفحة"
             app:layout_constraintRight_toRightOf="@+id/info5"
             app:layout_constraintLeft_toLeftOf="@id/info5"
@@ -302,7 +312,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="اختر احد اطفالك"
-            android:textSize="15sp"
+            android:fontFamily="@font/arabicregular"
+            android:textSize="13sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/message"
             app:layout_constraintRight_toRightOf="@id/message"
@@ -319,6 +330,7 @@
             app:layout_constraintTop_toBottomOf="@+id/choose"
             android:background="@drawable/custom_spinner"
             android:gravity="left|center_vertical"
+            android:fontFamily="@font/arabicregular"
             />
         <ImageView
             android:layout_width="25dp"
@@ -348,7 +360,8 @@
                 android:layout_height="wrap_content"
                 android:text="معلومات طفلي"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 />
         </LinearLayout>
@@ -369,7 +382,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold|normal"
-                android:textSize="13sp"
+                android:textSize="11sp"
+                android:fontFamily="@font/arabicregular"
                 android:text="الاسم الرباعي "
                 />
             <View
@@ -388,7 +402,8 @@
                 android:layout_marginRight="10dp"
                 android:background="@drawable/edit_text_clear_background"
                 android:gravity="right|center_vertical"
-                android:textSize="11sp"
+                android:textSize="9sp"
+                android:fontFamily="@font/arabicregular"
                 android:textStyle="bold|normal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/viewholder6"
@@ -411,8 +426,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arabicregular"
                 android:textStyle="bold|normal"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 android:text="القسم"
                 />
             <View
@@ -428,11 +444,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/viewholder7"
                 android:layout_marginRight="10dp"
+                android:fontFamily="@font/arabicregular"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:textStyle="bold|normal"
-                android:textSize="11sp"
+                android:textSize="9sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:gravity="right|center_vertical"
                 android:background="@drawable/edit_text_clear_background"
@@ -454,8 +471,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arabicregular"
                 android:textStyle="bold|normal"
-                android:textSize="13sp"
+                android:textSize="11sp"
                 android:text="الصف"
                 />
             <View
@@ -473,9 +491,10 @@
                 android:layout_marginRight="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_width="0dp"
+                android:fontFamily="@font/arabicregular"
                 android:layout_height="match_parent"
                 android:textStyle="bold|normal"
-                android:textSize="11sp"
+                android:textSize="9sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:gravity="right|center_vertical"
                 android:background="@drawable/edit_text_clear_background"
@@ -494,12 +513,13 @@
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
             android:text="تأكيد التغييرات"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textAllCaps="false"
             app:cornerRadius="20dp"
-            android:backgroundTint="@color/tab_selected_background"/>
+            android:backgroundTint="@color/tab_selected_background"
+            android:fontFamily="@font/arabicregular"/>
 
         <ProgressBar
             android:id="@+id/pb"

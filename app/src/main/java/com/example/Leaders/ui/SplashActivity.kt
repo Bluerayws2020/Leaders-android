@@ -13,10 +13,7 @@ import androidx.navigation.NavController
 import com.example.nerd_android.helpers.ContextWrapper
 import com.example.nerd_android.helpers.HelperUtils
 import com.example.tasmeme.databinding.ActivitySplashBinding
-import com.example.tasmeme.ui.ManagerActivity
-import com.example.tasmeme.ui.ParentActivity
-import com.example.tasmeme.ui.ReceptionActivity
-import com.example.tasmeme.ui.Sign_In_Activity
+import com.example.tasmeme.ui.*
 import java.util.*
 
 class SplashActivity  : AppCompatActivity() , View.OnClickListener {
@@ -79,6 +76,10 @@ class SplashActivity  : AppCompatActivity() , View.OnClickListener {
         }
         else if(role=="parent"){
             startActivity(Intent(this, ParentActivity::class.java))
+            finish()
+        }
+        else if (role=="escort"){
+            startActivity(Intent(this,TripActivity::class.java))
             finish()
         }
 

@@ -55,7 +55,7 @@ class ParentsInfoFragment : Fragment() {
                         saveData(it)
                         binding.paginationProgressBar.hide()
                         startActivity(Intent(activity,ParentActivity::class.java))
-                        activity?.finish()
+                        requireActivity().finish()
                     }else{
                         binding.paginationProgressBar.hide()
                         showMessage(it.data.message.toString())

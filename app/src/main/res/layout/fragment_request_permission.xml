@@ -1,0 +1,46 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.Leaders.ui.fragments.RequestPermissionFragment">
+
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="250dp"
+        android:layout_height="90sp"
+        android:background="@drawable/custom_rectangels"
+        android:fontFamily="@font/arabicregular"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="20dp"
+        android:gravity="right"
+        android:hint="اكتب شيئا"
+        android:textSize="10sp"
+        android:paddingRight="20dp"
+        android:paddingTop="10sp"
+        />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/send_btn"
+        android:layout_marginTop="10dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:text="ارسال"
+        android:fontFamily="@font/arabicregular"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/text"
+        app:layout_constraintRight_toRightOf="@id/text"
+        app:layout_constraintTop_toBottomOf="@+id/text"
+        android:backgroundTint="@color/tab_selected_background"
+        app:cornerRadius="20dp"
+        android:layout_marginBottom="30dp"
+        android:paddingTop="10sp"
+        android:paddingBottom="10sp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

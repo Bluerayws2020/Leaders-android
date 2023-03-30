@@ -25,8 +25,9 @@
                 android:id="@+id/morning_trip_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arabicregular"
                 tools:text="محمد احمد"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -54,7 +55,8 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/admin_recycle_Orange"
                     android:text="نحن في الطريق اليك"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/arabicregular"
+                    android:textSize="18sp"
                     app:cornerRadius="15dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -63,16 +65,18 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/pink"
                     android:text="نحن الان في الموقع"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/arabicregular"
+                    android:textSize="18sp"
                     app:cornerRadius="15dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/BtnStuTaken"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/arabicregular"
                     android:backgroundTint="@color/admin_recycle_green"
                     android:text="تم استلام الطالب"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:cornerRadius="15dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -81,7 +85,8 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/cyan"
                     android:text="لقد وصلنا المدرسة بسلام"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/arabicregular"
                     app:cornerRadius="15dp" />
 
                 <com.google.android.material.button.MaterialButton
@@ -90,7 +95,8 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/admin_recycle_Red"
                     android:text="انتهت مدة الانتظار"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/arabicregular"
+                    android:textSize="18sp"
                     app:cornerRadius="15dp" />
             </LinearLayout>
 

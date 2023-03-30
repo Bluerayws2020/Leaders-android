@@ -78,9 +78,10 @@ interface ApiServices {
     ): LoginResponseModel
 
     @Multipart
-    @POST("app/getTripFormOption")
-    suspend fun getTripFormOption(
+    @POST("app/getTripUsers")
+    suspend fun getTripUsers (
         @Part("lang") lang:RequestBody,
-        @Part("uid") uid: RequestBody
-    )
+        @Part("uid") uid: RequestBody,
+        @Part("trip") trip:RequestBody
+    ):GetTripUsers
 }

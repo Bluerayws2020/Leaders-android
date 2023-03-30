@@ -22,23 +22,25 @@
             android:src="@drawable/leaders"
             />
         <TextView
+            android:fontFamily="@font/arabicregular"
             android:id="@+id/nameTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="سارة سارة"
             android:textStyle="bold"
-            android:textSize="25sp"
+            android:textSize="23sp"
             android:layout_marginTop="20dp"
             android:textColor="@color/black"
             />
 
         <TextView
+            android:fontFamily="@font/arabicregular"
             android:id="@+id/phone_numberTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="0096212345678"
             android:textStyle="bold"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:textColor="@color/black"
             />

@@ -31,6 +31,7 @@ class ReceptionActivity : AppCompatActivity() {
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_reception)
         HelperUtils.setDefaultLanguage(this,"en")
+        binding.textView.text="معلوماتي"
         binding.apply {
             viewModel.getUserProfileLiveData().observe(this@ReceptionActivity){
                     result->
@@ -121,6 +122,15 @@ class ReceptionActivity : AppCompatActivity() {
             viewModel.getUserProfileData(uid.toString())
 
 
+
+
+    }
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }else{
+            super.onBackPressed()
+        }
 
 
     }

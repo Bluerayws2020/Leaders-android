@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
+import com.example.nerd_android.helpers.HelperUtils
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityDepartmentManagerBinding
 import com.example.tasmeme.databinding.FragmentTeamLeaderBinding
@@ -19,6 +20,8 @@ class DepartmentManagerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_department_manager)
+        HelperUtils.setDefaultLanguage(this,"en")
+        binding.textView.text="معلوماتي"
         binding.apply {
 
             navDrawer.itemIconTintList=null
@@ -36,5 +39,14 @@ class DepartmentManagerActivity : AppCompatActivity() {
                 onBackPressed()
             }
         }
+    }
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }else{
+            super.onBackPressed()
+        }
+
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.Leaders.model
 
+import android.media.tv.TableRequest
 
 
 sealed class NetworkResults<out R> {
@@ -136,4 +137,21 @@ data class CreateDepartureModel(
     val status: Int,
     val message: String
 )
+data class GetTripUsersData(
+    val escort: List<Escort>,
+    val students: List<TripStudents>
 
+)
+data class Escort(
+    val eid: String,
+    val full_name: String
+)
+data class GetTripUsers(
+    val `data`: GetTripUsersData,
+    val status: Int,
+    val message: String?=null
+)
+data class TripStudents(
+    val full_name: String,
+    val sid: String
+)

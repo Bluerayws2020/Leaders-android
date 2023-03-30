@@ -39,7 +39,6 @@ class ManagerActivity : AppCompatActivity() {
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_manager)
         HelperUtils.setDefaultLanguage(this,"en")
-
         binding.apply {
 
             navDrawer.itemIconTintList=null
@@ -130,5 +129,14 @@ class ManagerActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }else{
+            super.onBackPressed()
+        }
+
+
     }
 }

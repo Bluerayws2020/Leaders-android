@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.Leaders.model.TripStudents
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
@@ -14,7 +15,7 @@ import com.example.tasmeme.R
 import java.util.zip.Inflater
 
 class EveningTripAdapter(private val listener: OnItemClickListener):RecyclerView.Adapter<EveningTripAdapter.MyViewHolder>() {
-    val list= listOf<String>("Ayham","Ahmed","Yaser","Hamad","Ali","Tayseer")
+    var list= listOf<TripStudents>()
     inner class MyViewHolder(view:View,private val listener:OnItemClickListener):ViewHolder(view),View.OnClickListener{
         val name=view.findViewById<TextView>(R.id.evening_trip_name)
         val leftBtn=view.findViewById<Button>(R.id.we_left_school)
@@ -61,7 +62,7 @@ class EveningTripAdapter(private val listener: OnItemClickListener):RecyclerView
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        holder.name.text=list[position]
+        holder.name.text=list[position].full_name
 
     }
 }

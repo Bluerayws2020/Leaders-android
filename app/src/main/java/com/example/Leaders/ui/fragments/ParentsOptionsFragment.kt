@@ -15,11 +15,13 @@ import com.example.Leaders.adaptors.SpinnerAdapter
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.model.Student
 import com.example.Leaders.model.ViewParentProfileInfoModel
+import com.example.Leaders.ui.fragments.RequestPermissionFragment
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.getUID
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.databinding.FragmentParentsOptionsBinding
+import java.util.Objects
 
 
 class ParentsOptionsFragment : Fragment() {
@@ -28,6 +30,8 @@ class ParentsOptionsFragment : Fragment() {
     private var spinnerResults:NetworkResults.Success<ViewParentProfileInfoModel>?=null
     private var isOneClicked=false
     private var isTwoClicked=false
+    private var isThreeClicked=false
+
 
     companion object{
         var uid:String?=null
@@ -38,6 +42,7 @@ class ParentsOptionsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        getData()
         binding= FragmentParentsOptionsBinding.inflate(layoutInflater)
 
 
@@ -75,7 +80,9 @@ class ParentsOptionsFragment : Fragment() {
             departureCheckbox.setOnClickListener{
                 departureWihSomeoneCheckBox.isChecked=false
                 departureCheckbox.isChecked=true
+                requestPermission.isChecked=false
                 isTwoClicked=false
+                isThreeClicked=false
                 if(isOneClicked) {
                     departureCheckbox.isChecked = false
                     isOneClicked=false
@@ -90,7 +97,9 @@ class ParentsOptionsFragment : Fragment() {
             departureWihSomeoneCheckBox.setOnClickListener{
                 departureCheckbox.isChecked=false
                 departureWihSomeoneCheckBox.isChecked=true
+                requestPermission.isChecked=false
                 isOneClicked=false
+                isThreeClicked=false
                 if(isTwoClicked) {
                     departureWihSomeoneCheckBox.isChecked = false
                     isTwoClicked=false
@@ -101,7 +110,23 @@ class ParentsOptionsFragment : Fragment() {
                 }
 
             }
+            requestPermission.setOnClickListener {
+                departureWihSomeoneCheckBox.isChecked=false
+                departureCheckbox.isChecked=false
+                requestPermission.isChecked=true
+                isTwoClicked=false
+                isOneClicked=false
+                if(isThreeClicked) {
+                    requestPermission.isChecked = false
+                    isThreeClicked=false
 
+                }else{
+                    requestPermission.isChecked = true
+                    isThreeClicked=true
+
+                }
+
+            }
 
 
         btnSend.setOnClickListener{
@@ -155,16 +180,36 @@ class ParentsOptionsFragment : Fragment() {
 
 
                 }
-                 nid= spinnerResults!!.data.data.students[spinnerPosition].sid
+                 nid = spinnerResults!!.data.data.students[spinnerPosition].sid
                 //var departureType="1"
                 // uid= getUID(requireContext())
+            }
+            else if(requestPermission.isChecked==true){
+                val showPopUp=RequestPermissionFragment()
+                showPopUp.show((activity as AppCompatActivity).supportFragmentManager,"showPopUp")
+                var spinnerPosition=0
+                binding.spinner.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        spinnerPosition=position
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                        spinnerPosition=0
+                    }
+
+                }
+                nid= spinnerResults!!.data.data.students[spinnerPosition].sid
             }
             else{
                 Toast.makeText(requireContext(),"الرجاء اختبار احد خيارات المغادرة ",Toast.LENGTH_LONG).show()
             }
         }}
         binding.pb.show()
-        getData()
         viewModel.getParentProfileData(getUID(requireContext()))
     }
 

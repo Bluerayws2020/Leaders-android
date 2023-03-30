@@ -27,24 +27,27 @@
             >
 
             <TextView
+                android:fontFamily="@font/arabicregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="يرجى التواصل مع الادارة"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
             <TextView
+                android:fontFamily="@font/arabicregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="على الرقم الاتي"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/call_management"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arabicregular"
                 android:text="07XXXXXXXX"
                 app:layout_constraintTop_toBottomOf="@id/phone_number_tv"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -55,7 +58,7 @@
                 android:paddingBottom="10dp"
                 android:backgroundTint="@color/admin_recycle_green"
                 android:textColor="@color/white"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:textStyle="bold"
                 app:cornerRadius="20dp"
                 />

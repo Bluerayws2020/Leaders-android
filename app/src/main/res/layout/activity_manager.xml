@@ -58,8 +58,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:text="الطلبات"
+                    android:fontFamily="@font/arabicregular"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     android:textStyle="bold|normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toLeftOf="@+id/profile_image"
@@ -114,6 +115,7 @@
             app:menu="@menu/manager_nav_drawer_menu"
             app:headerLayout="@layout/nav_header"
             android:layout_gravity="start"
+            app:itemTextAppearance="@style/NavigationDrawerTextAppearance"
             />
 
     </androidx.drawerlayout.widget.DrawerLayout>

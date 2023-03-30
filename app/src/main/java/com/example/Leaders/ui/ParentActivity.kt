@@ -35,9 +35,6 @@ class ParentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_parent)
-
-
-
         HelperUtils.setDefaultLanguage(this,"en")
         binding.apply {
             navDrawer.itemIconTintList=null
@@ -54,7 +51,7 @@ class ParentActivity : AppCompatActivity() {
                         navController?.navigate(R.id.action_orders_per_to_profile_per)
                     }
                     R.id.orders_per->{
-                        textView.text="الطلبات"
+                        textView.text="طلب اذن للطالب"
                         navController?.navigate(R.id.action_profile_per_to_orders_per)
                         }
                     R.id.logout_per->{
@@ -121,5 +118,11 @@ class ParentActivity : AppCompatActivity() {
         }
         }
     }
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        }else{
+            super.onBackPressed()
+        }
 
-}
+}}

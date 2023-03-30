@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Leaders.model.TripStudents
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
 
 class MorningTripAdapter(private val listener: OnItemClickListener):RecyclerView.Adapter<MorningTripAdapter.MyViewHolder>() {
 
-    val list= listOf("Ayham","Ahmed","Ali","Yaser","Tayseer","Hasan")
+    var list= listOf<TripStudents>()
 
     inner class MyViewHolder(view: View,private val listener: OnItemClickListener): RecyclerView.ViewHolder(view),View.OnClickListener{
 
@@ -69,7 +70,7 @@ class MorningTripAdapter(private val listener: OnItemClickListener):RecyclerView
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.name.text=list[position]
+        holder.name.text= list[position].full_name
     }
 
 }

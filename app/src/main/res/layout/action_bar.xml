@@ -33,13 +33,14 @@
         />
 
     <TextView
+        android:fontFamily="@font/arabicregular"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
         android:text="الطالبــات"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold|normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profile_image"

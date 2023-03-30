@@ -25,6 +25,7 @@
             android:layout_height="40dp"
             >
             <TextView
+                android:fontFamily="@font/arabicregular"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/stuName"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
@@ -66,7 +67,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/theCondition"
-                android:textSize="16sp"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

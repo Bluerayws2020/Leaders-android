@@ -7,6 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
     <com.google.android.material.button.MaterialButton
+        android:fontFamily="@font/arabicregular"
         android:id="@+id/btn_leaves"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +19,7 @@
         android:layout_marginTop="10dp"
         android:padding="40dp"
         android:textColor="@color/black"
-        android:textSize="26sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:cornerRadius="60dp"
         tools:text="المغادرات(%S)" />

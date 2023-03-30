@@ -21,12 +21,13 @@
 
             android:layout_margin="20dp">
             <TextView
+                android:fontFamily="@font/arabicregular"
                 android:id="@+id/leave_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="الطالب : "
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,10 +36,11 @@
                 android:id="@+id/student_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arabicregular"
                 tools:text="محمد جابر"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintRight_toLeftOf="@id/leave_name"
                 app:layout_constraintTop_toTopOf="parent"
                 />
@@ -47,7 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="الصف : "
-                android:textSize="16sp"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/leave_name"
                 app:layout_constraintRight_toRightOf="parent"
@@ -57,8 +60,9 @@
                 android:id="@+id/leave_grade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/arabicregular"
                 tools:text="الرابع"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintRight_toLeftOf="@id/tv1"
                 app:layout_constraintTop_toBottomOf="@id/leave_name" />
@@ -67,7 +71,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" وقت المغادرة : "
-                android:textSize="16sp"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/tv1"
                 app:layout_constraintRight_toRightOf="parent"
@@ -77,7 +82,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="12:00"
-                android:textSize="16sp"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:textColor="@color/action_bar_background"
                 app:layout_constraintTop_toBottomOf="@id/tv1"
@@ -94,6 +100,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv2">
 
                 <Button
+                    android:fontFamily="@font/arabicregular"
                     android:id="@+id/leave_btn_Accept_stu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -101,7 +108,8 @@
                     android:layout_weight="50"
                     android:backgroundTint="@color/green"
                     android:text="اوافق"
-                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
                     android:textStyle="bold"
 
                     />
@@ -114,7 +122,8 @@
                     android:layout_weight="50"
                     android:backgroundTint="@color/red"
                     android:text="رفض"
-                    android:textSize="16sp"
+                    android:fontFamily="@font/arabicregular"
+                    android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/tv2" />
 

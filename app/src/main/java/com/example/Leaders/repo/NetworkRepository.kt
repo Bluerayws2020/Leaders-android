@@ -205,4 +205,26 @@ object NetworkRepository {
         }
 
     }
+    suspend fun getTripUsers(
+        uid:String,
+        trip:String
+    ): NetworkResults<GetTripUsers> {
+        return withContext(Dispatchers.IO){
+            val lang ="ar"
+            val langRequestBody=lang.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val uidRequestBody=uid.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            val tripRequestBody=trip.toRequestBody("multipart/form-data".toMediaTypeOrNull())
+            try {
+                val result=ApiClient.retrofitService.getTripUsers(
+                    langRequestBody,
+                    uidRequestBody,
+                    tripRequestBody
+                )
+                NetworkResults.Success(result)
+            }catch (e:Exception){
+                NetworkResults.Error(e)
+            }
+        }
+    }
+
 }

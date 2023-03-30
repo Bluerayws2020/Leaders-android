@@ -11,6 +11,7 @@ import com.example.Leaders.model.LoginResponseModel
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.ui.ParentRegistration
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.HelperUtils
 import com.example.nerd_android.helpers.HelperUtils.FULL_NAME
 import com.example.nerd_android.helpers.HelperUtils.ROLE
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
@@ -31,11 +32,7 @@ class Sign_In_Activity : AppCompatActivity() {
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_sign_in)
         binding.paginationProgressBar.hide()
-
-
-
-
-
+        HelperUtils.setDefaultLanguage(this,"en")
         retrieveLogin()
 
         binding.register.setOnClickListener {
@@ -56,7 +53,6 @@ class Sign_In_Activity : AppCompatActivity() {
     }
         binding.registerParent.setOnClickListener {
             startActivity(Intent(this,ParentRegistration::class.java))
-            finish()
         }
 
 
@@ -101,6 +97,11 @@ class Sign_In_Activity : AppCompatActivity() {
                              "parent" -> {
                                  saveData(result)
                                  startActivity(Intent(this,ParentActivity::class.java))
+                                 finish()
+                             }
+                             "escort"->{
+                                 saveData(result)
+                                 startActivity(Intent(this,TripActivity::class.java))
                                  finish()
                              }
                          }
