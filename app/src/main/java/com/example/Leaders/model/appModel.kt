@@ -155,3 +155,7 @@ data class TripStudents(
     val full_name: String,
     val sid: String
 )
+data class MessageModel(
+    val status: Int,
+    val message: String
+)

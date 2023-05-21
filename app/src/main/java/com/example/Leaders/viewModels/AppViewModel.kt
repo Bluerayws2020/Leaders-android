@@ -129,9 +129,9 @@ class AppViewModel(  application:Application):AndroidViewModel(application) {
     }
     fun getCreateDepartureLiveData()=createDepartureLiveData
 
-    fun retrieveTripUsers(){
+    fun retrieveTripUsers(trip:String){
         viewModelScope.launch{
-            getTripUsersLiveData.value=repo.getTripUsers(uid,"1")
+            getTripUsersLiveData.value=repo.getTripUsers(uid,trip)
         }
     }
 

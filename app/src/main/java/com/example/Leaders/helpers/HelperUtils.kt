@@ -20,7 +20,7 @@ object HelperUtils {
     const val TOKEN ="TOKEN"
     const val ROLE= "ROLE"
     const val PROFILE_DATA_TAG="profile_data"
-    const val BASE_URL = "http://leaders2.br-ws.com/leaders2/web/"
+    const val BASE_URL = "http://leaders3.br-ws.com/"
     const val SHARED_PREF = "Leaders"
     const val FACEBOOK_OR_GOOGLE_PROVIDER = "1"
     const val MANUAL_SIGN_UP = "2"

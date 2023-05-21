@@ -34,7 +34,7 @@ class TripFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.retrieveTripUsers()
+        viewModel.retrieveTripUsers("1")
         adapter= MorningTripAdapter(object:OnItemClickListener{
 
             override fun onItemClick(position: Int, nid: String) {

@@ -84,4 +84,86 @@ interface ApiServices {
         @Part("uid") uid: RequestBody,
         @Part("trip") trip:RequestBody
     ):GetTripUsers
+
+
+    @Multipart
+    @POST("app/updateTrip")
+    suspend fun updateTripMorning (
+        @Part("lang") lang:RequestBody,
+        @Part("uid") uid: RequestBody,
+        //        studint Id
+
+        @Part("nid") nid: RequestBody,
+
+        @Part("trip") trip:RequestBody,
+        @Part("morning_trip_actions") morning_trip_actions :RequestBody
+
+    ):MessageModel
+
+    @Multipart
+    @POST("app/updateTrip")
+    suspend fun updateTripEvning (
+        @Part("lang") lang:RequestBody,
+        @Part("uid") uid: RequestBody,
+        //        studint Id
+
+        @Part("nid") nid: RequestBody,
+
+        @Part("trip") trip:RequestBody,
+
+        @Part("evening_trip_actions") evening_trip_actions :RequestBody
+
+    ):MessageModel
+
+
+
+
+    @Multipart
+    @POST("app/createTrip")
+    suspend fun createTripMorning (
+        @Part("lang") lang:RequestBody,
+        @Part("uid") uid: RequestBody,
+
+//BUS NUMBER
+        @Part("trip") trip: RequestBody,
+//1 FOR MORNINFG & 2 FOR EVNING
+        @Part("time") time:RequestBody,
+//        id of action
+        @Part("morning_trip_actions") morning_trip_actions :RequestBody
+    ):MessageModel
+
+
+    @Multipart
+    @POST("app/createTrip")
+    suspend fun createTripEvning (
+        @Part("lang") lang:RequestBody,
+        @Part("uid") uid: RequestBody,
+
+//BUS NUMBER
+        @Part("trip") trip: RequestBody,
+//1 FOR MORNINFG & 2 FOR EVNING
+        @Part("time") time:RequestBody,
+//        id of action
+        @Part("evening_trip_actions") evening_trip_actions :RequestBody
+    ):MessageModel
+
+
+
+    @Multipart
+    @POST("app/getTripFormOptions")
+    suspend fun getTripFormOptions (
+        @Part("lang") lang:RequestBody,
+        @Part("uid") uid: RequestBody
+
+
+    ):MessageModel
+
+
+
+
+//    what Nid For
+//    getTripFormOptions == > Nid
+//viewAllTrips == > Nid
+//     viewTrip == > Nid
+// update Pearent Profile ==>
 }

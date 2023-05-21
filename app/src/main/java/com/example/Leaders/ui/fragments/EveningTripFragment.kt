@@ -64,7 +64,7 @@ class EveningTripFragment : Fragment() {
             override fun onItemClick(position: Int, nid: String) {
 
             }})
-        viewModel.retrieveTripUsers()
+        viewModel.retrieveTripUsers("2")
         binding.apply {
 
                 eveningRec.adapter=adapter

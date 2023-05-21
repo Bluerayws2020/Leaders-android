@@ -234,8 +234,8 @@ class ParentsOptionsFragment : Fragment() {
         }
     }
 
-    private fun setUpSpinner(requireContext: Context, students: List<Student>) {
-        val adapter= SpinnerAdapter(requireContext,students)
+    private fun setUpSpinner(requireContext: Context, students: List<Student>?) {
+        val adapter= students?.let { SpinnerAdapter(requireContext, it) }
         binding.spinner.adapter=adapter
     }
 }
