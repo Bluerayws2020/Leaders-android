@@ -5,13 +5,10 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.VirtualLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.Leaders.model.EveningTripAction
 import com.example.Leaders.model.MorningTripAction
 import com.example.tasmeme.R
-import com.example.tasmeme.adaptors.MorningTripAdapter
 import com.example.tasmeme.databinding.TripInnerRecyclerItemBinding
 import java.util.*
 

@@ -13,10 +13,8 @@ import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.EveningTripAdapter
-import com.example.tasmeme.adaptors.OnItemClickListener
 import com.example.tasmeme.databinding.FragmentEveningTripBinding
 import com.example.tasmeme.ui.TripActivity
-import kotlin.concurrent.fixedRateTimer
 
 
 class EveningTripFragment : Fragment() {
@@ -93,10 +91,7 @@ class EveningTripFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter= EveningTripAdapter(object :OnItemClickListener{
-            override fun onItemClick(position: Int, nid: String) {
-
-            }})
+        adapter= EveningTripAdapter()
         viewModel.retrieveTripUsers("2")
         binding.apply {
 

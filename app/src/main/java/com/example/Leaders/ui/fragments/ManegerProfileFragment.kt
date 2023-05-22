@@ -1,6 +1,5 @@
 package com.example.tasmeme.ui.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,16 +11,12 @@ import androidx.fragment.app.viewModels
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.ISIN_PER_PRO
-import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
-import com.example.nerd_android.helpers.HelperUtils.UID
 import com.example.nerd_android.helpers.HelperUtils.getRole
 import com.example.nerd_android.helpers.HelperUtils.getUID
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentProfileBinding
 import com.example.tasmeme.ui.ManagerActivity
-import com.example.tasmeme.ui.TripActivity
-
 
 class ManegerProfileFragment : Fragment() {
         private lateinit var binding:FragmentProfileBinding
@@ -31,7 +26,7 @@ class ManegerProfileFragment : Fragment() {
 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         ISIN_PER_PRO=true
         // Inflate the layout for this fragment
         binding= FragmentProfileBinding.inflate(layoutInflater)

@@ -1,12 +1,11 @@
 package com.example.tasmeme.ui
 
 import android.content.Intent
-import android.content.SharedPreferences
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.util.Log.e
 import android.widget.TextView
 import android.widget.Toast
@@ -15,18 +14,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.Leaders.model.NetworkResults
-import com.example.Leaders.ui.SplashActivity
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils
 import com.example.nerd_android.helpers.HelperUtils.ISIN
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.UID
 import com.example.nerd_android.helpers.HelperUtils.logout
-import com.example.nerd_android.helpers.HelperUtils.setRole
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityManagerBinding
 import de.hdodenhof.circleimageview.CircleImageView
@@ -126,6 +121,7 @@ class ManagerActivity : AppCompatActivity() {
 
 
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -153,7 +149,7 @@ class ManagerActivity : AppCompatActivity() {
     fun openDrawer(){
         binding.drawerLayout.openDrawer(GravityCompat.START)
     }
-    fun popStack(){
+    private fun popStack(){
         navController = findNavController(R.id.fragmentContainerView_Manager)
         navController.popBackStack()
     }

@@ -3,11 +3,8 @@ package com.example.tasmeme.adaptors
 import android.graphics.Color
 import android.util.Log.d
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -15,12 +12,9 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.Leaders.model.Departure
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
-import com.example.tasmeme.R
 import com.example.tasmeme.databinding.DepartItemsBinding
-import com.example.tasmeme.model.DepartureModel
 
-
-class DepartureAdapter(): RecyclerView.Adapter<DepartureAdapter.MyViewHolder>(){
+class DepartureAdapter: RecyclerView.Adapter<DepartureAdapter.MyViewHolder>(){
 
 
     private val differCallback =object :DiffUtil.ItemCallback<Departure>(){

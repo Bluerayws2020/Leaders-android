@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.Leaders.model.ChildListData
-import com.example.Leaders.model.GetCurrentDepartureInfoData
 import com.example.nerd_android.helpers.HelperUtils.CHILD_LIST
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
@@ -30,10 +29,8 @@ class ChildTapAdapter():RecyclerView.Adapter<ChildTapAdapter.MyViewHolder>() {
 
         override fun areContentsTheSame(oldItem: ChildListData, newItem: ChildListData): Boolean {
             return oldItem.id==newItem.id
-//                    &&
-//                    (oldItem.section==newItem.section)&&
-//                    (oldItem.grade==newItem.grade)&&(oldItem.department==newItem.department) }
-    }}
+    }
+    }
 
 
     val differ= AsyncListDiffer(this,differCallback)

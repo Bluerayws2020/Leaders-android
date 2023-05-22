@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.util.Log.e
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -15,14 +13,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils
-import com.example.nerd_android.helpers.HelperUtils.ISIN_PER
-import com.example.nerd_android.helpers.HelperUtils.ISIN_PER_PRO
 import com.example.nerd_android.helpers.HelperUtils.getUID
 import com.example.nerd_android.helpers.HelperUtils.logout
 import com.example.tasmeme.R
@@ -76,7 +70,7 @@ class ParentActivity : AppCompatActivity() {
                     }
                     drawerLayout.closeDrawer(GravityCompat.START)
                 } catch (e: Exception) {
-                    Log.e("ayham", e.toString())
+                    e("ayham", e.toString())
 
                 };true
             }
@@ -106,7 +100,7 @@ class ParentActivity : AppCompatActivity() {
                     }
                 }
                 is NetworkResults.Error->{
-                    Log.e("ayham", it.exception.toString())
+                    e("ayham", it.exception.toString())
                 }
             }
         }
@@ -122,6 +116,7 @@ class ParentActivity : AppCompatActivity() {
                 e("ayham", e.toString())
             }
         }
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -149,7 +144,7 @@ class ParentActivity : AppCompatActivity() {
     fun openDrawer(){
         binding.drawerLayout.openDrawer(GravityCompat.START)
     }
-    fun popStack(){
+    private fun popStack(){
         navController = findNavController(R.id.fragmentContainerView_parent)
         navController?.popBackStack()
     }
