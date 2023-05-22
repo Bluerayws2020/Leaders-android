@@ -5,47 +5,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.Leaders.adaptors.MoriningTripInnerAdapter
+import com.example.Leaders.model.MorningTripAction
 import com.example.Leaders.model.TripStudents
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
+import com.example.tasmeme.databinding.MorningTripItemsBinding
 
 class MorningTripAdapter(private val listener: OnItemClickListener):RecyclerView.Adapter<MorningTripAdapter.MyViewHolder>() {
 
     var list= listOf<TripStudents>()
+    var morningTripList = listOf<MorningTripAction>()
 
-    inner class MyViewHolder(view: View,private val listener: OnItemClickListener): RecyclerView.ViewHolder(view),View.OnClickListener{
+    inner class MyViewHolder(val binding :MorningTripItemsBinding ,private val listener: OnItemClickListener): RecyclerView.ViewHolder(binding.root),View.OnClickListener{
 
-        val inTheWayBtn=view.findViewById<Button>(R.id.BtnOnOurWay)
-        val weArrivedBtn=view.findViewById<Button>(R.id.BtnArrived)
-        val stuTakenBtn=view.findViewById<Button>(R.id.BtnStuTaken)
-        val arrivedToSchool=view.findViewById<Button>(R.id.BtnStuArrivedToSchool)
-        val timeOutBtn=view.findViewById<Button>(R.id.BtnTimeOut)
-        val name=view.findViewById<TextView>(R.id.morning_trip_name)
         private var isOpen=false
 
         init {
-            inTheWayBtn.hide()
-            weArrivedBtn.hide()
-            stuTakenBtn.hide()
-            arrivedToSchool.hide()
-            timeOutBtn.hide()
-            view.setOnClickListener {
+            binding.recycler.hide()
+            itemView.setOnClickListener {
                 if (isOpen==true) {
-                    inTheWayBtn.hide()
-                    weArrivedBtn.hide()
-                    stuTakenBtn.hide()
-                    arrivedToSchool.hide()
-                    timeOutBtn.hide()
+                    binding.recycler.hide()
                     isOpen=false
 
                 }else{
-                    inTheWayBtn.show()
-                    weArrivedBtn.show()
-                    stuTakenBtn.show()
-                    arrivedToSchool.show()
-                    timeOutBtn.show()
+                    binding.recycler.show()
                     isOpen=true
                 }
 
@@ -61,8 +48,8 @@ class MorningTripAdapter(private val listener: OnItemClickListener):RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
-        val item =layoutInflater.inflate(R.layout.morning_trip_items,parent,false)
-        return MyViewHolder(item,listener)
+        val binding =MorningTripItemsBinding.inflate(layoutInflater,parent,false)
+        return MyViewHolder(binding,listener)
     }
 
     override fun getItemCount(): Int {
@@ -70,7 +57,24 @@ class MorningTripAdapter(private val listener: OnItemClickListener):RecyclerView
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.name.text= list[position].full_name
+        val adapter = MoriningTripInnerAdapter(holder.binding.root.context)
+        holder.apply {
+            binding.morningTripName.text= list[position].full_name
+            adapter.list = morningTripList
+            binding.recycler.adapter = adapter
+            binding.recycler.layoutManager = LinearLayoutManager(binding.root.context,LinearLayoutManager.VERTICAL,false)
+            }
+
+            adapter.onItemClickListener {
+                data ->
+                onItemClickListener?.let {
+                    it(data)
+                }
+            }
+    }
+    private var onItemClickListener :((MorningTripAction)-> Unit)? = null
+    fun onItemClickListener(listener : (MorningTripAction)-> Unit){
+        onItemClickListener = listener
     }
 
 }

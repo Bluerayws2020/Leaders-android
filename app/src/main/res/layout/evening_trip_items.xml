@@ -42,53 +42,62 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 />
+
             <LinearLayout
                 android:id="@+id/spaceHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/evening_trip_name"
                 android:orientation="vertical"
-                >
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/evening_trip_name">
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/we_left_school"
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cornerRadius="15dp"
-                    android:fontFamily="@font/arabicregular"
-                    android:text="لقد غادرنا المدرسة"
-                    android:textSize="18sp"
-                    android:backgroundTint="@color/admin_recycle_Orange"/>
+                    android:id="@+id/recycler"
+                    />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/we_are_on_our_way"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="15dp"
-                    android:fontFamily="@font/arabicregular"
-                    android:text="نحن في الطريق اليكم"
-                    android:textSize="18sp"
-                    android:backgroundTint="@color/pink"/>
+                <!--                <com.google.android.material.button.MaterialButton-->
+                <!--                    android:id="@+id/we_left_school"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:cornerRadius="15dp"-->
+                <!--                    android:fontFamily="@font/arabicregular"-->
+                <!--                    android:text="لقد غادرنا المدرسة"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    android:backgroundTint="@color/admin_recycle_Orange"/>-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/we_are_near_by"
-                    android:fontFamily="@font/arabicregular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cornerRadius="15dp"
-                    android:text="نحن الان في الموقع"
-                    android:textSize="18sp"
-                    android:backgroundTint="@color/cyan"/>
+                <!--                <com.google.android.material.button.MaterialButton-->
+                <!--                    android:id="@+id/we_are_on_our_way"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:cornerRadius="15dp"-->
+                <!--                    android:fontFamily="@font/arabicregular"-->
+                <!--                    android:text="نحن في الطريق اليكم"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    android:backgroundTint="@color/pink"/>-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/stu_arrived"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/arabicregular"
-                    app:cornerRadius="15dp"
-                    android:text="تم وصول الطالب"
-                    android:textSize="18sp"
-                    android:backgroundTint="@color/admin_recycle_green"/>
+                <!--                <com.google.android.material.button.MaterialButton-->
+                <!--                    android:id="@+id/we_are_near_by"-->
+                <!--                    android:fontFamily="@font/arabicregular"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:cornerRadius="15dp"-->
+                <!--                    android:text="نحن الان في الموقع"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    android:backgroundTint="@color/cyan"/>-->
+
+                <!--                <com.google.android.material.button.MaterialButton-->
+                <!--                    android:id="@+id/stu_arrived"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:fontFamily="@font/arabicregular"-->
+                <!--                    app:cornerRadius="15dp"-->
+                <!--                    android:text="تم وصول الطالب"-->
+                <!--                    android:textSize="18sp"-->
+                <!--                    android:backgroundTint="@color/admin_recycle_green"/>-->
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

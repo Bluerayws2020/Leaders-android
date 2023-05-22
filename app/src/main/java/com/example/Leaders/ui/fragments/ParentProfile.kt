@@ -21,6 +21,8 @@ import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentParentProfileBinding
+import com.example.tasmeme.ui.ParentActivity
+import com.example.tasmeme.ui.TripActivity
 
 
 class ParentProfile : Fragment() {
@@ -33,6 +35,14 @@ class ParentProfile : Fragment() {
     ): View? {
         binding= FragmentParentProfileBinding.inflate(layoutInflater)
         binding.pb.show()
+      binding.includedTap.textView.text = getString(R.string.my_profile)
+
+      binding.includedTap.sideMenuOpener.setOnClickListener {
+          (activity as ParentActivity).openDrawer()
+      }
+      binding.includedTap.cardView.hide()
+      binding.includedTap.cardView.isClickable = false
+      binding.includedTap.backButton.isClickable = false
         getData()
         viewModel.getParentProfileData(HelperUtils.getUID(requireContext()))
         return binding.root

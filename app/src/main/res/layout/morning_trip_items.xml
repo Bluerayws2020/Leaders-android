@@ -48,56 +48,61 @@
                 app:layout_constraintTop_toBottomOf="@id/morning_trip_name"
                 android:orientation="vertical"
                 >
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/BtnOnOurWay"
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/admin_recycle_Orange"
-                    android:text="نحن في الطريق اليك"
-                    android:fontFamily="@font/arabicregular"
-                    android:textSize="18sp"
-                    app:cornerRadius="15dp" />
+                    android:id="@+id/recycler"
+                    />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/BtnArrived"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/pink"
-                    android:text="نحن الان في الموقع"
-                    android:fontFamily="@font/arabicregular"
-                    android:textSize="18sp"
-                    app:cornerRadius="15dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/BtnOnOurWay"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:backgroundTint="@color/admin_recycle_Orange"-->
+<!--                    android:text="نحن في الطريق اليك"-->
+<!--                    android:fontFamily="@font/arabicregular"-->
+<!--                    android:textSize="18sp"-->
+<!--                    app:cornerRadius="15dp" />-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/BtnStuTaken"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/arabicregular"
-                    android:backgroundTint="@color/admin_recycle_green"
-                    android:text="تم استلام الطالب"
-                    android:textSize="18sp"
-                    app:cornerRadius="15dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/BtnArrived"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:backgroundTint="@color/pink"-->
+<!--                    android:text="نحن الان في الموقع"-->
+<!--                    android:fontFamily="@font/arabicregular"-->
+<!--                    android:textSize="18sp"-->
+<!--                    app:cornerRadius="15dp" />-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/BtnStuArrivedToSchool"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/cyan"
-                    android:text="لقد وصلنا المدرسة بسلام"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/arabicregular"
-                    app:cornerRadius="15dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/BtnStuTaken"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/arabicregular"-->
+<!--                    android:backgroundTint="@color/admin_recycle_green"-->
+<!--                    android:text="تم استلام الطالب"-->
+<!--                    android:textSize="18sp"-->
+<!--                    app:cornerRadius="15dp" />-->
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/BtnTimeOut"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/admin_recycle_Red"
-                    android:text="انتهت مدة الانتظار"
-                    android:fontFamily="@font/arabicregular"
-                    android:textSize="18sp"
-                    app:cornerRadius="15dp" />
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/BtnStuArrivedToSchool"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:backgroundTint="@color/cyan"-->
+<!--                    android:text="لقد وصلنا المدرسة بسلام"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:fontFamily="@font/arabicregular"-->
+<!--                    app:cornerRadius="15dp" />-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                    android:id="@+id/BtnTimeOut"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:backgroundTint="@color/admin_recycle_Red"-->
+<!--                    android:text="انتهت مدة الانتظار"-->
+<!--                    android:fontFamily="@font/arabicregular"-->
+<!--                    android:textSize="18sp"-->
+<!--                    app:cornerRadius="15dp" />-->
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

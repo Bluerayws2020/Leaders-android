@@ -159,3 +159,30 @@ data class MessageModel(
     val status: Int,
     val message: String
 )
+data class GetTripFromOptionsData(
+    val evening_trip_actions: List<EveningTripAction>,
+    val morning_trip_actions: List<MorningTripAction>,
+    val time: List<Time>,
+    val trip: List<Trip>
+)
+data class EveningTripAction(
+    val id: String,
+    val name: String
+)
+data class GetTripFromOptionsModel(
+    val `data`: GetTripFromOptionsData,
+    val status: Int,
+    val message: String?=null
+)
+data class MorningTripAction(
+    val id: String,
+    val name: String
+)
+data class Time(
+    val `1`: String,
+    val `2`: String
+)
+data class Trip(
+    val id: String,
+    val name: String
+)

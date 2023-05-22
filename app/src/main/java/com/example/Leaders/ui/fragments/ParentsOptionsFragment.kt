@@ -20,7 +20,11 @@ import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.getUID
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
+import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentParentsOptionsBinding
+import com.example.tasmeme.ui.ParentActivity
+
+import com.example.tasmeme.ui.TripActivity
 import java.util.Objects
 
 
@@ -45,6 +49,13 @@ class ParentsOptionsFragment : Fragment() {
         getData()
         binding= FragmentParentsOptionsBinding.inflate(layoutInflater)
 
+        binding.includedTap.textView.text = getString(R.string.orders)
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as ParentActivity).onBackPressed()
+        }
+        binding.includedTap.sideMenuOpener.setOnClickListener {
+            (activity as ParentActivity).openDrawer()
+        }
 
 
         getDataForDeparture()

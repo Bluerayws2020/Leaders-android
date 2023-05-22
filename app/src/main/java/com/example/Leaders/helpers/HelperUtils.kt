@@ -8,9 +8,11 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
+import android.os.Message
 import android.provider.Settings
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.example.Leaders.model.ChildListData
 import java.util.*
 
@@ -135,6 +137,9 @@ object HelperUtils {
                 else -> networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
             }
         } else false
+    }
+    fun showMessage(context: Context,message: String){
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
 
 

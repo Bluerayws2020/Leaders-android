@@ -15,6 +15,8 @@ import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.EveningTripAdapter
 import com.example.tasmeme.adaptors.OnItemClickListener
 import com.example.tasmeme.databinding.FragmentEveningTripBinding
+import com.example.tasmeme.ui.TripActivity
+import kotlin.concurrent.fixedRateTimer
 
 
 class EveningTripFragment : Fragment() {
@@ -27,6 +29,37 @@ class EveningTripFragment : Fragment() {
     ): View? {
         binding= FragmentEveningTripBinding.inflate(layoutInflater)
         getData()
+
+        binding.includedTap.textView.text = getString(R.string.eveningTrip)
+
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as TripActivity).onBackPressed()
+        }
+        binding.includedTap.sideMenuOpener.setOnClickListener {
+            (activity as TripActivity).openDrawer()
+        }
+
+        viewModel.getTripFromOptions().observe(viewLifecycleOwner){
+            when(it){
+            is NetworkResults.Success ->{
+            if(it.data.status==200){
+                adapter.eveningTripList = it.data.data.evening_trip_actions
+                adapter.notifyDataSetChanged()
+            }else{
+                it.data.message?.let{
+                        message ->
+                    showMessage(message)
+                }}
+        }
+            is NetworkResults.Error ->{
+            Log.e("ayham", it.exception.toString())
+        }
+            else -> {
+            //nothing
+        }
+        }}
+        viewModel.retrieveTripFromOptions()
+
         return binding.root
     }
 
@@ -74,4 +107,8 @@ class EveningTripFragment : Fragment() {
 
 
 
-}}
+
+}
+
+
+}

@@ -19,10 +19,11 @@ import com.example.nerd_android.helpers.HelperUtils.getUID
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentProfileBinding
+import com.example.tasmeme.ui.ManagerActivity
 import com.example.tasmeme.ui.TripActivity
 
 
-class ProfileFragment : Fragment() {
+class ManegerProfileFragment : Fragment() {
         private lateinit var binding:FragmentProfileBinding
         private val viewModel by viewModels<AppViewModel>()
 
@@ -38,7 +39,7 @@ class ProfileFragment : Fragment() {
         binding.includedTap.textView.text = getString(R.string.my_profile)
 
         binding.includedTap.sideMenuOpener.setOnClickListener {
-            (activity as TripActivity).openDrawer()
+            (activity as ManagerActivity).openDrawer()
         }
         binding.includedTap.cardView.hide()
         binding.includedTap.cardView.isClickable = false
@@ -96,9 +97,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
 
 
 

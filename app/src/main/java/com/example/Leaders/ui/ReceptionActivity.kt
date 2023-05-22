@@ -3,6 +3,8 @@ package com.example.tasmeme.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.Log.e
 import android.widget.TextView
@@ -10,7 +12,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils
@@ -20,18 +24,22 @@ import com.example.nerd_android.helpers.HelperUtils.logout
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityReceptionBinding
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class ReceptionActivity : AppCompatActivity() {
     private lateinit var binding:ActivityReceptionBinding
     private lateinit var toggle: ActionBarDrawerToggle
     private val viewModel by viewModels<AppViewModel>()
+    private lateinit var navController :NavController
+    private var isBackPressed = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.
         setContentView(this,R.layout.activity_reception)
         HelperUtils.setDefaultLanguage(this,"en")
-        binding.textView.text="معلوماتي"
+        //binding.textView.text="معلوماتي"
         binding.apply {
             viewModel.getUserProfileLiveData().observe(this@ReceptionActivity){
                     result->
@@ -45,7 +53,7 @@ class ReceptionActivity : AppCompatActivity() {
                             headerName.text=result.data.data.full_name
                             val headerNumber=headerLayout.findViewById<TextView>(R.id.phone_numberTv)
                             headerNumber.text=result.data.data.phone_number
-                            binding.profileImage.setImageResource(R.drawable.leaders)
+                            //binding.profileImage.setImageResource(R.drawable.leaders)
                         }}
                     is NetworkResults.Error ->{
                         Log.e("ayham",result.exception.toString())
@@ -54,7 +62,7 @@ class ReceptionActivity : AppCompatActivity() {
                 }
             }
             navDrawer.itemIconTintList=null
-            val navController=Navigation.findNavController(this@ReceptionActivity,R.id.fragmentContainerView_Reception)
+            navController=findNavController(R.id.fragmentContainerView_Reception)
             toggle= ActionBarDrawerToggle(this@ReceptionActivity, drawerLayout,R.string.open,R.string.close)
             drawerLayout.addDrawerListener(toggle)
             toggle.syncState()
@@ -64,31 +72,17 @@ class ReceptionActivity : AppCompatActivity() {
                 try{
                     when (menuItem.itemId) {
                         R.id.profile -> {
-                            binding.textView.text = "معلوماتي"
-
-                            // Check if the selected item is already checked
-                            if (menuItem.isChecked) {
-                                // Do nothing
-                            } else {
-                                // Navigate to the profile fragment
-                                navController.navigate(R.id.action_orders_to_profile)
+                            if(isProfileFragmentVisible()){
+                                popStack()
                             }
-
-                            // Close the navigation drawer
+                            navController.navigate(R.id.profile)
                             binding.drawerLayout.closeDrawer(GravityCompat.START)
                         }
                         R.id.orders -> {
-                            binding.textView.text = "الطلبات"
-
-                            // Check if the selected item is already checked
-                            if (menuItem.isChecked) {
-                                // Do nothing
-                            } else {
-                                // Navigate to the orders fragment
-                                navController.navigate(R.id.action_profile_to_orders)
+                            if(!isProfileFragmentVisible()){
+                                popStack()
                             }
-
-                            // Close the navigation drawer
+                            navController.navigate(R.id.orders)
                             binding.drawerLayout.closeDrawer(GravityCompat.START)
                         }
                         R.id.logout_re->{
@@ -108,13 +102,11 @@ class ReceptionActivity : AppCompatActivity() {
 
 
 
-            sideMenuOpener.setOnClickListener {
-                drawerLayout.openDrawer(GravityCompat.START)
-            }
+//            //sideMenuOpener.setOnClickListener {
+//                drawerLayout.openDrawer(GravityCompat.START)
+//            }
 
-            backButton.setOnClickListener {
-                onBackPressed()
-            }}
+
             val sharedPref=getSharedPreferences(SHARED_PREF, MODE_PRIVATE)
                 val uid=sharedPref.getString(UID,"")
 
@@ -124,14 +116,38 @@ class ReceptionActivity : AppCompatActivity() {
 
 
 
-    }
+    }}
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         }else{
-            super.onBackPressed()
+            if(isProfileFragmentVisible()){
+                if(isBackPressed){
+                    super.onBackPressed()
+                }else{
+                    HelperUtils.showMessage(this, getString(R.string.press_again_to_exit))
+                    isBackPressed=true
+                    MainScope().launch {
+                        Handler(Looper.myLooper()!!).postDelayed({
+                            isBackPressed = false
+                        },3000)
+                    }
+                }
+            }else{
+                super.onBackPressed()
+            }
+
         }
-
-
+    }
+    fun openDrawer(){
+        binding.drawerLayout.openDrawer(GravityCompat.START)
+    }
+    fun popStack(){
+        navController = findNavController(R.id.fragmentContainerView_Trip)
+        navController.popBackStack()
+    }
+    private fun isProfileFragmentVisible(): Boolean {
+        val currentDestination = navController.currentDestination
+        return currentDestination?.id == R.id.profile
     }
 }

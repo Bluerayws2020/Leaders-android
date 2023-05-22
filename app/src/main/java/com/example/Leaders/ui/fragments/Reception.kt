@@ -20,6 +20,8 @@ import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.OnItemClickListener
 import com.example.tasmeme.adaptors.ReceptionAdapter
 import com.example.tasmeme.databinding.FragmentReceptionBinding
+import com.example.tasmeme.ui.ReceptionActivity
+import com.example.tasmeme.ui.TripActivity
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 
@@ -34,6 +36,13 @@ class Reception : Fragment() {
     ): View? {
 
         binding= FragmentReceptionBinding.inflate(inflater)
+        binding.includedTap.textView.text = getString(R.string.orders)
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as ReceptionActivity).onBackPressed()
+        }
+        binding.includedTap.sideMenuOpener.setOnClickListener {
+            (activity as ReceptionActivity).openDrawer()
+        }
         binding.paginationProgressBar.show()
         val sharedPreferences = activity?.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
         uid= sharedPreferences?.getString(UID,"").toString()
@@ -62,8 +71,7 @@ class Reception : Fragment() {
                                 binding.paginationProgressBar.show()
                                 viewModel.updateDepartures(
                                     uid,nid, "7"
-                                )
-                            }
+                                ) }
 
 
                         })
@@ -76,12 +84,11 @@ class Reception : Fragment() {
                     }
                     else{
 
-
                     }
 
                 }
                 is NetworkResults.Error->{
-
+                    result.exception.printStackTrace()
                 }
             }
         }}
@@ -93,6 +100,7 @@ class Reception : Fragment() {
                         viewModel.viewAllDepartures(uid)
                         binding.paginationProgressBar.hide()
                         showMessage(it.data.message)
+                        viewModel.viewAllDepartures(uid)
                     }else{
                         showMessage(it.data.message)
                         binding.paginationProgressBar.hide()

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.Log.e
 import android.widget.TextView
@@ -12,7 +14,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.ui.SplashActivity
@@ -26,6 +30,8 @@ import com.example.nerd_android.helpers.HelperUtils.setRole
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityManagerBinding
 import de.hdodenhof.circleimageview.CircleImageView
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 class ManagerActivity : AppCompatActivity() {
 
@@ -33,6 +39,8 @@ class ManagerActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private val viewModel by viewModels<AppViewModel>()
     private lateinit var uid:String
+    private var isBackPressed = false
+    private lateinit var navController : NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +50,7 @@ class ManagerActivity : AppCompatActivity() {
         binding.apply {
 
             navDrawer.itemIconTintList=null
-            val navController=Navigation.findNavController(this@ManagerActivity,R.id.fragmentContainerView_Manager)
+            navController=findNavController(R.id.fragmentContainerView_Manager)
 
             toggle= ActionBarDrawerToggle(this@ManagerActivity,drawerLayout,R.string.open,R.string.close)
             drawerLayout.addDrawerListener(toggle)
@@ -57,26 +65,15 @@ class ManagerActivity : AppCompatActivity() {
                 try{
                     when (menuItem.itemId) {
                         R.id.managerProfile -> {
-                            textView.text = "معلوماتي"
-
-                            if(ISIN==false) {
-                                navController.navigate(R.id.action_notifications_to_profile)
-                            }else{
-                                navController.navigate(R.id.action_departure_to_profile)
-                                ISIN=false
-                            }
+                            popStack()
+                            navController.navigate(R.id.profile)
                             drawerLayout.closeDrawer(GravityCompat.START)
                         }
                         R.id.notifications -> {
-                            textView.text = "الاشعارات"
-
-                            if(ISIN==false) {
-                                navController.navigate(R.id.action_profile_to_notifications)
-                            }else{
-                                navController.navigate(R.id.action_departure_to_notifications)
-                                ISIN=false
+                            if(!isProfileFragmentVisible()){
+                                popStack()
                             }
-
+                            navController.navigate(R.id.notifications)
                             // Close the navigation drawer
                             drawerLayout.closeDrawer(GravityCompat.START)
                         }
@@ -97,12 +94,7 @@ class ManagerActivity : AppCompatActivity() {
                 }
             }
 
-            sideMenuOpener.setOnClickListener {
-                drawerLayout.openDrawer(GravityCompat.START)
-            }
-            backButton.setOnClickListener {
-                onBackPressed()
-            }
+
         }
     }
 
@@ -119,7 +111,7 @@ class ManagerActivity : AppCompatActivity() {
                         profileImg.setImageResource(R.drawable.leaders)
                         nameTV.text=it.data.data.full_name
                         numberTV.text=it.data.data.phone_number
-                        binding.profileImage.setImageResource(R.drawable.leaders)
+
                     } else{
                        Toast.makeText(this,"Un Expected Error Please Try Again",Toast.LENGTH_SHORT).show()
                     }
@@ -130,13 +122,43 @@ class ManagerActivity : AppCompatActivity() {
             }
         }
     }
+
+
+
+
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)){
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         }else{
-            super.onBackPressed()
+            if(isProfileFragmentVisible()){
+
+                if(isBackPressed){
+                    finish()
+                }else{
+                    HelperUtils.showMessage(this, getString(R.string.press_again_to_exit))
+                    isBackPressed=true
+                    MainScope().launch {
+                        Handler(Looper.myLooper()!!).postDelayed({
+                            isBackPressed = false
+                        },3000)
+                    }
+                }
+            }else{
+                popStack()
+                navController.navigate(R.id.profile)
+            }
+
         }
-
-
+    }
+    fun openDrawer(){
+        binding.drawerLayout.openDrawer(GravityCompat.START)
+    }
+    fun popStack(){
+        navController = findNavController(R.id.fragmentContainerView_Manager)
+        navController.popBackStack()
+    }
+    private fun isProfileFragmentVisible(): Boolean {
+        val currentDestination = navController.currentDestination
+        return currentDestination?.id == R.id.profile
     }
 }

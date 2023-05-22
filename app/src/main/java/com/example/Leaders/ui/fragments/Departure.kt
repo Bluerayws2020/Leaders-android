@@ -22,6 +22,7 @@ import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.DepartureAdapter
 import com.example.tasmeme.adaptors.LeaveAdapter
 import com.example.tasmeme.databinding.FragmentDepartureBinding
+import com.example.tasmeme.ui.ManagerActivity
 import com.example.tasmeme.ui.fragments.Notifications.Companion.DEPARTURE_TYPE
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -42,6 +43,13 @@ class Departure : Fragment() {
         when(arguments?.getString(DEPARTURE_TYPE)){
             "2"->  setDepartureWithLayout()
             "1" -> setDepartureLayout()
+        }
+
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as ManagerActivity).onBackPressed()
+        }
+        binding.includedTap.sideMenuOpener.setOnClickListener {
+            (activity as ManagerActivity).openDrawer()
         }
         binding.pb.show()
         val sharedPreferences= activity?.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
@@ -98,6 +106,8 @@ class Departure : Fragment() {
     private fun setDepartureWithLayout() {
         binding.apply {
             departureType.text = "الانصراف مع شخص"
+            binding.includedTap.textView.text = getString(R.string.departure_with_someOne)
+
             adapter=DepartureAdapter()
             recyclerDepature.adapter=adapter
             recyclerDepature.layoutManager=LinearLayoutManager(requireContext())
@@ -107,6 +117,7 @@ class Departure : Fragment() {
     private fun setDepartureLayout() {
         binding.apply {
             departureType.text = "انصراف"
+            binding.includedTap.textView.text = getString(R.string.departure)
             adapter= DepartureAdapter()
             recyclerDepature.adapter=adapter
             recyclerDepature.layoutManager=LinearLayoutManager(requireContext())

@@ -12,6 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+        <include
+            layout="@layout/action_bar2"
+            android:id="@+id/included_tap"/>
 
         <TextView
             android:layout_marginTop="30dp"
@@ -25,7 +28,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/included_tap" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_depature"

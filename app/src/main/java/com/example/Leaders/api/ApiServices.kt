@@ -156,7 +156,9 @@ interface ApiServices {
         @Part("uid") uid: RequestBody
 
 
-    ):MessageModel
+    ):GetTripFromOptionsModel
+
+
 
 
 

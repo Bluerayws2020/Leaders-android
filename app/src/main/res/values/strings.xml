@@ -7,4 +7,12 @@
     <string name="close">close</string>
     <string name="stuName">اسم الطالب </string>
     <string name="theCondition">الحالة</string>
+    <string name="eveningTrip">الجولة المسائية</string>
+    <string name="morningTrip">الجولة الصباحية</string>
+    <string name="my_profile">معلوماتي</string>
+    <string name="press_again_to_exit">اضغط مرة اخرى للخروج</string>
+    <string name="orders">الطلبات</string>
+    <string name="notifications">الاشعارات</string>
+    <string name="departure">الانصراف</string>
+    <string name="departure_with_someOne">الانصراف مع شخص</string>
 </resources>

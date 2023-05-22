@@ -30,6 +30,7 @@ class AppViewModel(  application:Application):AndroidViewModel(application) {
     private val retrieveParentRegistration=MutableLiveData<NetworkResults<LoginResponseModel>>()
     private val createDepartureLiveData=MutableLiveData<NetworkResults<CreateDepartureModel>>()
     private val getTripUsersLiveData=MutableLiveData<NetworkResults<GetTripUsers>>()
+    private val getTripFromOptionsLiveData=MutableLiveData<NetworkResults<GetTripFromOptionsModel>>()
 
 
 
@@ -136,4 +137,12 @@ class AppViewModel(  application:Application):AndroidViewModel(application) {
     }
 
     fun getTripUsers()=getTripUsersLiveData
+
+    fun retrieveTripFromOptions(){
+        viewModelScope.launch{
+            getTripFromOptionsLiveData.value=repo.getTripFormOptions(uid)
+        }
+    }
+
+    fun getTripFromOptions()=getTripFromOptionsLiveData
 }

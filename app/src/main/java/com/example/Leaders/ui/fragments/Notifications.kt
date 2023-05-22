@@ -22,6 +22,8 @@ import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentNotificationsBinding
+import com.example.tasmeme.ui.ManagerActivity
+import com.example.tasmeme.ui.TripActivity
 
 
 class Notifications : Fragment() {
@@ -39,6 +41,13 @@ class Notifications : Fragment() {
     ): View {
         binding= FragmentNotificationsBinding.inflate(layoutInflater)
         binding.pb.show()
+        binding.includedTap.textView.text = getString(R.string.notifications)
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as ManagerActivity).onBackPressed()
+        }
+        binding.includedTap.sideMenuOpener.setOnClickListener {
+            (activity as ManagerActivity).openDrawer()
+        }
         val sharedPreferences=activity?.getSharedPreferences(SHARED_PREF, Context.MODE_PRIVATE)
         val uid = sharedPreferences?.getString(UID,"")
 
@@ -64,7 +73,7 @@ class Notifications : Fragment() {
                         adapter.onItemClickListener {
                             val bundle= Bundle()
                             bundle.putString(DEPARTURE_TYPE,it.id)
-                            findNavController().navigate(R.id.action_notifications2_to_departure,bundle)
+                            findNavController().navigate(R.id.departure,bundle)
                         }
                     }else if(it.data.status  == 400){
                         binding.pb.hide()

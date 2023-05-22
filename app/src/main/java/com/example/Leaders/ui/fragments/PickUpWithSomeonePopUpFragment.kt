@@ -63,7 +63,7 @@ class PickUpWithSomeonePopUpFragment : DialogFragment() {
                     if (it.data.status==200){
                         showMessage("تم اتمام طلبك بنجاح")
                         dismiss()
-                        ParentActivity.goToProfile()
+                        (requireActivity() as ParentActivity).goToProfile()
                     }
                 }
 

@@ -1,6 +1,7 @@
 package com.example.tasmeme.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.util.Log.e
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.MorningTripAdapter
 import com.example.tasmeme.adaptors.OnItemClickListener
 import com.example.tasmeme.databinding.FragmentTripBinding
+import com.example.tasmeme.ui.TripActivity
 
 
 class TripFragment : Fragment() {
@@ -26,8 +28,37 @@ class TripFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        getData()
         binding= FragmentTripBinding.inflate(layoutInflater)
+        getData()
+
+        binding.includedTap.textView.text = getString(R.string.morningTrip)
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as TripActivity).onBackPressed()
+        }
+        binding.includedTap.sideMenuOpener.setOnClickListener {
+            (activity as TripActivity).openDrawer()
+        }
+
+        viewModel.getTripFromOptions().observe(viewLifecycleOwner){
+            when(it){
+                is NetworkResults.Success ->{
+                    if(it.data.status==200){
+                        adapter.morningTripList = it.data.data.morning_trip_actions
+                        adapter.notifyDataSetChanged()
+                    }else{
+                        it.data.message?.let{
+                                message ->
+                            showMessage(message)
+                        }}
+                }
+                is NetworkResults.Error ->{
+                    Log.e("ayham", it.exception.toString())
+                }
+                else -> {
+                    //nothing
+                }
+            }}
+        viewModel.retrieveTripFromOptions()
         return binding.root
     }
 
@@ -42,6 +73,9 @@ class TripFragment : Fragment() {
             }
 
         })
+        adapter.onItemClickListener {
+            viewModel
+        }
 
 
         binding.apply {
@@ -72,4 +106,9 @@ private fun getData(){
     private fun showMessage(message:String){
         Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
     }
+
+
+
 }
+
+

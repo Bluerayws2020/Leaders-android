@@ -1,6 +1,5 @@
 package com.example.tasmeme.ui.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,17 +11,16 @@ import androidx.fragment.app.viewModels
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.ISIN_PER_PRO
-import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
-import com.example.nerd_android.helpers.HelperUtils.UID
 import com.example.nerd_android.helpers.HelperUtils.getRole
 import com.example.nerd_android.helpers.HelperUtils.getUID
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentProfileBinding
+import com.example.tasmeme.ui.ReceptionActivity
 import com.example.tasmeme.ui.TripActivity
 
 
-class ProfileFragment : Fragment() {
+class ReceptionistProfileFragment : Fragment() {
         private lateinit var binding:FragmentProfileBinding
         private val viewModel by viewModels<AppViewModel>()
 
@@ -35,10 +33,11 @@ class ProfileFragment : Fragment() {
         // Inflate the layout for this fragment
         binding= FragmentProfileBinding.inflate(layoutInflater)
 
+
         binding.includedTap.textView.text = getString(R.string.my_profile)
 
         binding.includedTap.sideMenuOpener.setOnClickListener {
-            (activity as TripActivity).openDrawer()
+            (activity as ReceptionActivity).openDrawer()
         }
         binding.includedTap.cardView.hide()
         binding.includedTap.cardView.isClickable = false
@@ -95,11 +94,5 @@ class ProfileFragment : Fragment() {
 
         }
     }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-
 
 }
