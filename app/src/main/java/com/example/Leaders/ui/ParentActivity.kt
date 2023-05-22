@@ -36,7 +36,6 @@ class ParentActivity : AppCompatActivity() {
     private val viewModel by viewModels<AppViewModel>()
     private var isBackPressed = false
 
-    //private var navController: NavController?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.
@@ -130,6 +129,7 @@ class ParentActivity : AppCompatActivity() {
             if(isProfileFragmentVisible()){
                 if(isBackPressed){
                     finish()
+
                 }else{
                     HelperUtils.showMessage(this, getString(R.string.press_again_to_exit))
                     isBackPressed=true
