@@ -48,11 +48,11 @@ class PickUpWithSomeonePopUpFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         var nid = ParentsOptionsFragment.nid
         var uid= HelperUtils.getUID(requireContext())
-        var person_name= binding.personName.text.toString()
-        var personNumber=binding.phoneNumberLeaveWithPerson.text.toString()
-        var personRelative=binding.relativeRelation.text.toString()
+//        var person_name= binding.personName.text.toString()
+//        var personNumber=binding.phoneNumberLeaveWithPerson.text.toString()
+//        var personRelative=binding.relativeRelation.text.toString()
         binding.leaveSendBtn.setOnClickListener {
-        viewModel.createDeparture(nid.toString(),"2",uid,person_name,personNumber,personRelative)
+        viewModel.createDeparture(nid.toString(),"2",uid,binding.personName.text.toString(),binding.phoneNumberLeaveWithPerson.text.toString(),binding.relativeRelation.text.toString())
         }
     }
 

@@ -52,9 +52,10 @@ class NotificationsAdapter(val context:Context):RecyclerView.Adapter<Notificatio
     override fun getItemCount(): Int {
         var nonNullValues=0
         for (item in differ.currentList){
-            if((item!=null)&&(item?.name!=null)&&(item?.count!=null)){
-                nonNullValues++
-            }}
+                item.name?.let {
+                    nonNullValues +=1
+                }
+        }
 
             d("ayham",differ.currentList.size.toString())
         return nonNullValues
@@ -66,8 +67,6 @@ class NotificationsAdapter(val context:Context):RecyclerView.Adapter<Notificatio
 
         data?.name?.let {
             //try {
-
-
             val departureName = data.name
             val departureCount = "(${data.count.toString()})"
             val spannableName = SpannableString(departureName)

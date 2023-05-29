@@ -1,5 +1,6 @@
 package com.example.tasmeme.ui.fragments
 
+import DepartureAdapter
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -19,7 +20,6 @@ import com.example.nerd_android.helpers.HelperUtils.UID
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
-import com.example.tasmeme.adaptors.DepartureAdapter
 import com.example.tasmeme.adaptors.LeaveAdapter
 import com.example.tasmeme.databinding.FragmentDepartureBinding
 import com.example.tasmeme.ui.ManagerActivity
@@ -64,13 +64,12 @@ class Departure : Fragment() {
     }
 
     private fun getdata() {
-
         viewModel.getViewAllDeparturesLiveData().observe(viewLifecycleOwner){
                 result->
             when(result){
                 is NetworkResults.Success ->{
                     if(result.data.status==200){
-                        adapter.differ.submitList(result.data.data.departure)
+                        adapter.submitList( result.data.data.departure)
                         adapter.notifyDataSetChanged()
                         binding.pb.hide()
                         adapter.onButtonApproveClicked {
@@ -78,6 +77,7 @@ class Departure : Fragment() {
                             viewModel.updateDepartures(
                                 uid,it.nid,"6"
                             )
+                            viewModel.viewAllDepartures(uid)
 
 
                         }
@@ -88,8 +88,7 @@ class Departure : Fragment() {
                             )
                             viewModel.viewAllDepartures(uid)
 
-
-                            }
+                        }
 
                     }
 

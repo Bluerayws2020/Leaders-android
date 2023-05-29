@@ -1,5 +1,6 @@
 package com.example.tasmeme.ui.fragments
 
+import ReceptionAdapter
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -18,7 +19,6 @@ import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.OnItemClickListener
-import com.example.tasmeme.adaptors.ReceptionAdapter
 import com.example.tasmeme.databinding.FragmentReceptionBinding
 import com.example.tasmeme.ui.ReceptionActivity
 import com.example.tasmeme.ui.TripActivity
@@ -50,6 +50,18 @@ class Reception : Fragment() {
         getData()
         update()
         viewModel.viewAllDepartures(uid)
+        adapter= ReceptionAdapter(object :OnItemClickListener{
+            override fun onItemClick(position: Int, nid: String) {
+                binding.paginationProgressBar.show()
+                viewModel.updateDepartures(
+                    uid,nid, "7"
+                )
+                viewModel.viewAllDepartures(uid)
+            }
+
+        })
+        binding.recyclerView.adapter=adapter
+        binding.recyclerView.layoutManager=LinearLayoutManager(requireContext())
 
 
         return binding.root
@@ -66,19 +78,9 @@ class Reception : Fragment() {
             when(result){
                 is NetworkResults.Success->{
                     if(result.data.status==200){
-                        adapter= ReceptionAdapter(result.data.data.departure,object :OnItemClickListener{
-                            override fun onItemClick(position: Int, nid: String) {
-                                binding.paginationProgressBar.show()
-                                viewModel.updateDepartures(
-                                    uid,nid, "7"
-                                ) }
-
-
-                        })
+                        adapter.submitList(result.data.data.departure)
                         binding.apply {
-                            recyclerView.adapter=adapter
-                            recyclerView.layoutManager=LinearLayoutManager(requireContext())
-                            recyclerView.itemAnimator= SlideInUpAnimator()
+
                             binding.paginationProgressBar.hide()
                         }
                     }

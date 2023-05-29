@@ -1,55 +1,77 @@
-package com.example.tasmeme.adaptors
-
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.TextView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.Leaders.model.Departure
-import com.example.tasmeme.R
-import com.example.tasmeme.databinding.FragmentProfileBinding
+import com.example.tasmeme.adaptors.OnItemClickListener
 import com.example.tasmeme.databinding.ReceptionRecItemsBinding
-import com.example.tasmeme.model.ReceptionModel
 
-class ReceptionAdapter(List: List<Departure>, val listener: OnItemClickListener): RecyclerView.Adapter<ReceptionAdapter.MyViewHolder>(){
-    private lateinit var list:List<Departure>
-    init {
-    list=List
-    }
-    inner class MyViewHolder(val binding:ReceptionRecItemsBinding,private val listener: OnItemClickListener ):ViewHolder(binding.root),OnClickListener{
+class ReceptionAdapter(private val listener: OnItemClickListener) :
+    RecyclerView.Adapter<ReceptionAdapter.MyViewHolder>() {
 
-
-        override fun onClick(v: View?) {
-            listener.onItemClick(adapterPosition,list[adapterPosition].nid)
+    private val differCallback = object : DiffUtil.ItemCallback<Departure>() {
+        override fun areItemsTheSame(oldItem: Departure, newItem: Departure): Boolean {
+            return oldItem.nid == newItem.nid
         }
 
+        override fun areContentsTheSame(oldItem: Departure, newItem: Departure): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    private val differ = AsyncListDiffer(this, differCallback)
+
+    inner class MyViewHolder(
+        val binding: ReceptionRecItemsBinding,
+        private val listener: OnItemClickListener
+    ) : RecyclerView.ViewHolder(binding.root), View.OnClickListener {
+
+        init {
+            binding.root.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                listener.onItemClick(position, differ.currentList[position].nid)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding=ReceptionRecItemsBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding = ReceptionRecItemsBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return MyViewHolder(binding, listener)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return differ.currentList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-         holder.binding.apply {
-             recItemStuName.text="الطالب"+list[position].student
-             if(list[position].status=="7"){
-                 recItemCheckBox.isChecked=true
-             }else{
-                 recItemCheckBox.isChecked==false
-             }
-         }
+        val departure = differ.currentList[position]
+        holder.binding.apply {
+            recItemStuName.text = "الطالب " + departure.student
+            recItemCheckBox.isChecked = departure.status == "7"
+            recItemAdminName.text = "بموافقة من المشرفة ${departure.department_supervisor}"
+            recItemStuGrade.text="/"+departure.`class`
+        }
 
         holder.binding.recItemCheckBox.setOnClickListener {
-            listener.onItemClick(position,list[position].nid)
-            }
-
+            listener.onItemClick(position, departure.nid)
+        }
     }
+
+    fun submitList(newList: List<Departure>) {
+        differ.submitList(newList)
+    }
+
+//    interface OnItemClickListener {
+//        fun onItemClick(position: Int, nid: String)
+//    }
 }

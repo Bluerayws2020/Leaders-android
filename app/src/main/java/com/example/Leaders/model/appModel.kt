@@ -56,7 +56,12 @@ data class Departure(
     val phone_number: String,
     val relative_relation: String,
     val status: String,
-    val student: String
+    val student: String,
+    val `class`: String,
+    val department_supervisor : String,
+    val receptionist : String,
+    val receptionist_approve_time : Any
+
 )
 data class ViewAllDeparturesData(
     val departure: List<Departure>
@@ -68,7 +73,7 @@ data class UpdateDepartureModel(
 data class GetCurrentDepartureInfoData(
     val count: Int,
     val id: String,
-    val name: String
+    val name: String?
 )
 data class GetCurrentDepartureInfoModel(
     val `data`: List<GetCurrentDepartureInfoData> ? = null,
