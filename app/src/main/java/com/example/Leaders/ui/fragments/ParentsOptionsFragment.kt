@@ -50,9 +50,7 @@ class ParentsOptionsFragment : Fragment() {
         binding= FragmentParentsOptionsBinding.inflate(layoutInflater)
 
         binding.includedTap.textView.text = getString(R.string.orders)
-        binding.includedTap.backButton.setOnClickListener {
-            (activity as ParentActivity).onBackPressed()
-        }
+        binding.includedTap.backButton.hide()
         binding.includedTap.sideMenuOpener.setOnClickListener {
             (activity as ParentActivity).openDrawer()
         }

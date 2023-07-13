@@ -16,7 +16,7 @@ class AdminRecyclerAdapter():RecyclerView.Adapter<AdminRecyclerAdapter.MyViewHol
     val list= arrayListOf<AdminModel>(AdminModel("1","احمد",1),
     AdminModel("2","تيسير",2),
     AdminModel("3","محمد",3),
-        )
+    )
 
     inner class MyViewHolder(view:View):ViewHolder(view){
         val name=view.findViewById<TextView>(R.id.admin_item_stu_name)

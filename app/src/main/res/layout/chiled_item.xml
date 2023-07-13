@@ -9,7 +9,7 @@
     android:backgroundTint="#FFFFFF"
     android:layout_marginTop="10dp"
     app:cardCornerRadius="15dp"
-
+    android:layoutDirection="rtl"
     >
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,13 +96,14 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="40dp"
-        android:hint="   الاسم الرباعي "
+        android:hint="الاسم الرباعي"
         android:fontFamily="@font/arabicregular"
         android:textSize="11sp"
         app:layout_constraintTop_toBottomOf="@id/tv2"
         android:textColor="@color/black"
-        android:gravity="left|center_vertical"
-        android:padding="15sp"
+        android:gravity="right|center_vertical"
+        android:textDirection="rtl"
+        android:paddingStart="25sp"
         />
 
     <EditText
@@ -111,9 +112,10 @@
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_text_view"
-        android:gravity="left|center_vertical"
-        android:hint="   القسم "
-        android:padding="15sp"
+        android:gravity="right|center_vertical"
+        android:hint="القسم"
+        android:textDirection="rtl"
+        android:paddingStart="25sp"
         android:textColor="@color/black"
         android:fontFamily="@font/arabicregular"
         android:textSize="11sp"
@@ -127,12 +129,14 @@
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_text_view"
-        android:hint="   الصف "
+        android:hint="الصف"
+        android:singleLine="true"
         android:fontFamily="@font/arabicregular"
-        android:padding="11sp"
-        android:gravity="left|center_vertical"
+        android:gravity="right|center_vertical"
         android:textColor="@color/black"
         android:textSize="13sp"
+        android:textDirection="rtl"
+        android:paddingStart="25sp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="@+id/department_et"

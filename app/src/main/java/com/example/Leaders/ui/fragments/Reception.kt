@@ -37,12 +37,17 @@ class Reception : Fragment() {
 
         binding= FragmentReceptionBinding.inflate(inflater)
         binding.includedTap.textView.text = getString(R.string.orders)
-        binding.includedTap.backButton.setOnClickListener {
-            (activity as ReceptionActivity).onBackPressed()
-        }
+        binding.includedTap.backButton.hide()
         binding.includedTap.sideMenuOpener.setOnClickListener {
             (activity as ReceptionActivity).openDrawer()
         }
+
+//        handel refresh case
+        binding.swipeToRefreshLayout.setOnRefreshListener {
+            binding.paginationProgressBar.show()
+            viewModel.viewAllDepartures(uid)
+        }
+
         binding.paginationProgressBar.show()
         val sharedPreferences = activity?.getSharedPreferences(SHARED_PREF,Context.MODE_PRIVATE)
         uid= sharedPreferences?.getString(UID,"").toString()
@@ -69,6 +74,8 @@ class Reception : Fragment() {
     private fun showMessage(message:String){
         Toast.makeText(requireContext(),message,Toast.LENGTH_LONG).show()
     }
+
+    //observe to live data
     fun getData(){
 
         viewModel.getViewAllDeparturesLiveData().observe(viewLifecycleOwner){
@@ -78,14 +85,20 @@ class Reception : Fragment() {
             when(result){
                 is NetworkResults.Success->{
                     if(result.data.status==200){
-                        adapter.submitList(result.data.data.departure)
+                        binding.swipeToRefreshLayout.isRefreshing = false
+
+                        // filter list to show only students who there status is 6
+                        val filteredList = result.data.data.departure.filter {
+                            it.status == "6"
+                        }
+
+                        adapter.submitList(filteredList)
                         binding.apply {
 
                             binding.paginationProgressBar.hide()
                         }
                     }
                     else{
-
                     }
 
                 }
@@ -94,11 +107,13 @@ class Reception : Fragment() {
                 }
             }
         }}
+//    observe to update student status live data
     fun update(){
         viewModel.getUpdateDeparturesLiveData().observe(viewLifecycleOwner){
             when(it){
                 is NetworkResults.Success->{
                     if(it.data.status==200){
+//                        binding.swipeToRefreshLayout.isRefreshing = false
                         viewModel.viewAllDepartures(uid)
                         binding.paginationProgressBar.hide()
                         showMessage(it.data.message)

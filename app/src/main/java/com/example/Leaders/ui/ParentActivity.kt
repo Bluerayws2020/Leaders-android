@@ -135,8 +135,7 @@ class ParentActivity : AppCompatActivity() {
                     }
                 }
             }else{
-                popStack()
-                navController?.navigate(R.id.parentProfile)
+                super.onBackPressed()
             }
 
         }
@@ -150,7 +149,7 @@ class ParentActivity : AppCompatActivity() {
     }
     private fun isProfileFragmentVisible(): Boolean {
         val currentDestination = navController?.currentDestination
-        return currentDestination?.id == R.id.parentProfile
+        return currentDestination?.id == R.id.orders_per
     }
 
 }

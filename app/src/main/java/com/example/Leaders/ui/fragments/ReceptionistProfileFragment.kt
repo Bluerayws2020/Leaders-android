@@ -39,9 +39,13 @@ class ReceptionistProfileFragment : Fragment() {
         binding.includedTap.sideMenuOpener.setOnClickListener {
             (activity as ReceptionActivity).openDrawer()
         }
-        binding.includedTap.cardView.hide()
-        binding.includedTap.cardView.isClickable = false
-        binding.includedTap.backButton.isClickable = false
+
+        binding.includedTap.cardView.setOnClickListener {
+            (activity as ReceptionActivity).onBackPressed()
+        }
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as ReceptionActivity).onBackPressed()
+        }
 
         Toast.makeText(requireContext(),"معلوماتي",Toast.LENGTH_SHORT).show()
         if (getRole(requireContext())=="parent"){
@@ -70,6 +74,9 @@ class ReceptionistProfileFragment : Fragment() {
                 is NetworkResults.Error->{
                     Log.e("ayham",result.exception.toString())
                 }
+                else ->{
+
+                }
             }
 
         }
@@ -89,6 +96,9 @@ class ReceptionistProfileFragment : Fragment() {
                 }
                 is NetworkResults.Error->{
                     Log.e("ayham",result.exception.toString())
+                }
+                else ->{
+
                 }
             }
 

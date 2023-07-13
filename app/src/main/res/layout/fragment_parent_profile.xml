@@ -52,7 +52,53 @@
             app:layout_constraintTop_toBottomOf="@id/textName"
             tools:ignore="TextSizeCheck" />
 
+        <TextView
+            android:id="@+id/text111"
+            android:fontFamily="@font/arabicregular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="الرجاء الاختيار"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textNumber"
+            />
+        <!-- main Spinner -->
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/custom_spinner"
+            android:fontFamily="@font/arabicregular"
+            android:gravity="left|center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text111" />
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:layout_constraintTop_toTopOf="@id/spinner"
+            app:layout_constraintBottom_toBottomOf="@id/spinner"
+            app:layout_constraintRight_toRightOf="@id/spinner"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/down_arrow"
+            />
+
+        <!-- this is the parent view -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/spinner"
+
+    android:id="@+id/parentView"
+    >
         <LinearLayout
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/lin1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -64,7 +110,7 @@
             android:layout_marginLeft="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textNumber">
+            >
 
             <TextView
                 android:fontFamily="@font/arabicregular"
@@ -120,93 +166,8 @@
                 app:layout_constraintRight_toLeftOf="@id/viewholder1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/info2"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            app:layout_constraintLeft_toLeftOf="@id/lin1"-->
-<!--            app:layout_constraintRight_toRightOf="@id/lin1"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/info1"-->
-<!--            android:background="@color/white"-->
-<!--            >-->
-<!--            <TextView-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintRight_toRightOf="parent"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textStyle="bold|normal"-->
-<!--                android:textSize="13sp"-->
-<!--                android:text="الرقم الوطني "-->
-<!--                />-->
-<!--            <View-->
-<!--                android:id="@+id/viewholder2"-->
-<!--                android:layout_width="1dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintLeft_toLeftOf="parent"-->
-<!--                app:layout_constraintRight_toRightOf="parent"-->
-<!--                />-->
-<!--            <EditText-->
-<!--                android:id="@+id/national_number"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintRight_toLeftOf="@id/viewholder2"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:textStyle="bold|normal"-->
-<!--                android:textSize="11sp"-->
-<!--                android:text="12345678920"-->
-<!--                android:gravity="right|center_vertical"-->
-<!--                android:background="@drawable/edit_text_clear_background"-->
-<!--                />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--            android:id="@+id/info3"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="50dp"-->
-<!--            app:layout_constraintLeft_toLeftOf="@id/lin1"-->
-<!--            app:layout_constraintRight_toRightOf="@id/lin1"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/info2"-->
-<!--            android:background="@color/white"-->
-<!--            >-->
-<!--            <TextView-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintRight_toRightOf="parent"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textStyle="bold|normal"-->
-<!--                android:textSize="13sp"-->
-<!--                android:text="الرقم السري "-->
-<!--                />-->
-<!--            <View-->
-<!--                android:id="@+id/viewholder3"-->
-<!--                android:layout_width="1dp"-->
-<!--                android:layout_height="match_parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintLeft_toLeftOf="parent"-->
-<!--                app:layout_constraintRight_toRightOf="parent"-->
-<!--                />-->
-<!--            <EditText-->
-<!--                android:id="@+id/password"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintRight_toLeftOf="@id/viewholder3"-->
-<!--                android:layout_marginRight="10dp"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:textStyle="bold|normal"-->
-<!--                android:textSize="11sp"-->
-<!--                android:gravity="right|center_vertical"-->
-<!--                android:text="12345678910"-->
-<!--                android:background="@drawable/edit_text_clear_background"-->
-<!--                />-->
-<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/info4"
             android:layout_width="0dp"
@@ -298,231 +259,336 @@
                 android:background="@drawable/edit_text_clear_background"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info51"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="@id/lin1"
+            app:layout_constraintRight_toRightOf="@id/lin1"
+            app:layout_constraintTop_toBottomOf="@id/info5"
+            android:background="@color/white"
+            >
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold|normal"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="11sp"
+                android:text="كلمة السر الحاليه"
+                />
+            <View
+                android:id="@+id/viewholder51"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+            <EditText
+                android:id="@+id/currentPass"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/viewholder51"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold|normal"
+                android:textSize="9sp"
+                android:fontFamily="@font/arabicregular"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:gravity="right|center_vertical"
+                android:background="@drawable/edit_text_clear_background"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/info52"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintLeft_toLeftOf="@id/lin1"
+            app:layout_constraintRight_toRightOf="@id/lin1"
+            app:layout_constraintTop_toBottomOf="@id/info51"
+            android:background="@color/white"
+            >
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold|normal"
+                android:fontFamily="@font/arabicregular"
+                android:textSize="11sp"
+                android:text="كلمة السر الجديدة"
+                />
+            <View
+                android:id="@+id/viewholder52"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                />
+            <EditText
+                android:id="@+id/newPass"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/viewholder52"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textStyle="bold|normal"
+                android:textSize="9sp"
+                android:fontFamily="@font/arabicregular"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:gravity="right|center_vertical"
+                android:background="@drawable/edit_text_clear_background"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_marginTop="5dp"
+        android:id="@+id/message"
+        android:textSize="10sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arabicregular"
+        android:text="يمكن التعديل على المعلومات بالضغط على خانة المعلومات المراد تغييرها ومن ثم الضغط على تأكيد التغييرات في اسفل الصفحة"
+        app:layout_constraintRight_toRightOf="@id/info5"
+        app:layout_constraintLeft_toLeftOf="@id/info5"
+        app:layout_constraintTop_toBottomOf="@id/info52"
+        />
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    app:layout_constraintLeft_toLeftOf="@id/info5"
+                    app:layout_constraintRight_toRightOf="@id/info5"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/message"
+                    android:id="@+id/submit"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="35dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:text="تأكيد التغييرات"
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    app:cornerRadius="20dp"
+                    android:backgroundTint="@color/tab_selected_background"
+                    android:fontFamily="@font/arabicregular"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_marginTop="5dp"
-            android:id="@+id/message"
-            android:textSize="10sp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/arabicregular"
-            android:text="يمكن التعديل على المعلومات بالضغط على خانة المعلومات المراد تغييرها ومن ثم الضغط على تأكيد التغييرات في اسفل الصفحة"
-            app:layout_constraintRight_toRightOf="@+id/info5"
-            app:layout_constraintLeft_toLeftOf="@id/info5"
-            app:layout_constraintTop_toBottomOf="@+id/info5" />
-        <TextView
-            android:id="@+id/choose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="اختر احد اطفالك"
-            android:fontFamily="@font/arabicregular"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/message"
-            app:layout_constraintRight_toRightOf="@id/message"
-            android:layout_marginTop="20dp"
-            android:textColor="#565656"
-            />
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/info5"
-            app:layout_constraintStart_toStartOf="@+id/info5"
-            app:layout_constraintTop_toBottomOf="@+id/choose"
-            android:background="@drawable/custom_spinner"
-            android:gravity="left|center_vertical"
-            android:fontFamily="@font/arabicregular"
-            />
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:layout_constraintTop_toTopOf="@id/spinner"
-            app:layout_constraintBottom_toBottomOf="@id/spinner"
-            app:layout_constraintRight_toRightOf="@id/spinner"
-            android:layout_marginRight="20dp"
-            android:src="@drawable/down_arrow"
-            />
-        <LinearLayout
-            android:id="@+id/lin2"
+
+
+
+        <!-- This is Child View -->
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_background"
-            android:backgroundTint="@color/action_bar_background"
-            android:gravity="center"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/spinner">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="معلومات طفلي"
-                android:textColor="@color/white"
-                android:fontFamily="@font/arabicregular"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                />
-        </LinearLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/info6"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            app:layout_constraintLeft_toLeftOf="@id/lin2"
-            app:layout_constraintRight_toRightOf="@id/lin2"
-            app:layout_constraintTop_toBottomOf="@id/lin2"
-            android:background="@color/white"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/spinner"
+            android:visibility="gone"
+            android:id="@+id/chiledView"
             >
-            <TextView
+            <LinearLayout
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold|normal"
-                android:textSize="11sp"
-                android:fontFamily="@font/arabicregular"
-                android:text="الاسم الرباعي "
-                />
-            <View
-                android:id="@+id/viewholder6"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                />
+                android:id="@+id/lin2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_background"
+                android:backgroundTint="@color/action_bar_background"
+                android:gravity="center"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
 
-            <EditText
-                android:id="@+id/childName"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="معلومات طفلي"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/arabicregular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    />
+            </LinearLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/info6"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/edit_text_clear_background"
-                android:gravity="right|center_vertical"
-                android:textSize="9sp"
-                android:fontFamily="@font/arabicregular"
-                android:textStyle="bold|normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/viewholder6"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/info7"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            app:layout_constraintLeft_toLeftOf="@id/lin2"
-            app:layout_constraintRight_toRightOf="@id/lin2"
-            app:layout_constraintTop_toBottomOf="@id/info6"
-            android:background="@color/white"
-            >
+                android:layout_height="50dp"
+                app:layout_constraintLeft_toLeftOf="@id/lin2"
+                app:layout_constraintRight_toRightOf="@id/lin2"
+                app:layout_constraintTop_toBottomOf="@id/lin2"
+                android:background="@color/white"
+                >
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold|normal"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/arabicregular"
+                    android:text="الاسم الرباعي "
+                    />
+                <View
+                    android:id="@+id/viewholder6"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    />
+
+                <EditText
+                    android:id="@+id/childName"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/edit_text_clear_background"
+                    android:gravity="right|center_vertical"
+                    android:textSize="9sp"
+                    android:fontFamily="@font/arabicregular"
+                    android:textStyle="bold|normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/viewholder6"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/info7"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintLeft_toLeftOf="@id/lin2"
+                app:layout_constraintRight_toRightOf="@id/lin2"
+                app:layout_constraintTop_toBottomOf="@id/info6"
+                android:background="@color/white"
+                >
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arabicregular"
+                    android:textStyle="bold|normal"
+                    android:textSize="11sp"
+                    android:text="القسم"
+                    />
+                <View
+                    android:id="@+id/viewholder7"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    />
+                <EditText
+                    android:id="@+id/childDepartment"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/viewholder7"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/arabicregular"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold|normal"
+                    android:textSize="9sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:gravity="right|center_vertical"
+                    android:background="@drawable/edit_text_clear_background"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/info8"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                app:layout_constraintLeft_toLeftOf="@id/lin2"
+                app:layout_constraintRight_toRightOf="@id/lin2"
+                app:layout_constraintTop_toBottomOf="@id/info7"
+                android:background="@color/white"
+                >
+                <TextView
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/arabicregular"
+                    android:textStyle="bold|normal"
+                    android:textSize="11sp"
+                    android:text="الصف"
+                    />
+                <View
+                    android:id="@+id/viewholder9"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    />
+                <EditText
+                    android:id="@+id/childClass"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/viewholder9"
+                    android:layout_marginRight="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="0dp"
+                    android:fontFamily="@font/arabicregular"
+                    android:layout_height="match_parent"
+                    android:textStyle="bold|normal"
+                    android:textSize="9sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:gravity="right|center_vertical"
+                    android:background="@drawable/edit_text_clear_background"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/message1"
+                android:textSize="10sp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/arabicregular"
-                android:textStyle="bold|normal"
-                android:textSize="11sp"
-                android:text="القسم"
+                android:text="يمكن التعديل على المعلومات بالضغط على خانة المعلومات المراد تغييرها ومن ثم الضغط على تأكيد التغييرات في اسفل الصفحة"
+                app:layout_constraintRight_toRightOf="@id/info8"
+                app:layout_constraintLeft_toLeftOf="@id/info8"
+                app:layout_constraintTop_toBottomOf="@id/info8"
                 />
-            <View
-                android:id="@+id/viewholder7"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                />
-            <EditText
-                android:id="@+id/childDepartment"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/viewholder7"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/arabicregular"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:textStyle="bold|normal"
-                android:textSize="9sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:gravity="right|center_vertical"
-                android:background="@drawable/edit_text_clear_background"
-                />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/info8"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            app:layout_constraintLeft_toLeftOf="@id/lin2"
-            app:layout_constraintRight_toRightOf="@id/lin2"
-            app:layout_constraintTop_toBottomOf="@id/info7"
-            android:background="@color/white"
-            >
-            <TextView
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/arabicregular"
-                android:textStyle="bold|normal"
-                android:textSize="11sp"
-                android:text="الصف"
-                />
-            <View
-                android:id="@+id/viewholder9"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                />
-            <EditText
-                android:id="@+id/childClass"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/viewholder9"
-                android:layout_marginRight="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="0dp"
-                android:fontFamily="@font/arabicregular"
-                android:layout_height="match_parent"
-                android:textStyle="bold|normal"
-                android:textSize="9sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:gravity="right|center_vertical"
-                android:background="@drawable/edit_text_clear_background"
-                />
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            app:layout_constraintLeft_toLeftOf="@id/info8"
+                            app:layout_constraintRight_toRightOf="@id/info8"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/message1"
+                            android:id="@+id/submit1"
+                            android:layout_marginTop="30dp"
+                            android:layout_marginBottom="35dp"
+                            android:layout_marginRight="30dp"
+                            android:layout_marginLeft="30dp"
+                            android:text="تأكيد التغييرات"
+                            android:textSize="13sp"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:textAllCaps="false"
+                            app:cornerRadius="20dp"
+                            android:backgroundTint="@color/tab_selected_background"
+                            android:fontFamily="@font/arabicregular"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/info8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="35dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:text="تأكيد التغييرات"
-            android:textSize="13sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            app:cornerRadius="20dp"
-            android:backgroundTint="@color/tab_selected_background"
-            android:fontFamily="@font/arabicregular"/>
+
 
         <ProgressBar
             android:id="@+id/pb"

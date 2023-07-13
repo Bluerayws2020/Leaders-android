@@ -42,9 +42,7 @@ class Notifications : Fragment() {
         binding= FragmentNotificationsBinding.inflate(layoutInflater)
         binding.pb.show()
         binding.includedTap.textView.text = getString(R.string.notifications)
-        binding.includedTap.backButton.setOnClickListener {
-            (activity as ManagerActivity).onBackPressed()
-        }
+        binding.includedTap.backButton.hide()
         binding.includedTap.sideMenuOpener.setOnClickListener {
             (activity as ManagerActivity).openDrawer()
         }

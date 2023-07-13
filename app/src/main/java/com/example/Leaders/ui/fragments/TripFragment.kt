@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.FragmentTransitionSupport
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.ViewUtils.hide
+import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.MorningTripAdapter
 import com.example.tasmeme.adaptors.OnItemClickListener
@@ -30,6 +32,15 @@ class TripFragment : Fragment() {
     ): View? {
         binding= FragmentTripBinding.inflate(layoutInflater)
         getData()
+
+        binding.pb.show()
+        binding.wait.show()
+
+        binding.swipeToRefreshLayout.setOnRefreshListener {
+            binding.pb.show()
+            binding.wait.show()
+            viewModel.retrieveTripFromOptions()
+        }
 
         binding.includedTap.textView.text = getString(R.string.morningTrip)
         binding.includedTap.backButton.setOnClickListener {
@@ -87,6 +98,9 @@ private fun getData(){
     viewModel.getTripUsers().observe(viewLifecycleOwner){
         when(it){
             is NetworkResults.Success ->{
+                binding.pb.hide()
+                binding.wait.hide()
+                binding.swipeToRefreshLayout.isRefreshing = false
                 if(it.data.status==200){
                 adapter.list=it.data.data.students
                     adapter.notifyDataSetChanged()
@@ -97,6 +111,9 @@ private fun getData(){
                 }}
             }
             is NetworkResults.Error ->{
+                binding.pb.hide()
+                binding.wait.hide()
+                binding.swipeToRefreshLayout.isRefreshing = false
                 e("ayham",it.exception.toString())
             }
         }

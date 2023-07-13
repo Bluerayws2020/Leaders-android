@@ -36,9 +36,14 @@ class ManegerProfileFragment : Fragment() {
         binding.includedTap.sideMenuOpener.setOnClickListener {
             (activity as ManagerActivity).openDrawer()
         }
-        binding.includedTap.cardView.hide()
-        binding.includedTap.cardView.isClickable = false
-        binding.includedTap.backButton.isClickable = false
+        binding.includedTap.cardView.setOnClickListener {
+            (activity as ManagerActivity).onBackPressed()
+        }
+        binding.includedTap.backButton.setOnClickListener {
+            (activity as ManagerActivity).onBackPressed()
+        }
+        binding.includedTap.cardView.isClickable = true
+        binding.includedTap.backButton.isClickable = true
 
         Toast.makeText(requireContext(),"معلوماتي",Toast.LENGTH_SHORT).show()
         if (getRole(requireContext())=="parent"){

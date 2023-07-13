@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.ISIN
@@ -45,6 +47,13 @@ class Departure : Fragment() {
             "1" -> setDepartureLayout()
         }
 
+//        refresh
+        binding.swipeToRefreshLayout.setOnRefreshListener {
+            binding.wait.show()
+            binding.pb.show()
+            viewModel.viewAllDepartures(uid)
+        }
+
         binding.includedTap.backButton.setOnClickListener {
             (activity as ManagerActivity).onBackPressed()
         }
@@ -62,16 +71,27 @@ class Departure : Fragment() {
 
         return binding.root
     }
-
+//  observe to Live Data
     private fun getdata() {
         viewModel.getViewAllDeparturesLiveData().observe(viewLifecycleOwner){
                 result->
             when(result){
                 is NetworkResults.Success ->{
+
+                    binding.swipeToRefreshLayout.isRefreshing = false
+
                     if(result.data.status==200){
-                        adapter.submitList( result.data.data.departure)
+
+                        //filter list to show only students with status 5 & 8
+                        val filteredList = result.data.data.departure.filter {
+                            it.status == "5" || it.status == "8"
+                        }
+
+                        adapter.submitList(filteredList)
                         adapter.notifyDataSetChanged()
                         binding.pb.hide()
+                        binding.wait.hide()
+
                         adapter.onButtonApproveClicked {
                             binding.pb.show()
                             viewModel.updateDepartures(
@@ -94,7 +114,9 @@ class Departure : Fragment() {
 
                 }
                 is NetworkResults.Error ->{
+
                     binding.pb.hide()
+                    binding.wait.hide()
                     Log.e("ayham",result.exception.toString())
                 }
 
@@ -122,6 +144,7 @@ class Departure : Fragment() {
             recyclerDepature.layoutManager=LinearLayoutManager(requireContext())
     }}
 
+    // observe to update departure status live data
     private fun update(){
         viewModel.getUpdateDeparturesLiveData().observe(viewLifecycleOwner){
             when(it){

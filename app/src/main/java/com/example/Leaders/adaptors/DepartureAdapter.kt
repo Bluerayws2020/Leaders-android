@@ -83,7 +83,7 @@ class DepartureAdapter : RecyclerView.Adapter<DepartureAdapter.MyViewHolder>() {
                 binding.btnDecline.layoutParams = layoutParamsDecline
             }
         }
-
+        holder.binding.name.show()
         holder.binding.name.text = departure.student
        holder.binding.timeOfLeave.text = departure.receptionist_approve_time.toString()
         if(departure.relative_relation.isEmpty()){

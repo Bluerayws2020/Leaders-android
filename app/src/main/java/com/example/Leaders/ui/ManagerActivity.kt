@@ -140,8 +140,7 @@ class ManagerActivity : AppCompatActivity() {
                     }
                 }
             }else{
-                popStack()
-                navController.navigate(R.id.profile)
+                super.onBackPressed()
             }
 
         }
@@ -155,6 +154,6 @@ class ManagerActivity : AppCompatActivity() {
     }
     private fun isProfileFragmentVisible(): Boolean {
         val currentDestination = navController.currentDestination
-        return currentDestination?.id == R.id.profile
+        return currentDestination?.id == R.id.notifications
     }
 }

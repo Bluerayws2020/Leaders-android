@@ -17,6 +17,7 @@ import com.example.Leaders.model.Student
 import com.example.Leaders.model.ViewParentProfileInfoModel
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils
+import com.example.nerd_android.helpers.HelperUtils.getUID
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
@@ -40,11 +41,23 @@ class ParentProfile : Fragment() {
       binding.includedTap.sideMenuOpener.setOnClickListener {
           (activity as ParentActivity).openDrawer()
       }
-      binding.includedTap.cardView.hide()
-      binding.includedTap.cardView.isClickable = false
-      binding.includedTap.backButton.isClickable = false
+      binding.includedTap.cardView.setOnClickListener{
+          (activity as ParentActivity).onBackPressed()
+      }
+      binding.includedTap.backButton.setOnClickListener {
+          (activity as ParentActivity).onBackPressed()
+      }
+
         getData()
         viewModel.getParentProfileData(HelperUtils.getUID(requireContext()))
+
+      binding.submit.setOnClickListener {
+
+      }
+      binding.submit1.setOnClickListener {
+
+      }
+
         return binding.root
     }
     private fun setUpSpinner(requireContext: Context, students: List<Student>) {
@@ -57,12 +70,15 @@ class ParentProfile : Fragment() {
                 is NetworkResults.Success ->{
                     binding.pb.hide()
                     if(it.data.status==200){
-                        setUpSpinner(requireContext(),it.data.data.students)
-                        spinnerResults=it
-                        binding.fullName.text=Editable.Factory.getInstance().newEditable(it.data.data.full_name)
-                        binding.textName.text=it.data.data.full_name
-                        binding.textNumber.text=it.data.data.phone_number
-                        binding.phoneNumberTv.text=Editable.Factory.getInstance().newEditable(it.data.data.phone_number)
+                        val data = mutableListOf<Student>()
+                        data += it.data.data.students
+                        data += Student("","معلوماتي","","",getUID(requireContext()))
+                        setUpSpinner(requireContext(),data)
+//                        spinnerResults=it
+//                        binding.fullName.text=Editable.Factory.getInstance().newEditable(it.data.data.full_name)
+//                        binding.textName.text=it.data.data.full_name
+//                        binding.textNumber.text=it.data.data.phone_number
+//                        binding.phoneNumberTv.text=Editable.Factory.getInstance().newEditable(it.data.data.phone_number)
                         binding.spinner.onItemSelectedListener =object : AdapterView.OnItemSelectedListener {
 
                             override fun onItemSelected(
@@ -71,15 +87,29 @@ class ParentProfile : Fragment() {
                                 position: Int,
                                 id: Long
                             ) {
-                                binding.childName.text=Editable.Factory.getInstance().newEditable(it.data.data.students[position].full_name)
-                                binding.childClass.text=Editable.Factory.getInstance().newEditable(it.data.data.students[position].`class`)
-                                binding.childDepartment.text=Editable.Factory.getInstance().newEditable(it.data.data.students[position].section)
-                            }
+                                if(getUID(requireContext()) == data[position].sid){
+                                    binding.parentView.show()
+                                    binding.chiledView.hide()
+                                    binding.fullName.text=Editable.Factory.getInstance().newEditable(it.data.data.full_name)
+                                    binding.textName.text=it.data.data.full_name
+                                    binding.textNumber.text=it.data.data.phone_number
+                                    binding.phoneNumberTv.text=Editable.Factory.getInstance().newEditable(it.data.data.phone_number)
 
+                                } else{
+                                    binding.parentView.hide()
+                                    binding.chiledView.show()
+                                    binding.childName.text=Editable.Factory.getInstance().newEditable(data[position].full_name)
+                                    binding.childClass.text=Editable.Factory.getInstance().newEditable(data[position].`class`)
+                                    binding.childDepartment.text=Editable.Factory.getInstance().newEditable(data[position].section)
+                            }
+                            }
                             override fun onNothingSelected(parent: AdapterView<*>?) {
-                                binding.childName.text=Editable.Factory.getInstance().newEditable(it.data.data.students[0].full_name)
-                                binding.childClass.text=Editable.Factory.getInstance().newEditable(it.data.data.students[0].`class`)
-                                binding.childDepartment.text=Editable.Factory.getInstance().newEditable(it.data.data.students[0].section)
+                                binding.parentView.show()
+                                binding.chiledView.hide()
+                                binding.fullName.text=Editable.Factory.getInstance().newEditable(it.data.data.full_name)
+                                binding.textName.text=it.data.data.full_name
+                                binding.textNumber.text=it.data.data.phone_number
+                                binding.phoneNumberTv.text=Editable.Factory.getInstance().newEditable(it.data.data.phone_number)
 
                             }
 
@@ -98,5 +128,6 @@ class ParentProfile : Fragment() {
             }
         }
     }
+
 
 }

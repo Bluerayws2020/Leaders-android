@@ -48,10 +48,10 @@ class ParentInfoTabFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setBinding(FragmentParentInfoTabBinding.bind(view))
-        binding.passwordTv.gravity=Gravity.LEFT or Gravity.CENTER_VERTICAL
-        binding.fullName.gravity=Gravity.LEFT or Gravity.CENTER_VERTICAL
-        binding.nationalNumberTv.gravity=Gravity.LEFT or Gravity.CENTER_VERTICAL
-        binding.emailTv.gravity=Gravity.LEFT or Gravity.CENTER_VERTICAL
-        binding.phoneNumberTv.gravity=Gravity.LEFT or Gravity.CENTER_VERTICAL
+        binding.passwordTv.gravity=Gravity.RIGHT or Gravity.CENTER_VERTICAL
+        binding.fullName.gravity=Gravity.RIGHT or Gravity.CENTER_VERTICAL
+        binding.nationalNumberTv.gravity=Gravity.RIGHT or Gravity.CENTER_VERTICAL
+        binding.emailTv.gravity=Gravity.RIGHT or Gravity.CENTER_VERTICAL
+        binding.phoneNumberTv.gravity=Gravity.RIGHT or Gravity.CENTER_VERTICAL
     }
 }

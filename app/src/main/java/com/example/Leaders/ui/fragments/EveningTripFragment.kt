@@ -1,5 +1,6 @@
 package com.example.tasmeme.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.ViewUtils.hide
+import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
 import com.example.tasmeme.adaptors.EveningTripAdapter
 import com.example.tasmeme.databinding.FragmentEveningTripBinding
@@ -21,12 +24,27 @@ class EveningTripFragment : Fragment() {
         private lateinit var binding:FragmentEveningTripBinding
         private lateinit var adapter:EveningTripAdapter
         private val viewModel by viewModels<AppViewModel>()
+
+    //on attach is used for not calling the api 2 times if we got to the fragment the second time
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        viewModel.retrieveTripFromOptions()
+        viewModel.retrieveTripUsers("2")
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding= FragmentEveningTripBinding.inflate(layoutInflater)
         getData()
+        binding.pb.show()
+        binding.wait.show()
+
+        binding.swipeToRefreshLayout.setOnRefreshListener {
+            binding.pb.show()
+            binding.wait.show()
+            viewModel.retrieveTripFromOptions()
+        }
 
         binding.includedTap.textView.text = getString(R.string.eveningTrip)
 
@@ -56,7 +74,7 @@ class EveningTripFragment : Fragment() {
             //nothing
         }
         }}
-        viewModel.retrieveTripFromOptions()
+
 
         return binding.root
     }
@@ -65,6 +83,9 @@ class EveningTripFragment : Fragment() {
         viewModel.getTripUsers().observe(viewLifecycleOwner){
             when(it){
                 is NetworkResults.Success ->{
+                    binding.pb.hide()
+                    binding.wait.hide()
+                    binding.swipeToRefreshLayout.isRefreshing = false
                     if(it.data.status==200){
                         adapter.list=it.data.data.students
                         adapter.notifyDataSetChanged()
@@ -75,6 +96,9 @@ class EveningTripFragment : Fragment() {
                         }}
                 }
                 is NetworkResults.Error ->{
+                    binding.pb.hide()
+                    binding.wait.hide()
+                    binding.swipeToRefreshLayout.isRefreshing = false
                     Log.e("ayham", it.exception.toString())
                 }
                 else -> {
@@ -92,7 +116,6 @@ class EveningTripFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter= EveningTripAdapter()
-        viewModel.retrieveTripUsers("2")
         binding.apply {
 
                 eveningRec.adapter=adapter

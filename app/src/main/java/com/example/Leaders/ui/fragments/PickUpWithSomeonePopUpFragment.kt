@@ -68,7 +68,7 @@ class PickUpWithSomeonePopUpFragment : DialogFragment() {
                 }
 
                 is NetworkResults.Error->{
-
+                    it.exception.printStackTrace()
                 }
             }
         }

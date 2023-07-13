@@ -143,11 +143,11 @@ class ReceptionActivity : AppCompatActivity() {
         binding.drawerLayout.openDrawer(GravityCompat.START)
     }
     fun popStack(){
-        navController = findNavController(R.id.fragmentContainerView_Trip)
+        navController = findNavController(R.id.fragmentContainerView_Reception)
         navController.popBackStack()
     }
     private fun isProfileFragmentVisible(): Boolean {
         val currentDestination = navController.currentDestination
-        return currentDestination?.id == R.id.profile
+        return currentDestination?.id == R.id.orders
     }
 }
