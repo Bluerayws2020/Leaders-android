@@ -65,22 +65,46 @@
         app:layout_constraintTop_toBottomOf="@id/tv1"
         app:layout_constraintRight_toRightOf="parent"
         />
+
     <TextView
-    android:id="@+id/connection"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="عم الطالب"
-    android:textSize="14sp"
+        android:id="@+id/connection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/arabicregular"
-    android:textStyle="bold"
-    app:layout_constraintTop_toBottomOf="@id/tv1"
-    app:layout_constraintRight_toLeftOf="@id/tv2"
-    />
+        android:text="عم الطالب"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toLeftOf="@id/tv2"
+        app:layout_constraintTop_toBottomOf="@id/tv1"
+        tools:layout_editor_absoluteX="161dp" />
+    <TextView
+        android:id="@+id/person_nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" اسم الشخص : "
+        android:fontFamily="@font/arabicregular"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/tv2"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/person_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arabicregular"
+        android:text="تيسير"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toLeftOf="@id/person_nameTV"
+        app:layout_constraintTop_toBottomOf="@id/tv2"
+        tools:layout_editor_absoluteX="190dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv2"
+        app:layout_constraintTop_toBottomOf="@+id/person_name"
         android:orientation="horizontal"
         android:weightSum="100"
         android:gravity="center"

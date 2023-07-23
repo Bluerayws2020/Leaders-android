@@ -13,7 +13,9 @@ class ReceptionAdapter(private val listener: OnItemClickListener) :
 
     private val differCallback = object : DiffUtil.ItemCallback<Departure>() {
         override fun areItemsTheSame(oldItem: Departure, newItem: Departure): Boolean {
-            return oldItem.nid == newItem.nid
+            return oldItem.nid == newItem.nid &&
+                    oldItem.status == newItem.status
+
         }
 
         override fun areContentsTheSame(oldItem: Departure, newItem: Departure): Boolean {
@@ -58,8 +60,9 @@ class ReceptionAdapter(private val listener: OnItemClickListener) :
         holder.binding.apply {
             recItemStuName.text = "الطالب " + departure.student
             recItemCheckBox.isChecked = departure.status == "7"
-            recItemAdminName.text = "بموافقة من المشرفة ${departure.department_supervisor}"
+//            recItemAdminName.text = "بموافقة من المشرفة ${departure.department_supervisor}"
             recItemStuGrade.text="/"+departure.`class`
+            recItemStuTimeToLeave.text = "غادر الصف الساعة ${departure.receptionist_approve_time}"
         }
 
         holder.binding.recItemCheckBox.setOnClickListener {

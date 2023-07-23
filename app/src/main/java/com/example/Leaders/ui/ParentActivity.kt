@@ -95,8 +95,8 @@ class ParentActivity : AppCompatActivity() {
                         nameTV.text=it.data.data.full_name
                         numberTV.text=it.data.data.phone_number
 
-                    } else{
-                        Toast.makeText(this,"Un Expected Error Please Try Again", Toast.LENGTH_SHORT).show()
+                    } else if (it.data.status == 400){
+                        HelperUtils.showMessage(this, it.data.message ?: "unExpected Error")
                     }
                 }
                 is NetworkResults.Error->{

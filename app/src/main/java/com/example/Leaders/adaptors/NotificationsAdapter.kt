@@ -37,7 +37,7 @@ class NotificationsAdapter(val context:Context):RecyclerView.Adapter<Notificatio
         }
 
     }
-    val differ= AsyncListDiffer<GetCurrentDepartureInfoData>(this,differCallback)
+    val differ= AsyncListDiffer(this,differCallback)
 
     inner class MyViewHolder(val binding: NotificationItemsBinding):ViewHolder(binding.root)
     {

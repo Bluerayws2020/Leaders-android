@@ -11,7 +11,7 @@ sealed class NetworkResults<out R> {
 //log in response
 data class LoginResponseModel(
     val `data`: Data,
-    val message: String,
+    val message: String? = null,
     val status: Int
 )
 
@@ -43,11 +43,13 @@ data class VUPSection(
 data class ViewUserProfileModel
     (
     val `data`: VUPData,
-    val status: Int
+    val status: Int,
+    val message: String? = null
 )
 data class ViewAllDeparturesModel(
     val `data`: ViewAllDeparturesData,
-    val status: Int
+    val status: Int,
+    val message:String?
 )
 data class Departure(
     val departure_type: String,
@@ -67,7 +69,7 @@ data class ViewAllDeparturesData(
     val departure: List<Departure>
 )
 data class UpdateDepartureModel(
-    val message: String,
+    val message: String? = null,
     val status: Int
 )
 data class GetCurrentDepartureInfoData(
@@ -82,7 +84,8 @@ data class GetCurrentDepartureInfoModel(
 )
 data class ViewParentProfileInfoModel(
     val `data`: ViewParentProfileInfoModelData,
-    val status: Int
+    val status: Int,
+    val message: String? = null
 )
 data class ViewParentProfileInfoModelData(
     val classes: List<Classe>,
@@ -140,7 +143,7 @@ data class ChildListData(
 
 data class CreateDepartureModel(
     val status: Int,
-    val message: String
+    val message: String? = null
 )
 data class GetTripUsersData(
     val escort: List<Escort>,
@@ -154,7 +157,7 @@ data class Escort(
 data class GetTripUsers(
     val `data`: GetTripUsersData,
     val status: Int,
-    val message: String?=null
+    val message: String? = null
 )
 data class TripStudents(
     val full_name: String,
@@ -177,7 +180,7 @@ data class EveningTripAction(
 data class GetTripFromOptionsModel(
     val `data`: GetTripFromOptionsData,
     val status: Int,
-    val message: String?=null
+    val message: String? = null
 )
 data class MorningTripAction(
     val id: String,

@@ -89,7 +89,11 @@ class DepartureAdapter : RecyclerView.Adapter<DepartureAdapter.MyViewHolder>() {
         if(departure.relative_relation.isEmpty()){
             holder.binding.connection.hide()
             holder.binding.tv2.hide()
+            holder.binding.personNameTV.hide()
+            holder.binding.personName.hide()
         }
+        holder.binding.connection.text = departure.relative_relation
+        holder.binding.personName.text = departure.person
 
         holder.binding.btnAccept.setOnClickListener {
             onApproveClickListener?.invoke(departure)

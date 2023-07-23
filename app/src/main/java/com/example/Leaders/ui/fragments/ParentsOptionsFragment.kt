@@ -17,7 +17,9 @@ import com.example.Leaders.model.Student
 import com.example.Leaders.model.ViewParentProfileInfoModel
 import com.example.Leaders.ui.fragments.RequestPermissionFragment
 import com.example.Leaders.viewModels.AppViewModel
+import com.example.nerd_android.helpers.HelperUtils
 import com.example.nerd_android.helpers.HelperUtils.getUID
+import com.example.nerd_android.helpers.HelperUtils.showMessage
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
@@ -70,6 +72,8 @@ class ParentsOptionsFragment : Fragment() {
                     if (it.data.status==200){
                         val showPopUp= PleaseWaitFragment ()
                         showPopUp.show((activity as AppCompatActivity).supportFragmentManager,"showPopUp")
+                    }else if (it.data.status == 400){
+                        showMessage(requireContext(),it.data.message ?: "unExpected Error")
                     }
                 }
 
@@ -230,9 +234,11 @@ class ParentsOptionsFragment : Fragment() {
                     if(it.data.status==200){
                         setUpSpinner(requireContext(),it.data.data.students)
                         spinnerResults=it
-                    } else{
-                        binding.pb.hide()
-                        Toast.makeText(requireContext(),"Un Expected Error Please Try Again", Toast.LENGTH_SHORT).show()
+                    } else if (it.data.status == 400){
+                        HelperUtils.showMessage(
+                            requireContext(),
+                            it.data.message ?: "unExpected Error"
+                        )
                     }
                 }
                 is NetworkResults.Error->{

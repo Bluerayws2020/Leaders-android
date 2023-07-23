@@ -116,9 +116,13 @@ class ParentProfile : Fragment() {
 
 
                         }
-                    } else{
+                    }
+                    else if(it.data.status == 400){
                         binding.pb.hide()
-                        Toast.makeText(requireContext(),"Un Expected Error Please Try Again", Toast.LENGTH_SHORT).show()
+                        HelperUtils.showMessage(
+                                requireContext(),
+                                it.data.message ?: "unExpected Error"
+                            )
                     }
                 }
                 is NetworkResults.Error->{

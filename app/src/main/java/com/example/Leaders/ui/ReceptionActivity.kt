@@ -54,7 +54,10 @@ class ReceptionActivity : AppCompatActivity() {
                             val headerNumber=headerLayout.findViewById<TextView>(R.id.phone_numberTv)
                             headerNumber.text=result.data.data.phone_number
                             //binding.profileImage.setImageResource(R.drawable.leaders)
-                        }}
+                        } else if (result.data.status == 400){
+                            HelperUtils.showMessage(this@ReceptionActivity, result.data.message ?: "unExpected Error")
+                        }
+                    }
                     is NetworkResults.Error ->{
                         Log.e("ayham",result.exception.toString())
                     }

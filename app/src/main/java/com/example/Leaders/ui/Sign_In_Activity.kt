@@ -152,7 +152,7 @@ class Sign_In_Activity : AppCompatActivity() {
                      }
                      else -> {
                          binding.paginationProgressBar.hide()
-                         showMessage("Un Expected Error")
+                         showMessage(result.data.message ?: "UnExpected Error")
                      }
                  }
 

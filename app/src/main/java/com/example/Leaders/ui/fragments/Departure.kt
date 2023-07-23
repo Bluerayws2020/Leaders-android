@@ -19,6 +19,7 @@ import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.ISIN
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.UID
+import com.example.nerd_android.helpers.HelperUtils.showMessage
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
@@ -82,10 +83,12 @@ class Departure : Fragment() {
 
                     if(result.data.status==200){
 
-                        //filter list to show only students with status 5 & 8
+                        //filter list to show only students with status 5 & 8 and what is the departure type
                         val filteredList = result.data.data.departure.filter {
-                            it.status == "5" || it.status == "8"
+                            (it.status == "5" || it.status == "8") &&
+                            it.departure_type == arguments?.getString(DEPARTURE_TYPE)
                         }
+
 
                         adapter.submitList(filteredList)
                         adapter.notifyDataSetChanged()
@@ -110,6 +113,9 @@ class Departure : Fragment() {
 
                         }
 
+                    }
+                    else if (result.data.status == 400){
+                        showMessage(requireContext(),result.data.message ?:"unExpected Error")
                     }
 
                 }
@@ -151,7 +157,7 @@ class Departure : Fragment() {
                 is NetworkResults.Success->{
                     //nothing
                     viewModel.viewAllDepartures(uid)
-                    showMessage(it.data.message)
+                    showMessage(requireContext(),it.data.message ?: "unExpected Error")
 
                 }
                 is NetworkResults.Error ->{
@@ -161,9 +167,6 @@ class Departure : Fragment() {
         }
     }
 
-private fun showMessage(message:String){
-    Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
-}
 
 
 

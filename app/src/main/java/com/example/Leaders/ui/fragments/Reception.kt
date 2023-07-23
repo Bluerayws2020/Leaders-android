@@ -15,6 +15,7 @@ import com.example.Leaders.model.NetworkResults
 import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.UID
+import com.example.nerd_android.helpers.HelperUtils.showMessage
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.nerd_android.helpers.ViewUtils.show
 import com.example.tasmeme.R
@@ -71,9 +72,7 @@ class Reception : Fragment() {
 
         return binding.root
     }
-    private fun showMessage(message:String){
-        Toast.makeText(requireContext(),message,Toast.LENGTH_LONG).show()
-    }
+
 
     //observe to live data
     fun getData(){
@@ -97,8 +96,9 @@ class Reception : Fragment() {
 
                             binding.paginationProgressBar.hide()
                         }
-                    }
-                    else{
+                    }else if (result.data.status == 400){
+                        binding.swipeToRefreshLayout.isRefreshing = false
+                        showMessage(requireContext(),result.data.message ?:"unExpected Error")
                     }
 
                 }
@@ -116,10 +116,10 @@ class Reception : Fragment() {
 //                        binding.swipeToRefreshLayout.isRefreshing = false
                         viewModel.viewAllDepartures(uid)
                         binding.paginationProgressBar.hide()
-                        showMessage(it.data.message)
+                        showMessage(requireContext(),it.data.message ?: "unExpected Error")
                         viewModel.viewAllDepartures(uid)
                     }else{
-                        showMessage(it.data.message)
+                        showMessage(requireContext(),it.data.message ?: "unExpected Error")
                         binding.paginationProgressBar.hide()
                     }
                 }

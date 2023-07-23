@@ -22,6 +22,7 @@ import com.example.nerd_android.helpers.HelperUtils.ISIN
 import com.example.nerd_android.helpers.HelperUtils.SHARED_PREF
 import com.example.nerd_android.helpers.HelperUtils.UID
 import com.example.nerd_android.helpers.HelperUtils.logout
+import com.example.nerd_android.helpers.HelperUtils.showMessage
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.ActivityManagerBinding
 import de.hdodenhof.circleimageview.CircleImageView
@@ -107,8 +108,8 @@ class ManagerActivity : AppCompatActivity() {
                         nameTV.text=it.data.data.full_name
                         numberTV.text=it.data.data.phone_number
 
-                    } else{
-                       Toast.makeText(this,"Un Expected Error Please Try Again",Toast.LENGTH_SHORT).show()
+                    } else if (it.data.status == 400){
+                        showMessage(this,it.data.message ?: "unExpected Error")
                     }
                 }
                 is NetworkResults.Error->{

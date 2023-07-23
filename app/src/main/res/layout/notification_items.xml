@@ -9,19 +9,24 @@
     <com.google.android.material.button.MaterialButton
         android:fontFamily="@font/arabicregular"
         android:id="@+id/btn_leaves"
+        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/background_notification_buttons"
-        android:onClick="goToFragment"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="10dp"
         android:padding="40dp"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:cornerRadius="60dp"
-        tools:text="المغادرات(%S)" />
+        android:singleLine="true"
+        tools:text="انصراف مع شخص اخر (555)"
+        android:textAllCaps="false"
+        app:rippleColor="@color/white"
+        app:strokeWidth="2dp"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

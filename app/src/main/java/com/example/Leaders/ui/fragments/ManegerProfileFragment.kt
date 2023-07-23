@@ -13,6 +13,7 @@ import com.example.Leaders.viewModels.AppViewModel
 import com.example.nerd_android.helpers.HelperUtils.ISIN_PER_PRO
 import com.example.nerd_android.helpers.HelperUtils.getRole
 import com.example.nerd_android.helpers.HelperUtils.getUID
+import com.example.nerd_android.helpers.HelperUtils.showMessage
 import com.example.nerd_android.helpers.ViewUtils.hide
 import com.example.tasmeme.R
 import com.example.tasmeme.databinding.FragmentProfileBinding
@@ -66,10 +67,13 @@ class ManegerProfileFragment : Fragment() {
                         binding.nameTv.text=result.data.data.full_name
                         binding.phoneNumberTv.text=result.data.data.phone_number
                         binding.profileImageFirst.setImageResource(R.drawable.leaders)
+                    }else if (result.data.status == 400){
+                        showMessage(requireContext(),result.data.message ?:"unExpected Error")
                     }
 
                 }
                 is NetworkResults.Error->{
+                    result.exception.printStackTrace()
                     Log.e("ayham",result.exception.toString())
                 }
             }
@@ -86,6 +90,8 @@ class ManegerProfileFragment : Fragment() {
                         binding.nameTv.text=result.data.data.full_name
                         binding.phoneNumberTv.text=result.data.data.phone_number
                         binding.profileImageFirst.setImageResource(R.drawable.leaders)
+                    }else if (result.data.status == 400){
+                        showMessage(requireContext(),result.data.message ?:"unExpected Error")
                     }
 
                 }

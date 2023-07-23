@@ -31,6 +31,7 @@ class Notifications : Fragment() {
     private lateinit var binding:FragmentNotificationsBinding
     private val viewModel by viewModels<AppViewModel>()
     private lateinit var adapter:NotificationsAdapter
+
     companion object{
         const val DEPARTURE_TYPE="DEPARTURE_TYPE"
     }

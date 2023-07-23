@@ -64,6 +64,8 @@ class PickUpWithSomeonePopUpFragment : DialogFragment() {
                         showMessage("تم اتمام طلبك بنجاح")
                         dismiss()
                         (requireActivity() as ParentActivity).goToProfile()
+                    }else if (it.data.status == 400){
+                        showMessage(it.data.message ?: "unExpected error")
                     }
                 }
 
